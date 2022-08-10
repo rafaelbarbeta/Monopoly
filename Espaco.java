@@ -1,5 +1,5 @@
 /**
- * Classe que representa um espaço nomeado qualquer do tabuleiro.
+ * Representa um espaço nomeado qualquer do tabuleiro.
  */
 public class Espaco {
     private final String nome;
