@@ -30,7 +30,7 @@ public class Dado {
      */
     public int rolar() {
         Random lancamento = new Random();
-        ultimoValor = LADOS[lancamento.nextInt(6)];
+        ultimoValor = LADOS[lancamento.nextInt(Dado.MAXLADO)];
         return ultimoValor;
     }
     /**
