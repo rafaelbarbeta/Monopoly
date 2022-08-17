@@ -48,5 +48,15 @@ public class DeckDeCartas {
         else {
             //
         }
+
+    }
+    /**
+     * @return A carta retirada do início do Deck
+     */
+    public Carta pegarCarta() {
+        Carta cartaRetirada = deck.get(0);
+        deck.remove(0);
+        deck.add(cartaRetirada); 
+        return cartaRetirada;
     }
 }
