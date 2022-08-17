@@ -49,4 +49,9 @@ public class DeckDeCartas {
             //
         }
     }
+
+
+    public void embaralhar() {
+        
+    }
 }
