@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public class DeckDeCartas {
     public final static int DECKCOFRE = 1,DECKSORTE = 2;
@@ -52,6 +54,8 @@ public class DeckDeCartas {
 
 
     public void embaralhar() {
-        
+        Random fonteAleatoridade = new Random();
+        Collections.shuffle(this.deck,fonteAleatoridade);
     }
+
 }
