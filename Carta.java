@@ -2,7 +2,7 @@
  * Classe básica que define uma Carta genérica do jogo. 
  */
 public class Carta {
-    private final String descricao;
+    private String descricao;
 
     /**
      * Retorna um objeto representando uma carta genérica do jogo

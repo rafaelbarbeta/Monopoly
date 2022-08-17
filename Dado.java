@@ -16,7 +16,6 @@ public class Dado {
     };
     /**
      * Inicializa cada lado com seu número correspondente
-     * @return Uma instancia de um dado de MAXLADO lados.
      */
     public Dado() {
         LADOS = new int[Dado.MAXLADO];

@@ -2,7 +2,7 @@
  * Representa um espaço nomeado qualquer do tabuleiro.
  */
 public class Espaco {
-    private final String nome;
+    private String nome;
 
     /**
      * Retorna um objeto representando um espaço genérico no tabuleiro.
