@@ -6,13 +6,7 @@ public class CartaDeMovimento extends Carta {
      * Constante estática que define o tipo de movimento.
      * 1 é para frente(PARAFRENTE), -1 para trás(PARATRAS) e 0 é para um espaço em específico(ESPECIFICO)
      */
-    public final static int PARAFRENTE, PARATRAS, ESPECIFICO;
-
-    static {
-        PARAFRENTE = 1;
-        PARATRAS = -1;
-        ESPECIFICO = 0;
-    }
+    public final static int PARAFRENTE = 1, PARATRAS = -1, ESPECIFICO = 0;
 
     private int tipoMovimento;
     private int valorMovimento;
