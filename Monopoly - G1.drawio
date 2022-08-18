@@ -392,7 +392,7 @@
                 <mxCell id="33" value="&amp;nbsp;+ setDono(dono: Jogador)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="eLn0Z7HhfPv99B10Aiud-1">
                     <mxGeometry y="154" width="222" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="36" value="&amp;nbsp;+ calcularAluguel()" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="eLn0Z7HhfPv99B10Aiud-1">
+                <mxCell id="36" value="&amp;nbsp;+ calcularAluguel(s)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="eLn0Z7HhfPv99B10Aiud-1">
                     <mxGeometry y="184" width="222" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="2" value="CartaDeDinheiro" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;" parent="1" vertex="1">
