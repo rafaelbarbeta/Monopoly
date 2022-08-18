@@ -19,8 +19,8 @@ public class Dado {
      */
     public Dado() {
         LADOS = new int[Dado.MAXLADO];
-        for(int i = 1; i <= Dado.MAXLADO; i++) {
-            LADOS[i] = i;
+        for(int i = 0; i < Dado.MAXLADO; i++) {
+            LADOS[i] = i+1;
         }
     }
     /**
