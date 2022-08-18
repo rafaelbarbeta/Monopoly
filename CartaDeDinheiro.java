@@ -18,4 +18,5 @@ public class CartaDeDinheiro extends Carta{
      */
     public int getValor() {
         return valor;
+    }
 }

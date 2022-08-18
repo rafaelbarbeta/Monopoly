@@ -3,10 +3,17 @@ import java.util.Collections;
 import java.util.Random;
 
 public class DeckDeCartas {
+    /**
+     * Constantes estáticas que definem o tipo de deck a ser criado
+     */
     public final static int DECKCOFRE = 1,DECKSORTE = 2;
 
     private ArrayList<Carta> deck;
 
+    /**
+     * 
+     * @param tipoDeck Qual deque será criado, um deque de Cofre ou de Sorte. Deve ser passada uma das constantes públicas da classe para isso (DECKCOFRE) ou (DECKSORTE)
+     */
     public DeckDeCartas(int tipoDeck) {
         EnumCarta[] descricoesCartas = EnumCarta.values();
         if (tipoDeck == DECKCOFRE) {
@@ -16,7 +23,7 @@ public class DeckDeCartas {
             deck.add(new CartaDeMovimento(descricoesCartas[3], CartaDeMovimento.ESPECIFICO, 24));
             deck.add(new CartaDeMovimento(descricoesCartas[4], CartaDeMovimento.PARAFRENTE, 2));
             deck.add(new CartaDeMovimento(descricoesCartas[5], CartaDeMovimento.PARATRAS, 4));
-            //deck.add(new CartaDeMovimento(descricoesCartas[6], CartaDeMovimento.PARATRAS, 4));
+            deck.add(new CartaDeMovimento(descricoesCartas[6], CartaDeMovimento.MAISPROXIMO, CartaDeMovimento.UTILIDADE));
             deck.add(new CartaDeDinheiro(descricoesCartas[7], 100));
             deck.add(new CartaDeDinheiro(descricoesCartas[8], 10));
             deck.add(new CartaDeDinheiro(descricoesCartas[9], 200));
@@ -34,7 +41,7 @@ public class DeckDeCartas {
             deck.add(new CartaDeMovimento(descricoesCartas[19], CartaDeMovimento.ESPECIFICO, 4));
             deck.add(new CartaDeMovimento(descricoesCartas[20], CartaDeMovimento.PARAFRENTE, 5));
             deck.add(new CartaDeMovimento(descricoesCartas[21], CartaDeMovimento.PARATRAS, 3));
-            //deck.add(new CartaDeMovimento(descricoesCartas[22], CartaDeMovimento.PARATRAS, 3)); mais proxima
+            deck.add(new CartaDeMovimento(descricoesCartas[22], CartaDeMovimento.PARATRAS, CartaDeMovimento.METRO)); 
 
             deck.add(new CartaDeDinheiro(descricoesCartas[23], -50));
             deck.add(new CartaDeDinheiro(descricoesCartas[24], 75));
@@ -50,7 +57,7 @@ public class DeckDeCartas {
         else {
             //
         }
-
+        embaralhar();
     }
     /**
      * @return A carta retirada do início do Deck
