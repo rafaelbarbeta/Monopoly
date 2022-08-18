@@ -1,22 +1,22 @@
 /**
- * Subclasse de Espaço que representa o espaço inicial do jogo.
+ * Subclasse de Espaço que representa o espaço inicial do jogo para os jogadores.
  */
 public class PontoDePartida extends Espaco{
-    private int valor;
+    private final int BONUS;
 
     /**
      * @param nome O nome dado ao espaço. Só pode ser um dos nomes especificados em NomeDoEspaco
-     * @param valor O valor correspondente à quantia recebida pelos jogadores ao voltarem para o Ponto de Partida
+     * @param bonus O bonus correspondente à quantia recebida pelos jogadores ao voltarem para o Ponto de Partida
      */
-    public PontoDePartida(NomeDoEspaco nome, int valor) {
+    public PontoDePartida(NomeDoEspaco nome, int bonus) {
         super(nome);
-        this.valor = valor;
+        this.BONUS = bonus;
     }
 
     /**
-     * @return
+     * @return O valor de bonus quando um dos jogadores passa pelo PontoDePartida
      */
-    public int getValor() {
-        return valor;
+    public int getBonus() {
+        return BONUS;
     }
 }
