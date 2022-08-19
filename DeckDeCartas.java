@@ -19,7 +19,8 @@ public class DeckDeCartas {
         deck = new ArrayList<Carta>();
         if (tipoDeck == DECKCOFRE) {
             deck.add(new CartaDeMovimento(descricoesCartas[0], CartaDeMovimento.ESPECIFICO, 14));
-            deck.add(new CartaDeMovimento(descricoesCartas[1], CartaDeMovimento.ESPECIFICO, 40));
+            deck.add(new CartaDeMovimento(descricoesCartas[1], CartaDeMovimento.ESPECIFICO, 
+            40));
             deck.add(new CartaDeMovimento(descricoesCartas[2], CartaDeMovimento.ESPECIFICO, 7));
             deck.add(new CartaDeMovimento(descricoesCartas[3], CartaDeMovimento.ESPECIFICO, 24));
             deck.add(new CartaDeMovimento(descricoesCartas[4], CartaDeMovimento.PARAFRENTE, 2));
