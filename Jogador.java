@@ -40,8 +40,8 @@ public class Jogador {
         return this.numeroDeUtilidades;
     }
 
-
-
-
+    public int getNumeroEstacoesMetro() {
+        return this.numeroDeEstacoesMetro;
+    }
 
 }

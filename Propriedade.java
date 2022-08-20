@@ -2,9 +2,8 @@
  * Subclasse de Espaco. Define um espaco que pode ser comprado por jogadores
  */
 public abstract class Propriedade extends Espaco {
-    private int precoCompra;
-    protected int aluguel;
-    protected Jogador dono;
+    private int precoCompra; 
+    private Jogador dono;
 
     /**
      * Retorna um objeto representando uma propriedade no tabuleiro, podendo ser um Lote, Utilidade ou Estação de Metro
@@ -26,6 +25,14 @@ public abstract class Propriedade extends Espaco {
     }
 
     /**
+     * Obtém uam referência ao dono da propriedade
+     * @return Uma referência ao dono da propriedade do tipo Jogador
+     */
+    public Jogador getDono() {
+        return dono;
+    }
+
+    /**
      * Configura o novo dono da propriedade
      * @param dono A referencia de um objeto do tipo Jogador. É o dono da propriedade
      */
@@ -36,5 +43,5 @@ public abstract class Propriedade extends Espaco {
     /**
      * Calcula o preço de alguel de uma propriedade dependendo do seu tipo: Lote, Utilidade ou Estação de Metro
      */
-    public abstract void calcularAluguel();
+    public abstract int calcularAluguel(int valorDados);
 }

@@ -1,10 +1,30 @@
+/**
+ * Subclasse de Propriedade. Representa os espaços da Companhia Elétrica e Companhia de distribuição de Água
+ */
 public class Utilidade extends Propriedade {
 
-    public Utilidade(NomeDoEspaco nome) {
-        super(nome,150);
+    /**
+     * @param nome O nome dado ao espaço. Só pode ser um dos nomes especificados em NomeDoEspaco
+     * @param precoCompra Um valor inteiro que é o preço de compra dessa propriedade
+     */
+    public Utilidade(NomeDoEspaco nome,int precoCompra) {
+        super(nome,precoCompra);
     }
-    // como faz aqui?:(
-    public void calcularAluguel(int valorDados) {
-        int a;
+    
+    /**
+     * Calcula o valor do aluguel com base na quantidade de utilidades que o dono possui, 
+     * e o valor que o jogador que "caiu" no espaço tirou nos dados
+     * @param valorDados A soma do resultado tirado nos dois dados pelo Jogador que entrou no Espaço
+     * @return O valor devido do aluguel. Pode ser 4 ou 10 vezes o valor tirado nos dados
+     */
+    public int calcularAluguel(int valorDados) {
+        switch(getDono().getNumeroDeUtilidades()) {
+            case 1:
+            return valorDados * 4;
+            case 2:
+            return valorDados * 10;
+            default:
+            return 0;
+        }
     }
 }
