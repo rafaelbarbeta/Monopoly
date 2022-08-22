@@ -1,10 +1,10 @@
 <mxfile host="65bd71144e">
     <diagram id="2CvRpesuBjBLBVpyUClh" name="Page-1">
-        <mxGraphModel dx="2452" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1477" dy="285" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="c68KgJTXVsl0c4aLbd2X-1" value="28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=17;entryX=0.667;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;endArrow=none;endFill=0;exitX=1.01;exitY=0.722;exitDx=0;exitDy=0;entryPerimeter=0;exitPerimeter=0;" parent="1" source="Rdkix3AMdeM1Sjrw6h5y-4" edge="1" target="63">
+                <mxCell id="c68KgJTXVsl0c4aLbd2X-1" value="28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=17;entryX=0.667;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;endArrow=none;endFill=0;exitX=1.01;exitY=0.722;exitDx=0;exitDy=0;entryPerimeter=0;exitPerimeter=0;" parent="1" source="Rdkix3AMdeM1Sjrw6h5y-4" target="63" edge="1">
                     <mxGeometry x="0.9661" y="-20" relative="1" as="geometry">
                         <mxPoint x="124.66599999999971" y="626.4160000000002" as="targetPoint"/>
                         <mxPoint as="offset"/>
@@ -60,7 +60,7 @@
                         <mxPoint x="150.75" y="252.50249999999994" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="c68KgJTXVsl0c4aLbd2X-9" value="2" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;shadow=0;fontSize=17;startArrow=none;startFill=0;endArrow=classic;endFill=1;endSize=6;strokeWidth=1;" parent="1" source="c68KgJTXVsl0c4aLbd2X-10" edge="1" target="63">
+                <mxCell id="c68KgJTXVsl0c4aLbd2X-9" value="2" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;shadow=0;fontSize=17;startArrow=none;startFill=0;endArrow=classic;endFill=1;endSize=6;strokeWidth=1;" parent="1" source="c68KgJTXVsl0c4aLbd2X-10" target="63" edge="1">
                     <mxGeometry x="-0.9405" y="13" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                         <mxPoint x="-90" y="760" as="sourcePoint"/>
@@ -163,7 +163,7 @@
                 <mxCell id="c68KgJTXVsl0c4aLbd2X-29" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;shadow=0;startArrow=none;startFill=0;endArrow=diamond;endFill=1;endSize=6;strokeWidth=1;" parent="1" source="c68KgJTXVsl0c4aLbd2X-24" target="c68KgJTXVsl0c4aLbd2X-24" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="c68KgJTXVsl0c4aLbd2X-30" value="22" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;fontSize=17;startArrow=none;startFill=0;endArrow=classic;endFill=1;endSize=6;strokeWidth=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" parent="1" source="c68KgJTXVsl0c4aLbd2X-31" edge="1" target="63">
+                <mxCell id="c68KgJTXVsl0c4aLbd2X-30" value="22" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;shadow=0;fontSize=17;startArrow=none;startFill=0;endArrow=classic;endFill=1;endSize=6;strokeWidth=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" parent="1" source="c68KgJTXVsl0c4aLbd2X-31" target="63" edge="1">
                     <mxGeometry x="-0.9962" y="-19" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                         <mxPoint x="68.49999999999977" y="764" as="targetPoint"/>
@@ -230,13 +230,13 @@
                 <mxCell id="c68KgJTXVsl0c4aLbd2X-44" value="CartaVaParaCadeia" style="html=1;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="1010" y="604.43" width="140" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="c68KgJTXVsl0c4aLbd2X-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0;entryDx=0;entryDy=0;" parent="1" target="25" edge="1">
+                <mxCell id="c68KgJTXVsl0c4aLbd2X-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0;entryDx=0;entryDy=0;exitX=-0.001;exitY=0.667;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="10" target="25" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="1180" y="410" as="targetPoint"/>
                         <mxPoint x="1270" y="399.0999999999999" as="sourcePoint"/>
                         <Array as="points">
-                            <mxPoint x="1190" y="399"/>
-                            <mxPoint x="1190" y="398"/>
+                            <mxPoint x="1220" y="399"/>
+                            <mxPoint x="1221" y="399"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
@@ -287,7 +287,7 @@
                 <mxCell id="c68KgJTXVsl0c4aLbd2X-60" value="1" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;labelBackgroundColor=default;fontSize=17;" parent="1" vertex="1">
                     <mxGeometry x="352" y="660" width="30" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="c68KgJTXVsl0c4aLbd2X-61" value="" style="endArrow=diamondThin;endFill=0;endSize=24;html=1;rounded=0;sourcePerimeterSpacing=6;targetPerimeterSpacing=24;strokeWidth=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=14;" parent="1" target="c68KgJTXVsl0c4aLbd2X-23" edge="1" source="63">
+                <mxCell id="c68KgJTXVsl0c4aLbd2X-61" value="" style="endArrow=diamondThin;endFill=0;endSize=24;html=1;rounded=0;sourcePerimeterSpacing=6;targetPerimeterSpacing=24;strokeWidth=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=14;" parent="1" source="63" target="c68KgJTXVsl0c4aLbd2X-23" edge="1">
                     <mxGeometry x="-0.0942" y="13" width="160" relative="1" as="geometry">
                         <mxPoint x="123.11200000000008" y="672.336" as="sourcePoint"/>
                         <mxPoint x="252" y="620" as="targetPoint"/>
@@ -361,7 +361,7 @@
                     <mxGeometry y="64" width="172" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="2" value="CartaDeDinheiro" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;" parent="1" vertex="1">
-                    <mxGeometry x="998" y="112" width="170" height="98" as="geometry"/>
+                    <mxGeometry x="995" y="112" width="170" height="98" as="geometry"/>
                 </mxCell>
                 <mxCell id="3" value="- valor: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;" parent="2" vertex="1">
                     <mxGeometry y="30" width="170" height="30" as="geometry"/>
@@ -373,7 +373,7 @@
                     <mxGeometry y="68" width="170" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" value="CartaDeMovimento" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;" parent="1" vertex="1">
-                    <mxGeometry x="1270" y="345" width="170" height="160" as="geometry"/>
+                    <mxGeometry x="1220" y="320" width="170" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="26" value="&lt;span&gt;&amp;nbsp;- valorMovimento: int&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" parent="9" vertex="1">
                     <mxGeometry y="30" width="170" height="30" as="geometry"/>
@@ -396,10 +396,10 @@
                 <mxCell id="14" value="- deck: Arraylist&lt;Carta&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;" parent="13" vertex="1">
                     <mxGeometry y="30" width="165" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" value="- DECKCOFRE: int = 1 " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;fontStyle=4" parent="13" vertex="1">
+                <mxCell id="15" value="+ DECKCOFRE: int = 1 " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;fontStyle=4" parent="13" vertex="1">
                     <mxGeometry y="60" width="165" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="16" value="- DECKSORTE: int = 2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;fontStyle=4" parent="13" vertex="1">
+                <mxCell id="16" value="+ DECKSORTE: int = 2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;fontStyle=4" parent="13" vertex="1">
                     <mxGeometry y="90" width="165" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="35" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Helvetica;fontSize=14;fontColor=default;" parent="13" vertex="1">
@@ -411,77 +411,80 @@
                 <mxCell id="23" value="&amp;nbsp;+ embaralhar()&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" parent="13" vertex="1">
                     <mxGeometry y="158" width="165" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="37" value="PontoDePartida" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=12;" vertex="1" parent="1">
+                <mxCell id="37" value="PontoDePartida" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=12;" parent="1" vertex="1">
                     <mxGeometry x="-40.5" y="53" width="140" height="98" as="geometry"/>
                 </mxCell>
-                <mxCell id="38" value="- BONUS: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=12;" vertex="1" parent="37">
+                <mxCell id="38" value="- BONUS: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=12;" parent="37" vertex="1">
                     <mxGeometry y="30" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="39" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Helvetica;fontSize=14;fontColor=default;html=1;" vertex="1" parent="37">
+                <mxCell id="39" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Helvetica;fontSize=14;fontColor=default;html=1;" parent="37" vertex="1">
                     <mxGeometry y="60" width="140" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="40" value="+ getBonus(): int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=12;" vertex="1" parent="37">
+                <mxCell id="40" value="+ getBonus(): int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=12;" parent="37" vertex="1">
                     <mxGeometry y="68" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="45" value="Cadeia" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;" vertex="1" parent="1">
+                <mxCell id="45" value="Cadeia" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="-270" y="139" width="140" height="98" as="geometry"/>
                 </mxCell>
-                <mxCell id="46" value="- FIANCA: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;" vertex="1" parent="45">
+                <mxCell id="46" value="- FIANCA: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;" parent="45" vertex="1">
                     <mxGeometry y="30" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="47" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Helvetica;fontSize=14;fontColor=default;html=1;" vertex="1" parent="45">
+                <mxCell id="47" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Helvetica;fontSize=14;fontColor=default;html=1;" parent="45" vertex="1">
                     <mxGeometry y="60" width="140" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="48" value="+ getFianca: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;" vertex="1" parent="45">
+                <mxCell id="48" value="+ getFianca: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;" parent="45" vertex="1">
                     <mxGeometry y="68" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="49" value="EspacoDeCarta" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;" vertex="1" parent="1">
+                <mxCell id="49" value="EspacoDeCarta" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="-295" y="250" width="190" height="158" as="geometry"/>
                 </mxCell>
-                <mxCell id="50" value="+ COFRE: int = 0" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;fontStyle=4" vertex="1" parent="49">
+                <mxCell id="50" value="+ COFRE: int = 0" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;fontStyle=4" parent="49" vertex="1">
                     <mxGeometry y="30" width="190" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="51" value="+ SORTE: int = 1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;fontStyle=4" vertex="1" parent="49">
+                <mxCell id="51" value="+ SORTE: int = 1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;fontStyle=4" parent="49" vertex="1">
                     <mxGeometry y="60" width="190" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="52" value="- TipoEspacoCarta:int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;" vertex="1" parent="49">
+                <mxCell id="52" value="- TipoEspacoCarta:int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;" parent="49" vertex="1">
                     <mxGeometry y="90" width="190" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="53" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Helvetica;fontSize=14;fontColor=default;html=1;" vertex="1" parent="49">
+                <mxCell id="53" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Helvetica;fontSize=14;fontColor=default;html=1;" parent="49" vertex="1">
                     <mxGeometry y="120" width="190" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="54" value="+ getTipoEspacoCarta(): int" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="49">
+                <mxCell id="54" value="+ getTipoEspacoCarta(): int" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" parent="49" vertex="1">
                     <mxGeometry y="128" width="190" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="55" value="TaxaDeRiqueza" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;" vertex="1" parent="1">
+                <mxCell id="55" value="TaxaDeRiqueza" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="-370" y="440" width="140" height="98" as="geometry"/>
                 </mxCell>
-                <mxCell id="56" value="- TAXA: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=12;" vertex="1" parent="55">
+                <mxCell id="56" value="- TAXA: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=12;" parent="55" vertex="1">
                     <mxGeometry y="30" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="57" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Helvetica;fontSize=14;fontColor=default;html=1;" vertex="1" parent="55">
+                <mxCell id="57" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Helvetica;fontSize=14;fontColor=default;html=1;" parent="55" vertex="1">
                     <mxGeometry y="60" width="140" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="58" value="+ getTaxa(): int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=12;" vertex="1" parent="55">
+                <mxCell id="58" value="+ getTaxa(): int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=12;" parent="55" vertex="1">
                     <mxGeometry y="68" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="59" value="ImpostoDeRenda" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;" vertex="1" parent="1">
+                <mxCell id="59" value="ImpostoDeRenda" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="-220" y="440" width="140" height="98" as="geometry"/>
                 </mxCell>
-                <mxCell id="60" value="- imposto: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;" vertex="1" parent="59">
+                <mxCell id="60" value="- imposto: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;" parent="59" vertex="1">
                     <mxGeometry y="30" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="61" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Helvetica;fontSize=14;fontColor=default;html=1;" vertex="1" parent="59">
+                <mxCell id="61" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Helvetica;fontSize=14;fontColor=default;html=1;" parent="59" vertex="1">
                     <mxGeometry y="60" width="140" height="8" as="geometry"/>
                 </mxCell>
-                <mxCell id="62" value="+ getImposto(): int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;" vertex="1" parent="59">
+                <mxCell id="62" value="+ getImposto(): int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;fontSize=14;" parent="59" vertex="1">
                     <mxGeometry y="68" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="63" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" vertex="1" parent="1">
+                <mxCell id="63" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="-30" y="650" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="64" value="&lt;b&gt;Propriedade&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+                <mxCell id="64" value="&lt;b&gt;Propriedade&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry y="667" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="fzqiWR96xO3Uz7GBnMa6-64" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="27" target="25" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
