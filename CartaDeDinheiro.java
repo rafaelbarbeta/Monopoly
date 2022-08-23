@@ -2,7 +2,7 @@
  * Subclasse de Carta. É a classe que define a carta de acrésimo ou decrésimo de saldo de um jogador
  */
 public class CartaDeDinheiro extends Carta{
-    private int valor;
+    private final int VALOR;
     
     /**
      * @param descricao A descrição da carta. Deve ser uma das constantes definidas em EnumCarta
@@ -10,13 +10,13 @@ public class CartaDeDinheiro extends Carta{
      */
     public CartaDeDinheiro(EnumCarta descricao,int valor) {
         super(descricao);
-        this.valor = valor;
+        this.VALOR = valor;
     }
 
     /**
      * @return O valor de acrésimo/decrésimo definido para a Carta
      */
     public int getValor() {
-        return valor;
+        return VALOR;
     }
 }

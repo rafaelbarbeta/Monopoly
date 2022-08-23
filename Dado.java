@@ -7,13 +7,10 @@ import java.util.Random;
  */
 
 public class Dado {
-    private final static int MAXLADO;
+    private final static int MAXLADO = 6;
     private final int[] LADOS;
     private int ultimoValor;
 
-    static {
-        MAXLADO = 6;
-    };
     /**
      * Inicializa cada lado com seu número correspondente
      */

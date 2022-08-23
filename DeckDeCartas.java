@@ -25,6 +25,7 @@ public class DeckDeCartas {
             deck.add(new CartaDeMovimento(descricoesCartas[4], CartaDeMovimento.PARAFRENTE, 2));
             deck.add(new CartaDeMovimento(descricoesCartas[5], CartaDeMovimento.PARATRAS, 4));
             deck.add(new CartaDeMovimento(descricoesCartas[6], CartaDeMovimento.MAISPROXIMO, CartaDeMovimento.UTILIDADE));
+
             deck.add(new CartaDeDinheiro(descricoesCartas[7], 100));
             deck.add(new CartaDeDinheiro(descricoesCartas[8], 10));
             deck.add(new CartaDeDinheiro(descricoesCartas[9], 200));
@@ -33,6 +34,7 @@ public class DeckDeCartas {
             deck.add(new CartaDeDinheiro(descricoesCartas[12], -100));
             deck.add(new CartaDeDinheiro(descricoesCartas[13], 100));
             deck.add(new CartaDeDinheiro(descricoesCartas[14], -45));
+            
             deck.add(new CartaVaParaCadeia(descricoesCartas[15]));
         }
         else if (tipoDeck == DECKSORTE) {

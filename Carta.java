@@ -2,7 +2,7 @@
  * Classe básica que define uma Carta genérica do jogo. 
  */
 public class Carta {
-    private String descricao;
+    private final String DESCRICAO;
 
     /**
      * Retorna um objeto representando uma carta genérica do jogo
@@ -11,13 +11,13 @@ public class Carta {
      * @return Um objeto que representa uma carta genérica
      */
     public Carta(EnumCarta descricao) {
-        this.descricao = descricao.toString();
+        this.DESCRICAO = descricao.toString();
     }
 
     /**
      * @return A descrição da carta
      */
     public String getDescricao() {
-        return descricao;
+        return DESCRICAO;
     }
 }
