@@ -24,6 +24,15 @@ public class Jogador {
         this.naCadeia = false;
         this.quantidadeMonopolios = 0;
     }
+    /*
+     * public int getSaldo() {
+     *  return this.saldo;
+     * }
+     * 
+     * public void setSaldo(int valor) {
+     *   this.saldo = valor;
+     * }
+     */
 
     public void adicionarPropriedade(Propriedade novaPropriedade) {
         if (novaPropriedade instanceof Utilidade) {
@@ -33,6 +42,7 @@ public class Jogador {
             numeroDeEstacoesMetro++;
         }
         conjuntoPropriedades.add(novaPropriedade);
+        //novaPropriedade.setDono(Jogador); ??
         // complementar...
     }
 
