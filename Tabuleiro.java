@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
 public class Tabuleiro {
-    private ArrayList<Espaco> tabuleiro;
+    private Espaco[] tabuleiro;
     public static final int MARROM=1, AZULCLARO=2, ROSA=3, LARANJA=4, VERMELHO=5, AMARELO=6, VERDE=7, AZULESCURO=8; //?
    
     public Tabuleiro() {
-        tabuleiro = new ArrayList();
+        tabuleiro = new Espaco[41];
         tabuleiro.add(1, new PontoDePartida(NomeDoEspaco.PONTO_PARTIDA, 200));
         tabuleiro.add(2, new Lote(NomeDoEspaco.AV_SUMARE, 60, 50, 2, 10, MARROM));
         //tabuleiro.add(3, new COFRE);

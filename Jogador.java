@@ -1,57 +1,86 @@
 import java.util.ArrayList;
 
 public class Jogador {
-    private final static int SALDOINICIAL = 1500;
-    private final String nome;
-    private int saldo;
-    ArrayList<Espaco> conjuntoPropriedades;
-    private int espacoTabuleiro;
-    private int numeroDuplasConsecutivas;
-    private int numeroDeEstacoesMetro;
-    private int numeroDeUtilidades;
+    private String nome;
+    private ArrayList<Propriedade> conjuntoPropriedades;
+    private int duplasConsecutivas;
+    private Espaco localizacao;
     private boolean naCadeia;
     private int quantidadeMonopolios;
 
-
-    public Jogador(String nome) {
+    public Jogador(String nome,Espaco localizacao) {
         this.nome = nome;
-        this.saldo = SALDOINICIAL;
-        this.conjuntoPropriedades = new ArrayList<Espaco>();
-        this.espacoTabuleiro = 0;
-        this.numeroDuplasConsecutivas = 0;
-        this.numeroDeEstacoesMetro = 0;
-        this.numeroDeUtilidades = 0;
+        conjuntoPropriedades = new ArrayList<Propriedade>();
+        this.duplasConsecutivas = 0;
+        this.localizacao = localizacao;
         this.naCadeia = false;
         this.quantidadeMonopolios = 0;
     }
-    /*
-     * public int getSaldo() {
-     *  return this.saldo;
-     * }
-     * 
-     * public void setSaldo(int valor) {
-     *   this.saldo = valor;
-     * }
-     */
 
-    public void adicionarPropriedade(Propriedade novaPropriedade) {
-        if (novaPropriedade instanceof Utilidade) {
-            numeroDeUtilidades++;
+    public String getNome() {
+        return nome;
+    }
+
+    public ArrayList<Propriedade> getConjunPropriedades() {
+        return conjuntoPropriedades;
+    }
+
+    public int getDuplasConsecutivas() {
+        int duplasConsecutivasSalvo = duplasConsecutivas;
+        if (duplasConsecutivas == 3) {
+            this.duplasConsecutivas = 0;
         }
-        else if (novaPropriedade instanceof EstacoMetro) {
-            numeroDeEstacoesMetro++;
+        return duplasConsecutivasSalvo;
+    }
+
+    public void duplaNosDados(boolean dupla) {
+        if (dupla) {
+            this.duplasConsecutivas++;
         }
-        conjuntoPropriedades.add(novaPropriedade);
-        //novaPropriedade.setDono(Jogador); ??
-        // complementar...
+        else {
+            this.duplasConsecutivas = 0;
+        }
     }
 
-    public int getNumeroDeUtilidades() {
-        return this.numeroDeUtilidades;
+    public Espaco getLocalizacao() {
+        return localizacao;
     }
 
-    public int getNumeroEstacoesMetro() {
-        return this.numeroDeEstacoesMetro;
+    public void setLocalizacao(Espaco novaLocalizacao) {
+        this.localizacao = novaLocalizacao;
     }
 
+    public boolean getNaCadeia() {
+        return naCadeia;
+    }
+
+    public void setNaCadeia(boolean naCadeia) {
+        this.naCadeia = naCadeia;
+    }
+
+    public int getQuantidadeMonopolios() {
+        return quantidadeMonopolios;
+    }
+
+    public void setQuantidadeMonopolios(int quantidadeMonopolios) {
+        this.quantidadeMonopolios = quantidadeMonopolios;
+    }
+
+    public int quantidadeEstacoesMetro() {
+        int totalEstacoesMetro = 0;
+        for (Propriedade propriedadeAtual : conjuntoPropriedades) {
+            if (propriedadeAtual instanceof EstacaoDeMetro)
+                totalEstacoesMetro++;
+        }
+        return totalEstacoesMetro;
+    }
+
+    public int quantidadeUtilidade() {
+        int totalEstacoesMetro = 0;
+        for (Propriedade propriedadeAtual : conjuntoPropriedades) {
+            if (propriedadeAtual instanceof Utilidade)
+                totalEstacoesMetro++;
+        }
+        return totalEstacoesMetro;      
+    }
 }

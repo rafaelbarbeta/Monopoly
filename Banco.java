@@ -1,7 +1,5 @@
 public class Banco {
 
-    private int saldoBanco; //?
-
     public Banco() {
 
     }
@@ -54,7 +52,7 @@ public class Banco {
      * @param recebedor O jogador que receberá as propriedades do jogador em falência.
      */
     public boolean detectouFalencia(Jogador pagador, Jogador Recebedor) {
-        for(Espaco p: pagador.conjuntoPropriedades) {
+        for(Propriedade p: pagador.conjuntoPropriedades) {
             p.setDono(Recebedor); //passa para o Recebedor (adicionarPropriedade já faz isso?)
             Recebedor.adicionarPropriedade(p);
         }

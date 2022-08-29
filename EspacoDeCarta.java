@@ -12,10 +12,11 @@ public class EspacoDeCarta extends Espaco{
 
     /**
      * @param nome O nome dado ao espaço. Só pode ser um dos nomes especificados em NomeDoEspaco
+     * @param posicao A posição que o espaço ocupa no tabuleiro. Todo espaço tem uma posição o qual ele ocupa.
      * @param tipoEspacoCarta O tipo do Espaço de Carta. Deve ser passada uma das constantes definidas na classe: COFRE ou SORTE
      */
-    public EspacoDeCarta(NomeDoEspaco nome,int tipoEspacoCarta) {
-        super(nome);
+    public EspacoDeCarta(NomeDoEspaco nome,int posicao,int tipoEspacoCarta) {
+        super(nome,posicao);
         this.tipoEspacoCarta = tipoEspacoCarta;
     }
 

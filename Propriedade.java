@@ -9,10 +9,11 @@ public abstract class Propriedade extends Espaco {
      * Retorna um objeto representando uma propriedade no tabuleiro, podendo ser um Lote, Utilidade ou Estação de Metro
      * É necessário passar como argumentos o nome do espaço e o preço de compra do mesmo.
      * @param nome O nome dado ao espaço. Só pode ser um dos nomes especificados em NomeDoEspaco
+     * @param posicao A posição que o espaço ocupa no tabuleiro. Todo espaço tem uma posição o qual ele ocupa.
      * @param precoCompra O valor do preco da compra dessa propriedade. É dado por um número inteiro
      */
-    public Propriedade(NomeDoEspaco nome,int precoCompra) {
-        super(nome);
+    public Propriedade(NomeDoEspaco nome,int posicao,int precoCompra) {
+        super(nome,posicao);
         this.precoCompra = precoCompra;
         dono = null;
     }

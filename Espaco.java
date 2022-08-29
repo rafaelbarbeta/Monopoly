@@ -3,15 +3,18 @@
  */
 public class Espaco {
     private String nome;
+    private int posicao;
 
     /**
      * Retorna um objeto representando um espaço genérico no tabuleiro.
      * É necessário passar o nome desse espaço como argumento.
      * @param nome O nome dado ao espaço. Só pode ser um dos nomes especificados em NomeDoEspaco
+     * @param posicao A posição que o espaço ocupa no tabuleiro. Todo espaço tem uma posição o qual ele ocupa.
      * @return Um objeto representando espaço genérico
      */
-    public Espaco(NomeDoEspaco nome) {
+    public Espaco(NomeDoEspaco nome,int posicao) {
         this.nome = nome.toString();
+        this.posicao = posicao;
     }
 
     /**
@@ -19,5 +22,12 @@ public class Espaco {
      */
     public String getNome() {
         return nome;
+    }
+
+    /**
+     * @return A posição do espaço genérico no tabuleiro.
+     */
+    public int getPosicao() {
+        return posicao;
     }
 }

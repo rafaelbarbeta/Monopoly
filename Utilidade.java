@@ -5,10 +5,11 @@ public class Utilidade extends Propriedade {
 
     /**
      * @param nome O nome dado ao espaço. Só pode ser um dos nomes especificados em NomeDoEspaco
+     * @param posicao A posição que o espaço ocupa no tabuleiro. Todo espaço tem uma posição o qual ele ocupa.
      * @param precoCompra Um valor inteiro que é o preço de compra dessa propriedade
      */
-    public Utilidade(NomeDoEspaco nome,int precoCompra) {
-        super(nome,precoCompra);
+    public Utilidade(NomeDoEspaco nome,int posicao,int precoCompra) {
+        super(nome,posicao,precoCompra);
     }
     
     /**
@@ -18,7 +19,7 @@ public class Utilidade extends Propriedade {
      * @return O valor devido do aluguel. Pode ser 4 ou 10 vezes o valor tirado nos dados
      */
     public int calcularAluguel(int valorDados) {
-        switch(getDono().getNumeroDeUtilidades()) {
+        switch(getDono().quantidadeUtilidade()) {
             case 1:
             return valorDados * 4;
             case 2:
