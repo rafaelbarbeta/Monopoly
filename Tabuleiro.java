@@ -1,10 +1,12 @@
-import java.util.ArrayList;
 
 public class Tabuleiro {
     private Espaco[] tabuleiro;
     private static final int FIANCA = 50;
     private static final int TAXA = 200;
 
+    /**
+     * Cria o Tabuleiro a partir do seu nome (Enum NomeDoEspaco), posição no tabuleiro, preço de compra, cor do Lote (EnumCorDoLote), preço do aluguel, preço de construção de casa/hotel e preço de aluguel com casa/hotel.
+     */
     public Tabuleiro() {
         tabuleiro = new Espaco[41];
         tabuleiro[1] = new PontoDePartida(NomeDoEspaco.PONTO_PARTIDA,1,200);
@@ -49,8 +51,64 @@ public class Tabuleiro {
         tabuleiro[40] = new Lote(NomeDoEspaco.RUA_OSCAR_FREIRE, 40, 400, EnumCorDoLote.AZUL, 200, 50, 200);
     }
 
-    public void movimentarJogador(Jogador jogador, int quantidadeMovimento) {
-        //jogador.setEspacoTabuleiro();
-        // dar a volta no tabueiro
+    /**
+     * Movimenta o jogador pelo tabuleiro de acordo com a Carta de Movimento retirada.
+     * @return True se o jogador passou pelo Ponto de Partida.
+     * @param jogador O jogador que será movimentado.
+     * @param carta A Carta de Movimento retirada pelo jogador.
+     */
+    public boolean movimentarJogador(Jogador jogador, CartaDeMovimento carta) {
+        int posicaoAtual = jogador.getLocalizacao().getPosicao();
+        int novaPosicao, valorMovimento = carta.getValorMovimento();
+
+        switch(carta.getTipoMovimento()) {
+            case CartaDeMovimento.PARAFRENTE: 
+                return movimentarJogador(jogador, valorMovimento); 
+
+            case CartaDeMovimento.PARATRAS:
+                if(posicaoAtual - valorMovimento < 1) {
+                    novaPosicao = 40 + (posicaoAtual - valorMovimento);
+                    jogador.setLocalizacao(tabuleiro[novaPosicao]);
+                }
+                else {
+                    novaPosicao = posicaoAtual - valorMovimento;
+                    jogador.setLocalizacao(tabuleiro[novaPosicao]);
+                }
+                return false;
+
+            case CartaDeMovimento.ESPECIFICO:
+                novaPosicao = valorMovimento;
+                jogador.setLocalizacao(tabuleiro[valorMovimento]);
+                return false;
+
+            case CartaDeMovimento.MAISPROXIMO:
+                switch(carta.getValorMovimento()) {
+                    case CartaDeMovimento.UTILIDADE:
+                        
+                    case CartaDeMovimento.METRO:
+                }
+        }
+        return false;
+    }
+    
+    /**
+     * Movimenta o jogador pelo tabuleiro de acordo com a quantidade retirada nos Dados.
+     * @return True se o jogador passou pelo Ponto de Partida.
+     * @param jogador O jogador que será movimentado.
+     * @param quantidadeMovimento A quantidade de movimento definida ao jogar os Dados.
+     */
+    public boolean movimentarJogador(Jogador jogador, int quantidadeMovimento) {
+        int posicaoAtual = jogador.getLocalizacao().getPosicao();
+        int novaPosicao;
+        if(posicaoAtual + quantidadeMovimento > 40) {
+            novaPosicao = quantidadeMovimento - (40 - posicaoAtual);
+            jogador.setLocalizacao(tabuleiro[novaPosicao]);
+            return true;
+        }
+        else {
+            novaPosicao = posicaoAtual + quantidadeMovimento;
+            jogador.setLocalizacao(tabuleiro[novaPosicao]);
+            return false;
+        }
     }
 }

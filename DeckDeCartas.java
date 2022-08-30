@@ -44,7 +44,7 @@ public class DeckDeCartas {
             deck.add(new CartaDeMovimento(descricoesCartas[19], CartaDeMovimento.ESPECIFICO, 4));
             deck.add(new CartaDeMovimento(descricoesCartas[20], CartaDeMovimento.PARAFRENTE, 5));
             deck.add(new CartaDeMovimento(descricoesCartas[21], CartaDeMovimento.PARATRAS, 3));
-            deck.add(new CartaDeMovimento(descricoesCartas[22], CartaDeMovimento.PARATRAS, CartaDeMovimento.METRO)); 
+            deck.add(new CartaDeMovimento(descricoesCartas[22], CartaDeMovimento.MAISPROXIMO, CartaDeMovimento.METRO)); 
 
             deck.add(new CartaDeDinheiro(descricoesCartas[23], -50));
             deck.add(new CartaDeDinheiro(descricoesCartas[24], 75));
