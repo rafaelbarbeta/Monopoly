@@ -2,17 +2,16 @@ import java.util.ArrayList;
 
 public class Tabuleiro {
     private Espaco[] tabuleiro;
-    public static final int MARROM=1, AZULCLARO=2, ROSA=3, LARANJA=4, VERMELHO=5, AMARELO=6, VERDE=7, AZULESCURO=8; //?
    
     public Tabuleiro() {
         tabuleiro = new Espaco[41];
-        tabuleiro.add(1, new PontoDePartida(NomeDoEspaco.PONTO_PARTIDA, 200));
-        tabuleiro.add(2, new Lote(NomeDoEspaco.AV_SUMARE, 60, 50, 2, 10, MARROM));
-        //tabuleiro.add(3, new COFRE);
-        tabuleiro.add(4, new Lote(NomeDoEspaco.PRACA_SE, 60, 50, 4, 20, MARROM));
-        //tabuleiro.add(5, new ImpostodeRenda(NomeDoEspaco.IMPOSTO));
-        tabuleiro.add(6, new EstacaoDeMetro(NomeDoEspaco.METRO_MARACANA, 200));
-        tabuleiro.add(7, new Lote(NomeDoEspaco.RUA_25_MARCO, 100, 50, 6, 30, AZULCLARO));
+        tabuleiro[1] = new PontoDePartida(NomeDoEspaco.PONTO_PARTIDA,1,200);
+        tabuleiro[2] = new Lote(NomeDoEspaco.AV_SUMARE, 2,60, EnumCorDoLote.MARROM, 2, 50, 10);
+        tabuleiro[3] = new EspacoDeCarta(NomeDoEspaco.COFRE, 3, EspacoDeCarta.COFRE);
+        tabuleiro[4] = new Lote(NomeDoEspaco.PRACA_SE, 4, 60, EnumCorDoLote.MARROM, 4, 50, 20);
+        tabuleiro[5] = new ImpostoDeRenda(NomeDoEspaco.IMPOSTO, 5, 200);
+        tabuleiro[6] = new EstacaoDeMetro(NomeDoEspaco.METRO_MARACANA,6,200);
+        tabuleiro[7] = new Lote(NomeDoEspaco.RUA_25_MARCO, 100, 50, 6, 30, AZULCLARO);
         //tabuleiro.add(8, new Carta());
         tabuleiro.add(9, new Lote(NomeDoEspaco.AV_SAO_JOAO, 100, 50, 6, 30, AZULCLARO));
         tabuleiro.add(10, new Lote(NomeDoEspaco.AV_PAULISTA, 120, 50, 8, 40, AZULCLARO));

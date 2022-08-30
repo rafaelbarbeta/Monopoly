@@ -43,6 +43,7 @@ public abstract class Propriedade extends Espaco {
 
     /**
      * Calcula o preço de alguel de uma propriedade dependendo do seu tipo: Lote, Utilidade ou Estação de Metro
+     * @param valorDados A soma do resultado tirado nos dados. Deve ser passado para ser possivel calcular o aluguel da Utilidade
      */
     public abstract int calcularAluguel(int valorDados);
 }
