@@ -54,6 +54,9 @@ public class Tabuleiro {
         tabuleiro[40] = new Lote(NomeDoEspaco.RUA_OSCAR_FREIRE, 40, 400, EnumCorDoLote.AZUL, 200, 50, 200);
 
         grupos = new GrupoDoLote[8];
+        for (int i = 0; i < 8; i++) {
+            grupos[i] = new GrupoDoLote();
+        }
 
         grupos[0].adicionarLote((Lote)tabuleiro[2]);
         grupos[0].adicionarLote((Lote)tabuleiro[4]);
