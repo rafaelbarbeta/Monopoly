@@ -1,14 +1,17 @@
 
 public class Tabuleiro {
-    private Espaco[] tabuleiro;
+    private final Espaco[] tabuleiro;
+    private final GrupoDoLote[] grupos;
     private static final int FIANCA = 50;
     private static final int TAXA = 200;
 
     /**
      * Cria o Tabuleiro a partir do seu nome (Enum NomeDoEspaco), posição no tabuleiro, preço de compra, cor do Lote (EnumCorDoLote), preço do aluguel, preço de construção de casa/hotel e preço de aluguel com casa/hotel.
+     * Inicializa os grupos de lote com seus respectivos lotes, separados pela cor
      */
     public Tabuleiro() {
         tabuleiro = new Espaco[41];
+        tabuleiro[0] = null; // espaço não utilizado. A primeira posição irá começar com 1
         tabuleiro[1] = new PontoDePartida(NomeDoEspaco.PONTO_PARTIDA,1,200);
         tabuleiro[2] = new Lote(NomeDoEspaco.AV_SUMARE, 2,60, EnumCorDoLote.MARROM, 2, 50, 10);
         tabuleiro[3] = new EspacoDeCarta(NomeDoEspaco.COFRE, 3, EspacoDeCarta.COFRE);
@@ -49,11 +52,60 @@ public class Tabuleiro {
         tabuleiro[38] = new Lote(NomeDoEspaco.AV_MORUMBI, 38, 350, EnumCorDoLote.AZUL, 200, 35, 175);
         tabuleiro[39] = new TaxadeRiqueza(NomeDoEspaco.TAXA_RIQUEZA,39, TAXA);
         tabuleiro[40] = new Lote(NomeDoEspaco.RUA_OSCAR_FREIRE, 40, 400, EnumCorDoLote.AZUL, 200, 50, 200);
+
+        grupos = new GrupoDoLote[8];
+
+        grupos[0].adicionarLote((Lote)tabuleiro[2]);
+        grupos[0].adicionarLote((Lote)tabuleiro[4]);
+
+        grupos[1].adicionarLote((Lote)tabuleiro[7]);
+        grupos[1].adicionarLote((Lote)tabuleiro[9]);
+        grupos[1].adicionarLote((Lote)tabuleiro[10]);
+
+        grupos[2].adicionarLote((Lote)tabuleiro[12]);
+        grupos[2].adicionarLote((Lote)tabuleiro[14]);
+        grupos[2].adicionarLote((Lote)tabuleiro[15]);
+
+        grupos[3].adicionarLote((Lote)tabuleiro[17]);
+        grupos[3].adicionarLote((Lote)tabuleiro[19]);
+        grupos[3].adicionarLote((Lote)tabuleiro[20]);
+
+        grupos[4].adicionarLote((Lote)tabuleiro[22]);
+        grupos[4].adicionarLote((Lote)tabuleiro[24]);
+        grupos[4].adicionarLote((Lote)tabuleiro[25]);
+
+        grupos[5].adicionarLote((Lote)tabuleiro[27]);
+        grupos[5].adicionarLote((Lote)tabuleiro[28]);
+        grupos[5].adicionarLote((Lote)tabuleiro[30]);
+
+        grupos[6].adicionarLote((Lote)tabuleiro[32]);
+        grupos[6].adicionarLote((Lote)tabuleiro[33]);
+        grupos[6].adicionarLote((Lote)tabuleiro[35]);
+
+        grupos[7].adicionarLote((Lote)tabuleiro[38]);
+        grupos[7].adicionarLote((Lote)tabuleiro[40]);
+    }
+
+    /**
+     * Obtém a referência do vetor que guarda o tabuleiro.
+     * @return vetor de Espaco representando o tabuleiro completo.
+     */
+    public Espaco[] getTabuleiro() {
+        return tabuleiro;
+    }
+    
+    /**
+     * Obtém uma referência ao GrupoDoLote da cor desejada
+     * @param cor uma enum EnumCorDoLote representando a cor desejada para obter o GrupoDoLote correspondente
+     * @return GrupoDoLote selecionado através da cor
+     */
+    public GrupoDoLote getGrupo(EnumCorDoLote cor) {
+        return grupos[cor.numCor()];
     }
 
     /**
      * Movimenta o jogador pelo tabuleiro de acordo com a Carta de Movimento retirada.
-     * @return True se o jogador passou pelo Ponto de Partida.
+     * @return true se o jogador passou pelo Ponto de Partida.
      * @param jogador O jogador que será movimentado.
      * @param carta A Carta de Movimento retirada pelo jogador.
      */
