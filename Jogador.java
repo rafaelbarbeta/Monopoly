@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Jogador {
-    private String nome;
+    private final String nome;
     private ArrayList<Propriedade> conjuntoPropriedades;
     private int duplasConsecutivas;
     private Espaco localizacao;
