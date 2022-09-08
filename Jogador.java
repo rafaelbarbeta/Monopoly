@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 
 public class Jogador {
-    private final String nome;
+    private String nome;
+    private int saldo;
     private ArrayList<Propriedade> conjuntoPropriedades;
     private int duplasConsecutivas;
     private Espaco localizacao;
     private boolean naCadeia;
     private int quantidadeMonopolios;
-
+    
     public Jogador(String nome,Espaco localizacao) {
         this.nome = nome;
         conjuntoPropriedades = new ArrayList<Propriedade>();
@@ -16,9 +17,17 @@ public class Jogador {
         this.naCadeia = false;
         this.quantidadeMonopolios = 0;
     }
-
+    
     public String getNome() {
         return nome;
+    }
+    
+    public int getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
     }
 
     public ArrayList<Propriedade> getConjunPropriedades() {

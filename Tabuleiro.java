@@ -137,11 +137,32 @@ public class Tabuleiro {
                 return false;
 
             case CartaDeMovimento.MAISPROXIMO:
-                switch(carta.getValorMovimento()) {
+                System.out.println(Math.abs(posicaoAtual-13));
+                switch(valorMovimento) {
                     case CartaDeMovimento.UTILIDADE:
-                        
+                        if(Math.abs(posicaoAtual-13) < Math.abs(posicaoAtual-29)) {
+                            jogador.setLocalizacao(tabuleiro[13]);
+                        }
+                        else {
+                            jogador.setLocalizacao(tabuleiro[29]);
+                        }
+                    break;
+                    
                     case CartaDeMovimento.METRO:
+                        switch(posicaoAtual) {
+                            case 8:
+                                jogador.setLocalizacao(tabuleiro[6]);
+                            break;
+                            case 23:
+                                jogador.setLocalizacao(tabuleiro[26]);
+                            break;
+                            case 37:
+                                jogador.setLocalizacao(tabuleiro[36]);
+                            break;
+                        }
+                    break;
                 }
+            break;
         }
         return false;
     }
