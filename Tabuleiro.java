@@ -90,11 +90,12 @@ public class Tabuleiro {
     }
 
     /**
-     * Obtém a referência do vetor que guarda o tabuleiro.
+     * Obtém uma casa especifica do tabuleiro
+     * @param posicao A posição especifica do tabuleiro desejada
      * @return vetor de Espaco representando o tabuleiro completo.
      */
-    public Espaco[] getTabuleiro() {
-        return tabuleiro;
+    public Espaco getEspaco(int posicao) {
+        return tabuleiro[posicao];
     }
     
     /**

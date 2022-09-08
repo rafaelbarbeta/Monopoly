@@ -3,8 +3,8 @@ public class TesteMovimentacao {
         Tabuleiro tabuleiro = new Tabuleiro();
         CartaDeMovimento cartaTeste1 =new CartaDeMovimento(EnumCarta.COFRE_07, CartaDeMovimento.MAISPROXIMO, CartaDeMovimento.UTILIDADE);
         CartaDeMovimento cartaTeste2 =new CartaDeMovimento(EnumCarta.SORTE_07, CartaDeMovimento.MAISPROXIMO, CartaDeMovimento.METRO);
-        Jogador j1 = new Jogador("Rafael", tabuleiro.getTabuleiro()[1]);
-        Jogador j2 = new Jogador("Beatriz", tabuleiro.getTabuleiro()[37]); 
+        Jogador j1 = new Jogador("Rafael", tabuleiro.getEspaco(1));
+        Jogador j2 = new Jogador("Beatriz", tabuleiro.getEspaco(1)); 
         Dado dado1 = new Dado();
         Dado dado2 = new Dado();
         int valDado1,valDado2;
