@@ -6,7 +6,8 @@ public class Lote extends Propriedade {
     private int precoAluguel;
     private int precoConstrucaoCasaHotel;
     private int precoAluguelComCasa;
-    private boolean temCasaHotel;
+    private boolean temCasa;
+    private boolean temHotel;
     
     public Lote(NomeDoEspaco nome,int posicao,int precoCompra,EnumCorDoLote cor,
                        int precoAluguel,int precoConstrucaoCasaHotel,int precoAluguelComCasa) {
@@ -16,7 +17,8 @@ public class Lote extends Propriedade {
         this.precoAluguel = precoAluguel;
         this.precoConstrucaoCasaHotel = precoConstrucaoCasaHotel;
         this.precoAluguelComCasa = precoAluguelComCasa;
-        this.temCasaHotel = false;
+        this.temCasa = false;
+        this.temHotel = false;
     }
 
     public String getCor() {
@@ -31,16 +33,24 @@ public class Lote extends Propriedade {
         return precoAluguelComCasa;
     }
 
-    public boolean getTemCasaHotel() {
-        return temCasaHotel;
+    public boolean getTemCasa() {
+        return temCasa;
     }
 
-    public void setTemCasaHotel(boolean temCasaHotel) {
-        this.temCasaHotel = temCasaHotel;
+    public void setTemCasaHotel(boolean temCasa) {
+        this.temCasa = temCasa;
+    }
+
+    public boolean getTemHotel() {
+        return temHotel;
+    }
+
+    public void setTemHotel(boolean temHotel) {
+        this.temHotel = temHotel;
     }
 
     public int calcularAluguel(int valorDados) {
-        if (temCasaHotel) {
+        if (temCasa || temHotel) {
             return precoAluguelComCasa;
         }
         else {

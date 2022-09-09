@@ -53,7 +53,7 @@ public class Banco {
      * @param pagador O jogador que entrou em falência devendo para o Banco.
      */
     public void detectouFalencia(Jogador pagador) {
-        for(Espaco p: pagador.getConjunPropriedades()) { //teria que ser do tipo Propriedade??
+        for(Espaco p: pagador.getConjuntoPropriedades()) { //teria que ser do tipo Propriedade??
             ((Propriedade) p).setDono(null); //propriedades disponiveis pra compra
         }
     }

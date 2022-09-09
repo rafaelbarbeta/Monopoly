@@ -4,7 +4,7 @@ public class Jogador {
     private String nome;
     private int saldo;
     private ArrayList<Propriedade> conjuntoPropriedades;
-    private int duplasConsecutivas;
+    private int[][] jogadasAnteriores;
     private Espaco localizacao;
     private boolean naCadeia;
     private int quantidadeMonopolios;
@@ -12,7 +12,7 @@ public class Jogador {
     public Jogador(String nome,Espaco localizacao) {
         this.nome = nome;
         conjuntoPropriedades = new ArrayList<Propriedade>();
-        this.duplasConsecutivas = 0;
+        this.jogadasAnteriores = new int[3][2];
         this.localizacao = localizacao;
         this.naCadeia = false;
         this.quantidadeMonopolios = 0;
@@ -30,26 +30,36 @@ public class Jogador {
         this.saldo = saldo;
     }
 
-    public ArrayList<Propriedade> getConjunPropriedades() {
-        return conjuntoPropriedades;
-    }
-
-    public int getDuplasConsecutivas() {
-        int duplasConsecutivasSalvo = duplasConsecutivas;
-        if (duplasConsecutivas == 3) {
-            this.duplasConsecutivas = 0;
-        }
-        return duplasConsecutivasSalvo;
-    }
-
-    public void duplaNosDados(boolean dupla) {
-        if (dupla) {
-            this.duplasConsecutivas++;
+    /**
+     * Retorna verdadeiro se uma jogada anterior definida pelo parâmetro qualJogada resultou em dupla
+     * @param qualJogada qual jogada deseja-se saber se resultou em dupla, pode ser "1", "2", "3" para 1ª, 2ª ou 3ª
+     * @return true, se resultou em dupla
+     */
+    public boolean dadosResultaramEmDupla(int qualJogada) {
+        if (jogadasAnteriores[qualJogada-1][0] == jogadasAnteriores[qualJogada-1][1]) {
+            return true;
         }
         else {
-            this.duplasConsecutivas = 0;
+            return false;
         }
     }
+
+    /**
+     * @return uma cópia do conjunto de propriedades do jogador
+     */
+    public ArrayList<Propriedade> getConjuntoPropriedades() {
+        ArrayList<Propriedade> copiaConjuntoPropriedades = new ArrayList<Propriedade>(conjuntoPropriedades);
+        return copiaConjuntoPropriedades;
+    }
+
+    /**
+     * @param conjuntoPropriedades uma ArrayList contendo um conjunto de propriedades.
+     */
+    public void setConjuntoPropriedades(ArrayList<Propriedade> conjuntoPropriedades) {
+        this.conjuntoPropriedades = new ArrayList<Propriedade>(conjuntoPropriedades);
+        return;
+    }
+
 
     public Espaco getLocalizacao() {
         return localizacao;
@@ -91,5 +101,26 @@ public class Jogador {
                 totalEstacoesMetro++;
         }
         return totalEstacoesMetro;      
+    }
+
+    /**
+     * Ação de lançar um dado do Jogador.
+     * Atualiza o campo jogadasAnteriores
+     * @param dado1 objeto que referencia o primeiro dado do tabuleiro
+     * @param dado2 objeto que referencia o segundo dado do tabuleiro
+     * @return a soma dos dados
+     */
+    public int lancarDado(Dado dado1, Dado dado2) {
+        int valDado1 = dado1.rolar();
+        int valDado2 = dado2.rolar();
+
+        jogadasAnteriores[2][0] = jogadasAnteriores[1][0];
+        jogadasAnteriores[2][1] = jogadasAnteriores[1][1];
+        jogadasAnteriores[1][0] = jogadasAnteriores[0][0];
+        jogadasAnteriores[1][1] = jogadasAnteriores[0][1];
+        jogadasAnteriores[0][0] = valDado1;
+        jogadasAnteriores[0][1] = valDado2;
+
+        return (valDado1 + valDado2);
     }
 }
