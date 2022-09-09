@@ -39,16 +39,16 @@ public class Jogo {
 
     /**
      * Método que executa a Partida de um jogo de Monopoly. Executa até que o Jogo acabe.
+     * @param scan um objeto scanner para fazer as leituras do jogo. O scanner deve ser fechado pelo método que o passou
      * Responsável pela comunicação com o usuário
      */
-    public void Partida() {
+    public void partida(Scanner scan) {
         // Definição inicial da ordem de jogadas  
-        Scanner scan = new Scanner(System.in);
         System.out.println("Definindo ordem dos jogadores");
         Collections.shuffle(jogadores);
         System.out.println("Ordem de Jogadas:");
         for (int i = 0; i < jogadores.size(); i++) {
-            System.out.println(i + ": " + jogadores.get(i).getNome());
+            System.out.println((i+1) + ": " + jogadores.get(i).getNome());
         }
 
         // Loop principal, ações que o joagdor pode tomar na partida e seus efeitos no jogo
@@ -69,8 +69,13 @@ public class Jogo {
                     op = scan.nextInt();
                 }
                 catch (InputMismatchException e) {
-                    System.out.println("Opção inválida!");
+                    System.out.println("Por favor, digite um número inteiro");
                     scan.nextLine();
+                }
+                finally {
+                    if (op != 1 && op != 2 && op != 3 && op != 4 && op != 5) {
+                        System.out.println("Opção inválida!");
+                    }
                 }
             }
 
@@ -100,7 +105,7 @@ public class Jogo {
                     System.out.println(jogador.getNome() + " caiu na casa " + jogador.getLocalizacao().getNome());
                     if (passouInicio) {
                         System.out.println(jogador.getNome() + " passou pelo início (ganhou 200R$)");
-                        banco.bonusJogador(jogador, ((PontoDePartida)tabuleiro.getEspaco(0)).getBonus());
+                        banco.bonusJogador(jogador, ((PontoDePartida)tabuleiro.getEspaco(1)).getBonus());
                     }
 
                     // "Executa" o espaço que o jogador cair, dependendo o que ele seja
@@ -164,7 +169,6 @@ public class Jogo {
                 jogaNovamente = false;
             }
         }
-        scan.close();
     }
 
     /**
@@ -294,7 +298,7 @@ public class Jogo {
     private void executarChecarDados(Jogador jogador) {
         System.out.println("Jogador : " + jogador.getNome());
         System.out.println("Saldo : " + jogador.getSaldo());
-        System.out.println("Propriedades do Jogador : ");
+        System.out.printf("Propriedades do Jogador : ");
         if (jogador.getConjuntoPropriedades().size() == 0) {
             System.out.println("Nenhuma");
         }
@@ -303,7 +307,7 @@ public class Jogo {
                 System.out.println(it.getNome());
             }
         }
-        System.out.println("Localização : " + jogador.getLocalizacao());
+        System.out.println("Localização : " + jogador.getLocalizacao().getNome());
         System.out.printf("Preso ? : ");
         if (jogador.getNaCadeia()) {
             System.out.println("sim");

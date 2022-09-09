@@ -11,8 +11,17 @@ public class Jogador {
     
     public Jogador(String nome,Espaco localizacao) {
         this.nome = nome;
+        this.saldo = 1500;
         conjuntoPropriedades = new ArrayList<Propriedade>();
         this.jogadasAnteriores = new int[3][2];
+
+        this.jogadasAnteriores[0][0] = 0;
+        this.jogadasAnteriores[0][1] = 1;
+        this.jogadasAnteriores[1][0] = 0;
+        this.jogadasAnteriores[1][1] = 1;
+        this.jogadasAnteriores[2][0] = 0;
+        this.jogadasAnteriores[2][1] = 1;
+
         this.localizacao = localizacao;
         this.naCadeia = false;
         this.quantidadeMonopolios = 0;
