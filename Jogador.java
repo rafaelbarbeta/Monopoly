@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Jogador {
     private String nome;
@@ -120,8 +121,10 @@ public class Jogador {
      * @return a soma dos dados
      */
     public int lancarDado(Dado dado1, Dado dado2) {
-        int valDado1 = dado1.rolar();
-        int valDado2 = dado2.rolar();
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Digite os valores do dado");
+        int valDado1 = scan.nextInt();
+        int valDado2 = scan.nextInt();
 
         jogadasAnteriores[2][0] = jogadasAnteriores[1][0];
         jogadasAnteriores[2][1] = jogadasAnteriores[1][1];
