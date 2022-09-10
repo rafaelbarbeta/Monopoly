@@ -287,6 +287,7 @@ public class Jogo {
                 // (cadeia, se três seguidas, ou apenas o jogador joga novamente)
                 if (jogador.dadosResultaramEmDupla(1)) {
                     System.out.println("Conseguiu uma dupla! Saiu da Cadeia!");
+                    jogador.setNaCadeia(false);
                     jogaNovamente = true;
                 }
                 else {
