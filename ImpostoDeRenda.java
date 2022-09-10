@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 /**
  * Subclasse de Espaco. Representa o espaço que obrigada o jogador pagar um imposto sobre sua fortuna ou um valor fixo
  */
@@ -20,8 +21,23 @@ public class ImpostoDeRenda extends Espaco{
     public int getImposto() {
         return imposto;
     }
-    /* Implementar */
-    /*public int getImposto(Jogador jogador) {
-        
-    }*/
+    
+    /**
+     * Método sobrecarregado que retorna o imposto variável, dependendo da fortuna do jogador
+     * @param jogador o jogador que será utilizado como base para cálculo do imposto
+     * @return o valor do imposto
+     */
+    public int getImposto(Jogador jogador) {
+        ArrayList<Propriedade> propriedadesDoJogador = jogador.getConjuntoPropriedades();
+        int fortunaTotal = jogador.getSaldo();
+        for (Propriedade it : propriedadesDoJogador) {
+            fortunaTotal += it.getPrecoCompra();
+            if (it instanceof Lote) {
+                if (((Lote)it).getTemCasa() || ((Lote)it).getTemHotel()) {
+                    fortunaTotal += ((Lote)it).getPrecoConstrucaoCasaHotel();
+                }
+            }
+        }
+        return (fortunaTotal/10);
+    }
 }

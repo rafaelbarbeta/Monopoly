@@ -51,122 +51,19 @@ public class Jogo {
             System.out.println((i+1) + ": " + jogadores.get(i).getNome());
         }
 
-        // Loop principal, ações que o joagdor pode tomar na partida e seus efeitos no jogo
+        // Loop principal, ações que o jogador pode tomar na partida e seus efeitos no jogo
         while (!vencedor()) {
             Jogador jogador = jogadores.get(jogadorAtual);
-            System.out.println("Turno de " + jogador.getNome());
-            System.out.println("Digite uma opção:");
-            System.out.println("1) Jogar dados");
-            System.out.println("2) Negociar Propriedade");
-            System.out.println("3) Checar Dados");
-            System.out.println("4) Construir Casa");
-            System.out.println("5) Construir Hotel");
-
-            // validação da opção
-            int op = 0;
-            while (op != 1 && op != 2 && op != 3 && op != 4 && op != 5) {
-                try {
-                    op = scan.nextInt();
-                }
-                catch (InputMismatchException e) {
-                    System.out.println("Por favor, digite um número inteiro");
-                    scan.nextLine();
-                }
-                finally {
-                    if (op != 1 && op != 2 && op != 3 && op != 4 && op != 5) {
-                        System.out.println("Opção inválida!");
-                    }
-                }
-            }
-
-            boolean jogadorRemovido = false;
-            boolean jogaNovamente = false;
-            switch (op) {
-                // joga os dados, e executa a ação do espaço que o joagdor cair (além de tratar quando ele passa pelo início)
-                case 1:
-                    int valDados = jogador.lancarDado(dado1, dado2);
-                    System.out.println("Tirou " + valDados + " nos dados");
-                    // Verifica se resultou em uma dupla. Se sim, então aplica as ações necessárias para essa situação
-                    // (cadeia, se três seguidas, ou apenas o jogador joga novamente)
-                    if (jogador.dadosResultaramEmDupla(1)) {
-                        System.out.println("Conseguiu uma dupla!");
-                        if (jogador.dadosResultaramEmDupla(2) && jogador.dadosResultaramEmDupla(3)) {
-                            System.out.println("Três duplas seguidas! " + jogador.getNome() + " está preso!");
-                            jogador.setNaCadeia(true);
-                            break;
-                        }
-                        else {
-                            jogaNovamente = true;
-                        }
-                    }
-
-                    // Verifica se o jogador passou pelo início, se sim, dá para ele um bônus
-                    boolean passouInicio = tabuleiro.movimentarJogador(jogador,valDados);
-                    System.out.println(jogador.getNome() + " caiu na casa " + jogador.getLocalizacao().getNome());
-                    if (passouInicio) {
-                        System.out.println(jogador.getNome() + " passou pelo início (ganhou 200R$)");
-                        banco.bonusJogador(jogador, ((PontoDePartida)tabuleiro.getEspaco(1)).getBonus());
-                    }
-
-                    // "Executa" o espaço que o jogador cair, dependendo o que ele seja
-                    // Também é capaz de retirar um jogador do jogo caso alguma das opções desencadem isso 
-                    if (jogador.getLocalizacao() instanceof VaParaCadeia) {
-                        executarVaParaCadeia(jogador);
-                    }
-                    else if (jogador.getLocalizacao() instanceof EspacoDeCarta) {
-                        executarEspacoDeCarta(jogador);
-                    }
-                    else if (jogador.getLocalizacao() instanceof TaxadeRiqueza) {
-                        executarTaxadeRiqueza(jogador);
-                    }
-                    else if (jogador.getLocalizacao() instanceof ImpostoDeRenda) {
-                        executarImpostoDeRenda(jogador);
-                    }
-                    else if (jogador.getLocalizacao() instanceof Utilidade) {
-                        executarUtilidade(jogador);
-                    }
-                    else if (jogador.getLocalizacao() instanceof EstacaoDeMetro) {
-                        executarEstacaoDeMetro(jogador);
-                    }
-                    else if (jogador.getLocalizacao() instanceof Lote) {
-                        executarLote(jogador);
-                    }
-                    
-                    break;
-
-                // opção de negociação de propriedades entre jogadores
-                case 2:
-                    executarNegociarPropriedades(jogador);
-                    jogaNovamente = true;
-                    break;
-                
-                // opção de
-                case 3:
-                    executarChecarDados(jogador);
-                    jogaNovamente = true;
-                    break;
-                case 4:
-                    executarConstruirCasa(jogador);
-                    jogaNovamente = true;
-                    break;
-                case 5:
-                    executarConstruirHotel(jogador);
-                    jogaNovamente = true;
-                    break;
-            }
-
-            // Escolhe o próximo jogador caso o atual tenha falido e permanece no mesmo jogador caso
-            // ele tire dois valores iguais nos dados ou caso tenha escolhido uma opção que não
-            // termina o turno (todas, menos a 1)
-            if (jogadorRemovido || jogaNovamente) {
-                jogadorAtual = jogadorAtual % jogadores.size();
-                jogadorRemovido = false;
-                jogaNovamente = false;
+            boolean jogaNovamente;
+            if (!jogador.getNaCadeia()) {
+                jogaNovamente = executarFluxoNormal(scan,jogador);
+                proxJogador(jogador,jogaNovamente);
+                continue;
             }
             else {
-                jogadorAtual = ((jogadorAtual + 1) % jogadores.size());
-                jogadorRemovido = false;
-                jogaNovamente = false;
+                jogaNovamente = executarJogadorPreso(scan,jogador);
+                proxJogador(jogador, jogaNovamente);
+                continue;
             }
         }
     }
@@ -240,7 +137,221 @@ public class Jogo {
         }
         return false;
     }
+    /**
+     * Fluxo normal de decisões, jogar dados, negociar propriedades, construir casa ou hotel e checar dados
+     * @param jogador o jogador atual
+     * @return se o jogador irá jogarNovamente. Também indica o próximo jogador caso algum deles tenha sido removido
+     */
+    private boolean executarFluxoNormal(Scanner scan,Jogador jogador) {
+        boolean jogaNovamente = false;
+        System.out.println("Turno de " + jogador.getNome());
+        System.out.println("Digite uma opção:");
+        System.out.println("1) Jogar dados");
+        System.out.println("2) Negociar Propriedade");
+        System.out.println("3) Checar Dados");
+        System.out.println("4) Construir Casa");
+        System.out.println("5) Construir Hotel");
 
+        // validação da opção
+        int op = 0;
+        while (op != 1 && op != 2 && op != 3 && op != 4 && op != 5) {
+            try {
+                op = scan.nextInt();
+            }
+            catch (InputMismatchException e) {
+                System.out.println("Por favor, digite um número inteiro");
+                scan.nextLine();
+            }
+            finally {
+                if (op != 1 && op != 2 && op != 3 && op != 4 && op != 5) {
+                    System.out.println("Opção inválida!");
+                }
+            }
+        }
+
+        switch (op) {
+            // joga os dados, e executa a ação do espaço que o jogador cair (além de tratar quando ele passa pelo início
+            // e de quando ele está na cadeia)
+            case 1:
+                int valDados = jogador.lancarDado(dado1, dado2);
+                System.out.println("Tirou " + valDados + " nos dados");
+                // Verifica se resultou em uma dupla. Se sim, então aplica as ações necessárias para essa situação
+                // (cadeia, se três seguidas, ou apenas o jogador joga novamente)
+                if (jogador.dadosResultaramEmDupla(1)) {
+                    System.out.println("Conseguiu uma dupla!");
+                    if (jogador.dadosResultaramEmDupla(2) && jogador.dadosResultaramEmDupla(3)) {
+                        System.out.println("Três duplas seguidas! " + jogador.getNome() + " está preso!");
+                        jogador.setNaCadeia(true);
+                        jogador.setLocalizacao(tabuleiro.getEspaco(11));
+                        break;
+
+                    }
+                    else {
+                        jogaNovamente = true;
+                    }
+                }
+
+                // Verifica se o jogador passou pelo início, se sim, dá para ele um bônus
+                boolean passouInicio = tabuleiro.movimentarJogador(jogador,valDados);
+                System.out.println(jogador.getNome() + " caiu na casa " + jogador.getLocalizacao().getNome());
+                if (passouInicio) {
+                    System.out.println(jogador.getNome() + " passou pelo início (ganhou 200R$)");
+                    banco.bonusJogador(jogador, ((PontoDePartida)tabuleiro.getEspaco(1)).getBonus());
+                }
+
+                executarCasa(jogador);
+                
+                break;
+
+            // opção de negociação de propriedades entre jogadores
+            case 2:
+                executarNegociarPropriedades(jogador);
+                jogaNovamente = true;
+                break;
+            
+            // opção de
+            case 3:
+                executarChecarDados(jogador);
+                jogaNovamente = true;
+                break;
+            case 4:
+                executarConstruirCasa(jogador);
+                jogaNovamente = true;
+                break;
+            case 5:
+                executarConstruirHotel(jogador);
+                jogaNovamente = true;
+                break;
+        }
+        return jogaNovamente;
+    }
+
+    private boolean executarJogadorPreso(Scanner scan,Jogador jogador) {
+        boolean jogaNovamente = false;
+        boolean jogadorSemSaldo = false;
+        boolean jogadorNaoEscapou3Vezes = false;
+
+        //seta as variáveis booleanas para indicar um estado do jogador na cadeia
+        if (jogador.getSaldo() < ((Cadeia)jogador.getLocalizacao()).getFianca()) {
+            jogadorSemSaldo = true;
+        }
+        if (false) {
+            jogadorNaoEscapou3Vezes = true;
+        }
+
+        if (jogadorSemSaldo && jogadorNaoEscapou3Vezes) {
+            executarRemoverJogador(jogador);
+            // jogar denovo para avançar para o próximo jogador
+            return true;
+        }
+
+        System.out.println(jogador.getNome() + " está preso!");
+        System.out.println("Digite uma opção:");
+        if (!jogadorSemSaldo) {
+            System.out.println("1) Pagar fiança ($50, lança os dados)");
+        }
+        if (!jogadorNaoEscapou3Vezes) {
+            System.out.println("2) Jogar dados (tire uma dupla para fugir)");
+        }
+        System.out.println("3) Negociar Propriedade");
+        System.out.println("4) Checar Dados");
+        System.out.println("5) Construir Casa");
+        System.out.println("6) Construir Hotel");
+
+        // validação da opção
+        int op = 0;
+        while ((op != 1 || jogadorSemSaldo) && (op != 2 || jogadorNaoEscapou3Vezes) && op != 3 && op != 4 && op != 5 && op != 6) {
+            try {
+                op = scan.nextInt();
+            }
+            catch (InputMismatchException e) {
+                System.out.println("Por favor, digite um número inteiro");
+                scan.nextLine();
+            }
+            finally {
+                if ((op != 1 || jogadorSemSaldo) && (op != 2 || jogadorNaoEscapou3Vezes) && op != 3 && op != 4 && op != 5 && op != 6) {
+                    System.out.println("Opção inválida!");
+                }
+            }
+        }
+
+        switch (op) {
+            case 1:
+                banco.pagarBanco(jogador, ((Cadeia)jogador.getLocalizacao()).getFianca());
+                jogador.setNaCadeia(false);
+                System.out.println("Jogador pagou a fiança! Jogando os dados...");
+            case 2:
+                int valDados = jogador.lancarDado(dado1, dado2);
+                System.out.println("Tirou " + valDados + " nos dados");
+                // Verifica se resultou em uma dupla. Se sim, então aplica as ações necessárias para essa situação
+                // (cadeia, se três seguidas, ou apenas o jogador joga novamente)
+                if (jogador.dadosResultaramEmDupla(1)) {
+                    System.out.println("Conseguiu uma dupla! Saiu da Cadeia!");
+                    jogaNovamente = true;
+                }
+                else {
+                    System.out.println("Que pena! não resultou em dupla...");
+                    //termina o turno, já que ele não conseguiu tirar uma dupla
+                    return false;
+                }
+
+                // Verifica se o jogador passou pelo início, se sim, dá para ele um bônus
+                boolean passouInicio = tabuleiro.movimentarJogador(jogador,valDados);
+                System.out.println(jogador.getNome() + " caiu na casa " + jogador.getLocalizacao().getNome());
+                if (passouInicio) {
+                    System.out.println(jogador.getNome() + " passou pelo início (ganhou 200R$)");
+                    banco.bonusJogador(jogador, ((PontoDePartida)tabuleiro.getEspaco(1)).getBonus());
+                }
+
+                executarCasa(jogador);
+                break;
+
+            case 3:
+                executarNegociarPropriedades(jogador);
+                jogaNovamente = true;
+                break;
+            case 4:
+                executarChecarDados(jogador);
+                jogaNovamente = true;
+                break;
+            case 5:
+                executarConstruirCasa(jogador);
+                jogaNovamente = true;
+                break;
+            case 6:
+                executarConstruirHotel(jogador);
+                jogaNovamente = true;
+                break;
+        }
+
+        return jogaNovamente; 
+    }
+    
+    private void executarCasa(Jogador jogador) {
+        // "Executa" o espaço que o jogador cair, dependendo o que ele seja
+        // Também é capaz de retirar um jogador do jogo caso alguma das opções desencadem isso 
+        if (jogador.getLocalizacao() instanceof VaParaCadeia) {
+            executarVaParaCadeia(jogador);
+        }
+        else if (jogador.getLocalizacao() instanceof EspacoDeCarta) {
+            executarEspacoDeCarta(jogador);
+        }
+        else if (jogador.getLocalizacao() instanceof TaxadeRiqueza) {
+            executarTaxadeRiqueza(jogador);
+        }
+        else if (jogador.getLocalizacao() instanceof ImpostoDeRenda) {
+            executarImpostoDeRenda(jogador);
+        }
+        else if (jogador.getLocalizacao() instanceof Utilidade) {
+            executarUtilidade(jogador);
+        }
+        else if (jogador.getLocalizacao() instanceof EstacaoDeMetro) {
+            executarEstacaoDeMetro(jogador);
+        }
+        else if (jogador.getLocalizacao() instanceof Lote) {
+            executarLote(jogador);
+        }
+    }
 
     private void executarNegociarPropriedades(Jogador jogador) {
         // IMPLEMENTAR
@@ -319,10 +430,38 @@ public class Jogo {
         return;
     }
 
-    private boolean executarJogadorPreso(Jogador jogador) {
+    /**
+     * Método que trata da falência de um jogador e da sua remoção da partida
+     * Além disso, trata da transferência das propriedades.
+     * @param jogador o jogador que será removido
+     */
+    private void executarRemoverJogador(Jogador jogador) {
         // IMPLEMENTAR
-        System.out.println("Função não implementada!!!");
-        return true;
+
+        return;
+    }
+    /**
+     * Método sobrecarregado que trata da falência de um jogador com outro e da sua remoção da partida
+     * Além disso, trata da transferência das propriedades.
+     * @param endividado o jogador que será removido
+     * @param recebedor o jogador que receberá as propriedades
+     */
+    private void executarRemoverJogador(Jogador endividado,Jogador recebedor) {
+        // IMPLEMENTAR
+
+        return;
+    }
+
+    private void proxJogador(Jogador atual,boolean jogaNovamente) {
+        // Escolhe o próximo jogador caso o atual tenha falido e permanece no mesmo jogador caso
+        // ele tire dois valores iguais nos dados ou caso tenha escolhido uma opção que não
+        // termina o turno (todas, menos a 1)
+        if (jogaNovamente) {
+            jogadorAtual = jogadorAtual % jogadores.size();
+        }
+        else {
+            jogadorAtual = ((jogadorAtual + 1) % jogadores.size());
+        }
     }
 
     private void atualizarMonopolio(Jogador jogador) {

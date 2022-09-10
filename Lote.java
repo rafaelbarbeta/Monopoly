@@ -37,7 +37,7 @@ public class Lote extends Propriedade {
         return temCasa;
     }
 
-    public void setTemCasaHotel(boolean temCasa) {
+    public void setTemCasa(boolean temCasa) {
         this.temCasa = temCasa;
     }
 
@@ -46,6 +46,8 @@ public class Lote extends Propriedade {
     }
 
     public void setTemHotel(boolean temHotel) {
+        if (temHotel)
+            this.temCasa = false;
         this.temHotel = temHotel;
     }
 

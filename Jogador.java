@@ -132,4 +132,13 @@ public class Jogador {
 
         return (valDado1 + valDado2);
     }
+
+    /**
+     * Ação de retirar uma carta pelo jogador
+     * @param deck o deck do qual o jogador deve retirar uma carta
+     * @return A carta retirada.
+     */
+    public Carta retiraCarta(DeckDeCartas deck) {
+        return deck.pegarCarta();
+    }
 }

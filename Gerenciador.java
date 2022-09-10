@@ -11,7 +11,7 @@ public class Gerenciador {
         Jogo monopoly;
         System.out.println("Digite a quantidade de jogadores");
         int numJogadores = 0;
-        while (numJogadores <= 0 || numJogadores >= 5) {
+        while (numJogadores <= 1 || numJogadores >= 5) {
             try {
                 numJogadores = scan.nextInt();
             }
@@ -20,7 +20,7 @@ public class Gerenciador {
                 scan.nextLine();
             }
             finally {
-                if (numJogadores <= 0 || numJogadores >= 5) {
+                if (numJogadores <= 1 || numJogadores >= 5) {
                     System.out.println("Por favor, digite um número entre 1 e 4 de jogadores");
                 }
             }
