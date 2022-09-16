@@ -22,7 +22,7 @@ public class Jogo {
      */
     public Jogo(int qtdJogadores, String[] nomes) throws IllegalArgumentException {
         if (qtdJogadores > 4 || qtdJogadores < 1) {
-            throw new IllegalArgumentException("Jogo não pode ter mais que 1 ou menos que 4 jogadores");
+            throw new IllegalArgumentException("Jogo não pode ter menos que 1 ou mais que 4 jogadores");
         }
         tabuleiro = new Tabuleiro();
         dado1 = new Dado();
@@ -355,8 +355,40 @@ public class Jogo {
     }
 
     private void executarNegociarPropriedades(Jogador jogador) {
-        // IMPLEMENTAR
-        System.out.println("Função não implementada!!!");
+        int indice = 1;
+        System.out.println("Com qual jogador quer negociar?");
+        for(Jogador j: jogadores) {
+            System.out.println(indice +" - "+ j.getNome());
+            indice++;
+        }
+        Scanner entrada = new Scanner(System.in);
+        Integer x = entrada.nextInt();
+        Jogador jogEscolhido = jogadores.get(x-1);
+        System.out.println("Qual propriedade quer negociar?");
+        indice = 1;
+        for(Propriedade p : jogEscolhido.getConjuntoPropriedades()) {
+            System.out.println(indice +" - "+ p.getNome());
+            indice++;
+        }
+        x = entrada.nextInt();
+        Propriedade propEscolhida = jogEscolhido.getConjuntoPropriedades().get(x-1);
+        System.out.println("Qual a sua proposta de valor para a propriedade "+ propEscolhida.getNome() +"?");
+        Integer valorProposta = entrada.nextInt();
+        while (valorProposta > jogador.getSaldo()) {
+            System.out.println("Seu saldo é insuficiente para essa proposta, digite outro valor:");
+            valorProposta = entrada.nextInt();
+        }
+        System.out.println(jogEscolhido.getNome()+ " aceita a proposta? Y/N");
+            String resposta = entrada.nextLine();
+            if(resposta == "Y" || resposta == "y") {
+                System.out.println("Négócio fechado entre "+jogador.getNome()+" e "+jogEscolhido.getNome());
+                propEscolhida.setDono(jogador);
+                jogador.getConjuntoPropriedades().add(propEscolhida);
+                jogEscolhido.getConjuntoPropriedades().remove(propEscolhida);
+                System.out.println("Propriedade transferida");
+            } else {
+                System.out.println("Proposta não aceita!");
+            }
         return;
     }
 
@@ -437,8 +469,19 @@ public class Jogo {
      * @param jogador o jogador que será removido
      */
     private void executarRemoverJogador(Jogador jogador) {
-        // IMPLEMENTAR
-
+        for(Jogador j: jogadores) {
+            if(j == jogador) {
+                for(Propriedade p: j.getConjuntoPropriedades()) { 
+                    p.setDono(null); //propriedades disponiveis pra compra
+                    if (p instanceof Lote) {
+                        ((Lote)p).setTemCasa(false);
+                        ((Lote)p).setTemHotel(false);
+                    }
+                }
+                jogadores.remove(j);
+                break;
+            }
+        }
         return;
     }
     /**
@@ -448,8 +491,16 @@ public class Jogo {
      * @param recebedor o jogador que receberá as propriedades
      */
     private void executarRemoverJogador(Jogador endividado,Jogador recebedor) {
-        // IMPLEMENTAR
-
+        for(Jogador j: jogadores) {
+            if(j == endividado) {
+                for(Propriedade p: j.getConjuntoPropriedades()) { 
+                    p.setDono(recebedor); //propriedades agr são do recebedor
+                    recebedor.getConjuntoPropriedades().add(p); //adiciona propriedades para recebedor
+                }
+                jogadores.remove(j);
+                break;
+            }
+        }
         return;
     }
 
