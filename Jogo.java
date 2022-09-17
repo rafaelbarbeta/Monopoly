@@ -427,6 +427,9 @@ public class Jogo {
                 case 2: break;
             }
         }
+        else if (propriedadeAtual.getDono().getNome() == jogador.getNome()) {
+            System.out.println("Nada a se fazer! A propriedade é do próprio jogador atual");
+        }
         else {
             String nomeDono = propriedadeAtual.getDono().getNome();
             int custoAluguel = propriedadeAtual.calcularAluguel(jogador.getJogadaAnterior(1));
