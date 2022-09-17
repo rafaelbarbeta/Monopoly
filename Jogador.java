@@ -52,6 +52,14 @@ public class Jogador {
             return false;
         }
     }
+    /**
+     * getter para o valor nos dados de uma jogada anterior
+     * @param qualJogada qual das três jogadas anteriores
+     * @return A soma dos dados de uma jogada anterior
+     */
+    public int getJogadaAnterior(int qualJogada) {
+        return jogadasAnteriores[qualJogada-1][0] + jogadasAnteriores[qualJogada-1][1];
+    }
 
     /**
      * @return uma cópia do conjunto de propriedades do jogador

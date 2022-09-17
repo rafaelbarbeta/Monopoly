@@ -320,14 +320,8 @@ public class Jogo {
         else if (jogador.getLocalizacao() instanceof ImpostoDeRenda) {
             executarImpostoDeRenda(jogador);
         }
-        else if (jogador.getLocalizacao() instanceof Utilidade) {
-            executarUtilidade(jogador);
-        }
-        else if (jogador.getLocalizacao() instanceof EstacaoDeMetro) {
-            executarEstacaoDeMetro(jogador);
-        }
-        else if (jogador.getLocalizacao() instanceof Lote) {
-            executarLote(jogador);
+        else if (jogador.getLocalizacao() instanceof Propriedade) {
+            executarPropriedade(jogador);
         }
     }
 
@@ -401,38 +395,57 @@ public class Jogo {
         System.out.println("Função não implementada!!!");
     }
 
-    private void executarUtilidade(Jogador jogador) {
-        // IMPLEMENTAR
-        System.out.println("Função não implementada!!!");
-    }
-
-    private void executarEstacaoDeMetro(Jogador jogador) {
-        // IMPLEMENTAR
-        System.out.println("Função não implementada!!!");
-    }
     /**
-     * Apresenta a interface de compra do Lote para o jogador
-     * Alternativamente, realiza a ação de trâsnferência de saldo do jogador ataul
+     * Apresenta a interface de compra de uma Propriedade para o jogador
+     * Utilza o poliformismo para realiazar a operção genericamente
+     * Alternativamente, realiza a ação de trânsferência de saldo do jogador atual para o dono
      * para o proprietário efetivo do lote
      * @param jogador o jogador que atual que caiu nesse lote
      */
-    private void executarLote(Jogador jogador) {
-        // IMPLEMENTAR
-        //System.out.println("Função não implementada!!!");
-        Lote loteAtual = (Lote)jogador.getLocalizacao();
-        if (loteAtual.getDono() == null) {
-            System.out.println("Lote sem dono! Deseja comprar?");
+    private void executarPropriedade(Jogador jogador) {
+        Propriedade propriedadeAtual = (Propriedade)jogador.getLocalizacao();
+        if (propriedadeAtual.getDono() == null) {
+            System.out.println("Propriedade sem dono! Deseja comprar?");
+            System.out.println("Preço : $" + propriedadeAtual.getPrecoCompra());
             System.out.println("1) sim");
             System.out.println("2) não");
             switch(obterOpcaoSeguro(2)) {
-                case 1:
-                case 2:
-
+                case 1: 
+                    if (banco.pagarBanco(jogador, propriedadeAtual.getPrecoCompra())) {
+                        propriedadeAtual.setDono(jogador);
+                        ArrayList<Propriedade> propriedadesAtuais = jogador.getConjuntoPropriedades();
+                        propriedadesAtuais.add(propriedadeAtual);
+                        jogador.setConjuntoPropriedades(propriedadesAtuais);
+                        System.out.println("Compra realizada com sucesso!");
+                        atualizarMonopolio(jogador);
+                    }
+                    else {
+                        System.out.println("Não há saldo sulficiente para comprar a propriedade!");
+                        break;
+                    }
+                    
+                case 2: break;
             }
-
         }
         else {
-
+            String nomeDono = propriedadeAtual.getDono().getNome();
+            int custoAluguel = propriedadeAtual.calcularAluguel(jogador.getJogadaAnterior(1));
+            System.out.println(nomeDono + " é o dono da propriedade");
+                                    
+            if (
+                banco.pagamentoEntreJogadores(
+                    jogador, 
+                    propriedadeAtual.getDono(), 
+                    custoAluguel
+                    )
+                ) {
+                System.out.println(jogador.getNome() + " pagou $" + custoAluguel + " de aluguel para " + nomeDono);
+            }
+            else {
+                System.out.println(jogador.getNome() + " não pode pagar o aluguel de " + custoAluguel);
+                System.out.println(jogador.getNome() + " entrou em falência com " + nomeDono + "!");
+                executarRemoverJogador(jogador, propriedadeAtual.getDono());
+            }
         }
     }
 
@@ -467,7 +480,7 @@ public class Jogo {
      */
     private void executarRemoverJogador(Jogador jogador) {
         for(Jogador j: jogadores) {
-            if(j == jogador) {
+            if(j.getNome() == jogador.getNome()) {
                 for(Propriedade p: j.getConjuntoPropriedades()) { 
                     p.setDono(null); //propriedades disponiveis pra compra
                     if (p instanceof Lote) {
@@ -489,7 +502,7 @@ public class Jogo {
      */
     private void executarRemoverJogador(Jogador endividado,Jogador recebedor) {
         for(Jogador j: jogadores) {
-            if(j == endividado) {
+            if(j.getNome() == endividado.getNome()) {
                 for(Propriedade p: j.getConjuntoPropriedades()) { 
                     p.setDono(recebedor); //propriedades agr são do recebedor
                     recebedor.getConjuntoPropriedades().add(p); //adiciona propriedades para recebedor
