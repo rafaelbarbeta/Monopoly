@@ -21,7 +21,7 @@ public class Gerenciador {
             }
             finally {
                 if (numJogadores <= 1 || numJogadores >= 5) {
-                    System.out.println("Por favor, digite um número entre 1 e 4 de jogadores");
+                    System.out.println("Por favor, digite um número entre 2 e 4 de jogadores");
                 }
             }
         }
@@ -31,10 +31,10 @@ public class Gerenciador {
         for (int i = 0; i < numJogadores; i++) {
             nomes[i] = scan.nextLine();
         }
-        monopoly = new Jogo(numJogadores,nomes);
+        monopoly = new Jogo(numJogadores,nomes,scan);
         int maisUmaVez = 0;
         do {
-            monopoly.partida(scan);
+            monopoly.partida();
             System.out.println("Partida encerrada! Gostaria de jogar mais uma vez com a configuração atual? (1 para sim)");
             try {
                 maisUmaVez = scan.nextInt();
