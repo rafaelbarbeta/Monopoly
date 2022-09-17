@@ -13,6 +13,7 @@ public class Jogo {
     private final Banco banco;
     private ArrayList<Jogador> jogadores;
     private int jogadorAtual;
+    private Scanner scan;
 
     /**
      * Inicializa todos os objetos necessários para o funcionamento do Jogo.
@@ -20,9 +21,9 @@ public class Jogo {
      * @param nomes Uma array de nomes dos jogadores
      * @throws IllegalArgumentException se quantidade de jogadores maior que 4 ou menor que 1
      */
-    public Jogo(int qtdJogadores, String[] nomes) throws IllegalArgumentException {
+    public Jogo(int qtdJogadores, String[] nomes, Scanner scan) throws IllegalArgumentException {
         if (qtdJogadores > 4 || qtdJogadores < 1) {
-            throw new IllegalArgumentException("Jogo não pode ter mais que 1 ou menos que 4 jogadores");
+            throw new IllegalArgumentException("Jogo não pode ter menos que 1 ou mais que 4 jogadores");
         }
         tabuleiro = new Tabuleiro();
         dado1 = new Dado();
@@ -35,6 +36,7 @@ public class Jogo {
             jogadores.add(new Jogador(nomes[i],tabuleiro.getEspaco(1)));
         }
         jogadorAtual = 0;
+        this.scan = scan;
     }
 
     /**
@@ -42,7 +44,7 @@ public class Jogo {
      * @param scan um objeto scanner para fazer as leituras do jogo. O scanner deve ser fechado pelo método que o passou
      * Responsável pela comunicação com o usuário
      */
-    public void partida(Scanner scan) {
+    public void partida() {
         // Definição inicial da ordem de jogadas  
         System.out.println("Definindo ordem dos jogadores");
         Collections.shuffle(jogadores);
@@ -56,12 +58,12 @@ public class Jogo {
             Jogador jogador = jogadores.get(jogadorAtual);
             boolean jogaNovamente;
             if (!jogador.getNaCadeia()) {
-                jogaNovamente = executarFluxoNormal(scan,jogador);
+                jogaNovamente = executarFluxoNormal(jogador);
                 proxJogador(jogador,jogaNovamente);
                 continue;
             }
             else {
-                jogaNovamente = executarJogadorPreso(scan,jogador);
+                jogaNovamente = executarJogadorPreso(jogador);
                 proxJogador(jogador, jogaNovamente);
                 continue;
             }
@@ -142,7 +144,7 @@ public class Jogo {
      * @param jogador o jogador atual
      * @return se o jogador irá jogarNovamente. Também indica o próximo jogador caso algum deles tenha sido removido
      */
-    private boolean executarFluxoNormal(Scanner scan,Jogador jogador) {
+    private boolean executarFluxoNormal(Jogador jogador) {
         boolean jogaNovamente = false;
         System.out.println("Turno de " + jogador.getNome());
         System.out.println("Digite uma opção:");
@@ -152,24 +154,7 @@ public class Jogo {
         System.out.println("4) Construir Casa");
         System.out.println("5) Construir Hotel");
 
-        // validação da opção
-        int op = 0;
-        while (op != 1 && op != 2 && op != 3 && op != 4 && op != 5) {
-            try {
-                op = scan.nextInt();
-            }
-            catch (InputMismatchException e) {
-                System.out.println("Por favor, digite um número inteiro");
-                scan.nextLine();
-            }
-            finally {
-                if (op != 1 && op != 2 && op != 3 && op != 4 && op != 5) {
-                    System.out.println("Opção inválida!");
-                }
-            }
-        }
-
-        switch (op) {
+        switch (obterOpcaoSeguro(5)) {
             // joga os dados, e executa a ação do espaço que o jogador cair (além de tratar quando ele passa pelo início
             // e de quando ele está na cadeia)
             case 1:
@@ -226,7 +211,7 @@ public class Jogo {
         return jogaNovamente;
     }
 
-    private boolean executarJogadorPreso(Scanner scan,Jogador jogador) {
+    private boolean executarJogadorPreso(Jogador jogador) {
         boolean jogaNovamente = false;
         boolean jogadorSemSaldo = false;
         boolean jogadorNaoEscapou3Vezes = false;
@@ -247,46 +232,36 @@ public class Jogo {
 
         System.out.println(jogador.getNome() + " está preso!");
         System.out.println("Digite uma opção:");
-        if (!jogadorSemSaldo) {
-            System.out.println("1) Pagar fiança ($50, lança os dados)");
-        }
-        if (!jogadorNaoEscapou3Vezes) {
-            System.out.println("2) Jogar dados (tire uma dupla para fugir)");
-        }
+        System.out.println("1) Pagar fiança ($50, lança os dados)");
+        System.out.println("2) Jogar dados (tire uma dupla para fugir)");
         System.out.println("3) Negociar Propriedade");
         System.out.println("4) Checar Dados");
         System.out.println("5) Construir Casa");
         System.out.println("6) Construir Hotel");
 
-        // validação da opção
-        int op = 0;
-        while ((op != 1 || jogadorSemSaldo) && (op != 2 || jogadorNaoEscapou3Vezes) && op != 3 && op != 4 && op != 5 && op != 6) {
-            try {
-                op = scan.nextInt();
-            }
-            catch (InputMismatchException e) {
-                System.out.println("Por favor, digite um número inteiro");
-                scan.nextLine();
-            }
-            finally {
-                if ((op != 1 || jogadorSemSaldo) && (op != 2 || jogadorNaoEscapou3Vezes) && op != 3 && op != 4 && op != 5 && op != 6) {
-                    System.out.println("Opção inválida!");
-                }
-            }
-        }
-
-        switch (op) {
+        switch (obterOpcaoSeguro(6)) {
             case 1:
+                if (jogadorSemSaldo) {
+                    System.out.println("Não há saldo disponível para essa opção!");
+                    jogaNovamente = true;
+                    break;
+                }
                 banco.pagarBanco(jogador, ((Cadeia)jogador.getLocalizacao()).getFianca());
                 jogador.setNaCadeia(false);
                 System.out.println("Jogador pagou a fiança! Jogando os dados...");
             case 2:
+                if (jogadorNaoEscapou3Vezes) {
+                    System.out.println("Não pode tentar escapar! (já tentou 3 vezes)");
+                    jogaNovamente = true;
+                    break;
+                }
                 int valDados = jogador.lancarDado(dado1, dado2);
                 System.out.println("Tirou " + valDados + " nos dados");
                 // Verifica se resultou em uma dupla. Se sim, então aplica as ações necessárias para essa situação
                 // (cadeia, se três seguidas, ou apenas o jogador joga novamente)
                 if (jogador.dadosResultaramEmDupla(1)) {
                     System.out.println("Conseguiu uma dupla! Saiu da Cadeia!");
+                    jogador.setNaCadeia(false);
                     jogaNovamente = true;
                 }
                 else {
@@ -327,9 +302,12 @@ public class Jogo {
         return jogaNovamente; 
     }
     
+    /**
+     * "Executa" o espaço que o jogador cair, dependendo o que ele seja
+     *  Também é capaz de retirar um jogador do jogo caso alguma das opções desencadem isso 
+     * @param jogador o jogador atual
+     */
     private void executarCasa(Jogador jogador) {
-        // "Executa" o espaço que o jogador cair, dependendo o que ele seja
-        // Também é capaz de retirar um jogador do jogo caso alguma das opções desencadem isso 
         if (jogador.getLocalizacao() instanceof VaParaCadeia) {
             executarVaParaCadeia(jogador);
         }
@@ -342,20 +320,46 @@ public class Jogo {
         else if (jogador.getLocalizacao() instanceof ImpostoDeRenda) {
             executarImpostoDeRenda(jogador);
         }
-        else if (jogador.getLocalizacao() instanceof Utilidade) {
-            executarUtilidade(jogador);
-        }
-        else if (jogador.getLocalizacao() instanceof EstacaoDeMetro) {
-            executarEstacaoDeMetro(jogador);
-        }
-        else if (jogador.getLocalizacao() instanceof Lote) {
-            executarLote(jogador);
+        else if (jogador.getLocalizacao() instanceof Propriedade) {
+            executarPropriedade(jogador);
         }
     }
 
     private void executarNegociarPropriedades(Jogador jogador) {
-        // IMPLEMENTAR
-        System.out.println("Função não implementada!!!");
+        int indice = 1;
+        System.out.println("Com qual jogador quer negociar?");
+        for(Jogador j: jogadores) {
+            System.out.println(indice +" - "+ j.getNome());
+            indice++;
+        }
+        Scanner entrada = new Scanner(System.in);
+        Integer x = entrada.nextInt();
+        Jogador jogEscolhido = jogadores.get(x-1);
+        System.out.println("Qual propriedade quer negociar?");
+        indice = 1;
+        for(Propriedade p : jogEscolhido.getConjuntoPropriedades()) {
+            System.out.println(indice +" - "+ p.getNome());
+            indice++;
+        }
+        x = entrada.nextInt();
+        Propriedade propEscolhida = jogEscolhido.getConjuntoPropriedades().get(x-1);
+        System.out.println("Qual a sua proposta de valor para a propriedade "+ propEscolhida.getNome() +"?");
+        Integer valorProposta = entrada.nextInt();
+        while (valorProposta > jogador.getSaldo()) {
+            System.out.println("Seu saldo é insuficiente para essa proposta, digite outro valor:");
+            valorProposta = entrada.nextInt();
+        }
+        System.out.println(jogEscolhido.getNome()+ " aceita a proposta? Y/N");
+            String resposta = entrada.nextLine();
+            if(resposta == "Y" || resposta == "y") {
+                System.out.println("Négócio fechado entre "+jogador.getNome()+" e "+jogEscolhido.getNome());
+                propEscolhida.setDono(jogador);
+                jogador.getConjuntoPropriedades().add(propEscolhida);
+                jogEscolhido.getConjuntoPropriedades().remove(propEscolhida);
+                System.out.println("Propriedade transferida");
+            } else {
+                System.out.println("Proposta não aceita!");
+            }
         return;
     }
 
@@ -391,19 +395,58 @@ public class Jogo {
         System.out.println("Função não implementada!!!");
     }
 
-    private void executarUtilidade(Jogador jogador) {
-        // IMPLEMENTAR
-        System.out.println("Função não implementada!!!");
-    }
-
-    private void executarEstacaoDeMetro(Jogador jogador) {
-        // IMPLEMENTAR
-        System.out.println("Função não implementada!!!");
-    }
-
-    private void executarLote(Jogador jogador) {
-        // IMPLEMENTAR
-        System.out.println("Função não implementada!!!");
+    /**
+     * Apresenta a interface de compra de uma Propriedade para o jogador
+     * Utilza o poliformismo para realiazar a operção genericamente
+     * Alternativamente, realiza a ação de trânsferência de saldo do jogador atual para o dono
+     * para o proprietário efetivo do lote
+     * @param jogador o jogador que atual que caiu nesse lote
+     */
+    private void executarPropriedade(Jogador jogador) {
+        Propriedade propriedadeAtual = (Propriedade)jogador.getLocalizacao();
+        if (propriedadeAtual.getDono() == null) {
+            System.out.println("Propriedade sem dono! Deseja comprar?");
+            System.out.println("Preço : $" + propriedadeAtual.getPrecoCompra());
+            System.out.println("1) sim");
+            System.out.println("2) não");
+            switch(obterOpcaoSeguro(2)) {
+                case 1: 
+                    if (banco.pagarBanco(jogador, propriedadeAtual.getPrecoCompra())) {
+                        propriedadeAtual.setDono(jogador);
+                        ArrayList<Propriedade> propriedadesAtuais = jogador.getConjuntoPropriedades();
+                        propriedadesAtuais.add(propriedadeAtual);
+                        jogador.setConjuntoPropriedades(propriedadesAtuais);
+                        System.out.println("Compra realizada com sucesso!");
+                        atualizarMonopolio(jogador);
+                    }
+                    else {
+                        System.out.println("Não há saldo sulficiente para comprar a propriedade!");
+                        break;
+                    }
+                    
+                case 2: break;
+            }
+        }
+        else {
+            String nomeDono = propriedadeAtual.getDono().getNome();
+            int custoAluguel = propriedadeAtual.calcularAluguel(jogador.getJogadaAnterior(1));
+            System.out.println(nomeDono + " é o dono da propriedade");
+                                    
+            if (
+                banco.pagamentoEntreJogadores(
+                    jogador, 
+                    propriedadeAtual.getDono(), 
+                    custoAluguel
+                    )
+                ) {
+                System.out.println(jogador.getNome() + " pagou $" + custoAluguel + " de aluguel para " + nomeDono);
+            }
+            else {
+                System.out.println(jogador.getNome() + " não pode pagar o aluguel de " + custoAluguel);
+                System.out.println(jogador.getNome() + " entrou em falência com " + nomeDono + "!");
+                executarRemoverJogador(jogador, propriedadeAtual.getDono());
+            }
+        }
     }
 
     private void executarChecarDados(Jogador jogador) {
@@ -436,8 +479,19 @@ public class Jogo {
      * @param jogador o jogador que será removido
      */
     private void executarRemoverJogador(Jogador jogador) {
-        // IMPLEMENTAR
-
+        for(Jogador j: jogadores) {
+            if(j.getNome() == jogador.getNome()) {
+                for(Propriedade p: j.getConjuntoPropriedades()) { 
+                    p.setDono(null); //propriedades disponiveis pra compra
+                    if (p instanceof Lote) {
+                        ((Lote)p).setTemCasa(false);
+                        ((Lote)p).setTemHotel(false);
+                    }
+                }
+                jogadores.remove(j);
+                break;
+            }
+        }
         return;
     }
     /**
@@ -447,9 +501,46 @@ public class Jogo {
      * @param recebedor o jogador que receberá as propriedades
      */
     private void executarRemoverJogador(Jogador endividado,Jogador recebedor) {
-        // IMPLEMENTAR
-
+        for(Jogador j: jogadores) {
+            if(j.getNome() == endividado.getNome()) {
+                for(Propriedade p: j.getConjuntoPropriedades()) { 
+                    p.setDono(recebedor); //propriedades agr são do recebedor
+                    recebedor.getConjuntoPropriedades().add(p); //adiciona propriedades para recebedor
+                }
+                jogadores.remove(j);
+                break;
+            }
+        }
         return;
+    }
+
+    /**
+     * Função responsável por obter uma opção do jogador. 
+     * Trata possíveis excessões de leitura além de validá-la
+     * @param scan objeto para leitura dos dados
+     * @param qtdOpcoes quantas opoções serão disponibilizadas
+     * @return o número da opção obtida
+     */
+    private int obterOpcaoSeguro(int qtdOpcoes) {
+        while (true) {
+            try {
+                String opraw = scan.nextLine();
+                String[] oprawparsed = opraw.split(" ");
+                if (oprawparsed.length > 1) {
+                    System.out.println("Digite apenas um único número");
+                    continue;
+                }
+                int op = Integer.parseInt(oprawparsed[0]);
+                if (op < 1 || op > qtdOpcoes) {
+                    System.out.println("Digite uma opção entre 1 e " + qtdOpcoes);
+                    continue;
+                }
+                return op;
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Digite apenas um número inteiro");
+            }
+        }
     }
 
     private void proxJogador(Jogador atual,boolean jogaNovamente) {
