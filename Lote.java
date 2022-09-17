@@ -52,11 +52,14 @@ public class Lote extends Propriedade {
     }
 
     public int calcularAluguel(int valorDados) {
-        if (temCasa || temHotel) {
+        // ORIGINAL
+        /*if (temCasa || temHotel) {
             return precoAluguelComCasa;
         }
         else {
             return precoAluguel;
-        }
+        }*/
+        // HACK PARA TESTAR REMOÇÃO DE JOGADOR
+        return 5000;
     }
 }
