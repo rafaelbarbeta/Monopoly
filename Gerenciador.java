@@ -31,9 +31,9 @@ public class Gerenciador {
         for (int i = 0; i < numJogadores; i++) {
             nomes[i] = scan.nextLine();
         }
-        monopoly = new Jogo(numJogadores,nomes,scan);
         int maisUmaVez = 0;
         do {
+            monopoly = new Jogo(numJogadores,nomes,scan);
             monopoly.partida();
             System.out.println("Partida encerrada! Gostaria de jogar mais uma vez com a configuração atual? (1 para sim)");
             try {
