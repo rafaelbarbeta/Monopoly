@@ -216,6 +216,7 @@ public class Jogo {
         boolean jogaNovamente = false;
         boolean jogadorSemSaldo = false;
         boolean jogadorNaoEscapou3Vezes = false;
+        boolean jogadorRecemLibertado = false;
 
         //seta as variáveis booleanas para indicar um estado do jogador na cadeia
         if (jogador.getSaldo() < ((Cadeia)jogador.getLocalizacao()).getFianca()) {
@@ -250,6 +251,7 @@ public class Jogo {
                 banco.pagarBanco(jogador, ((Cadeia)jogador.getLocalizacao()).getFianca());
                 jogador.setNaCadeia(false);
                 System.out.println("Jogador pagou a fiança! Jogando os dados...");
+                jogadorRecemLibertado = true;
             case 2:
                 if (jogadorNaoEscapou3Vezes) {
                     System.out.println("Não pode tentar escapar! (já tentou 3 vezes)");
@@ -260,13 +262,16 @@ public class Jogo {
                 System.out.println("Tirou " + valDados + " nos dados");
                 // Verifica se resultou em uma dupla. Se sim, então aplica as ações necessárias para essa situação
                 // (cadeia, se três seguidas, ou apenas o jogador joga novamente)
+                
                 if (jogador.dadosResultaramEmDupla(1)) {
-                    System.out.println("Conseguiu uma dupla! Saiu da Cadeia!");
+                    if (!jogadorRecemLibertado)
+                        System.out.println("Conseguiu uma dupla! Saiu da Cadeia!");
                     jogador.setNaCadeia(false);
                     jogaNovamente = true;
                 }
                 else {
-                    System.out.println("Que pena! não resultou em dupla...");
+                    if (!jogadorRecemLibertado)
+                        System.out.println("Que pena! não resultou em dupla...");
                     //termina o turno, já que ele não conseguiu tirar uma dupla
                     return false;
                 }
