@@ -376,8 +376,9 @@ public class Jogo {
     }
 
     private void executarVaParaCadeia(Jogador jogador) {
-        // IMPLEMENTAR
-        System.out.println("Função não implementada!!!");
+        System.out.println(jogador.getNome() + " foi mandando para a cadeia!");
+        jogador.setNaCadeia(true);
+        jogador.setLocalizacao(tabuleiro.getEspaco(11));
     }
 
     private void executarEspacoDeCarta(Jogador jogador) {
@@ -400,7 +401,7 @@ public class Jogo {
      * Utilza o poliformismo para realiazar a operção genericamente
      * Alternativamente, realiza a ação de trânsferência de saldo do jogador atual para o dono
      * para o proprietário efetivo do lote
-     * @param jogador o jogador que atual que caiu nesse lote
+     * @param jogador o jogador atual que caiu nesse lote
      */
     private void executarPropriedade(Jogador jogador) {
         Propriedade propriedadeAtual = (Propriedade)jogador.getLocalizacao();
@@ -417,7 +418,11 @@ public class Jogo {
                         propriedadesAtuais.add(propriedadeAtual);
                         jogador.setConjuntoPropriedades(propriedadesAtuais);
                         System.out.println("Compra realizada com sucesso!");
+                        int qtdMonopoliosAnterior = jogador.getQuantidadeMonopolios();
                         atualizarMonopolio(jogador);
+                        if (qtdMonopoliosAnterior != jogador.getQuantidadeMonopolios() && propriedadeAtual instanceof Lote) {
+                            System.out.println(jogador.getNome() + " formou um monopólio! Cor: " + ((Lote)propriedadeAtual).getCor());
+                        }
                     }
                     else {
                         System.out.println("Não há saldo sulficiente para comprar a propriedade!");
@@ -546,10 +551,14 @@ public class Jogo {
         }
     }
 
+    /**
+     * Escolhe o próximo jogador caso o atual tenha falido e permanece no mesmo jogador caso
+     * ele tire dois valores iguais nos dados ou caso tenha escolhido uma opção que não
+     * termina o turno (todas, menos a 1)
+     * @param atual o jogador que está jogando atualmente
+     * @param jogaNovamente booleano que indica se o jogador pode selecionar mais uma opção ou não
+     */
     private void proxJogador(Jogador atual,boolean jogaNovamente) {
-        // Escolhe o próximo jogador caso o atual tenha falido e permanece no mesmo jogador caso
-        // ele tire dois valores iguais nos dados ou caso tenha escolhido uma opção que não
-        // termina o turno (todas, menos a 1)
         if (jogaNovamente) {
             jogadorAtual = jogadorAtual % jogadores.size();
         }
@@ -558,10 +567,58 @@ public class Jogo {
         }
     }
 
+    /**
+     * Função executada sempre que um jogador adquire, vende ou perde um lote.
+     * Verifica as propriedades atuais do jogador e as compara com
+     * os grupos definidos em GrupoDoLote e EnumCorDoLote.
+     * Atualiza os dados do jogador com base em suas propriedades
+     * Atualiza também as propriedades que fazem parte do monopólio
+     * @param jogador o jogador atual
+     */
     private void atualizarMonopolio(Jogador jogador) {
-        // IMPLEMENTAR
-        System.out.println("Função não implementada!!!");
+        int qtdMonopolios = 0;
+        for (GrupoDoLote grupo : tabuleiro.getGrupos()) {
+            boolean pertencemAoMesmoJogador = true;
+            for (Lote loteDoGrupo : grupo.membrosDoGrupo()) {
+                if (!jogadorContemPropriedade(loteDoGrupo, jogador)) {
+                    pertencemAoMesmoJogador = false;
+                    break;
+                }
+            }
+
+            if (pertencemAoMesmoJogador) {
+                qtdMonopolios++;
+                for (Lote lotesMonopolizados : grupo.membrosDoGrupo()) {
+                    lotesMonopolizados.setMonopolizado(true);
+                }
+            }
+            else {
+                for (Lote loteDoGrupo : grupo.membrosDoGrupo()) {
+                    if (jogadorContemPropriedade(loteDoGrupo, jogador)) {
+                        loteDoGrupo.setMonopolizado(false);
+                    }
+                }
+            }
+        }
+  
+        jogador.setQuantidadeMonopolios(qtdMonopolios);
         return;
+    }
+
+    /**
+     * método auxiliar para a função atualizarMonopolio. Identifica se uma propriedade faz parte
+     * de um "grupo" ou não
+     * @param p A propriedade a ser verificada
+     * @param grupo O grupo no qual a propriedade é buscada
+     * @return true, se a propriedade está no grupo, ou false, se não estiver
+     */
+    private boolean jogadorContemPropriedade(Propriedade p, Jogador jogador) {
+        for (Propriedade it : jogador.getConjuntoPropriedades()) {
+            if (it.equals(p)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
