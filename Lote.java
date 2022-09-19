@@ -8,6 +8,7 @@ public class Lote extends Propriedade {
     private int precoAluguelComCasa;
     private boolean temCasa;
     private boolean temHotel;
+    private boolean monopolizado;
     
     public Lote(NomeDoEspaco nome,int posicao,int precoCompra,EnumCorDoLote cor,
                        int precoAluguel,int precoConstrucaoCasaHotel,int precoAluguelComCasa) {
@@ -19,6 +20,7 @@ public class Lote extends Propriedade {
         this.precoAluguelComCasa = precoAluguelComCasa;
         this.temCasa = false;
         this.temHotel = false;
+        this.monopolizado = false;
     }
 
     public String getCor() {
@@ -51,12 +53,34 @@ public class Lote extends Propriedade {
         this.temHotel = temHotel;
     }
 
+    public boolean getMonopolizado() {
+        return monopolizado;
+    }
+
+    public void setMonopolizado(boolean monopolizado) {
+        monopolizado = this.monopolizado;
+    }
+
+    /**
+     * Calcula o preço do aluguel com base na existência ou não de casa e monopólio
+     * @param valorDados parâmetro não utilizado para uso do valor que "caiu" nos dados.
+     */
     public int calcularAluguel(int valorDados) {
         if (temCasa || temHotel) {
-            return precoAluguelComCasa;
+            if (monopolizado) {
+                return 2*precoAluguelComCasa;
+            }
+            else {
+                return precoAluguelComCasa;
+            }
         }
         else {
-            return precoAluguel;
+            if (monopolizado) {
+                return 2*precoAluguel;
+            }
+            else {
+                return precoAluguel;
+            }
         }
     }
 }

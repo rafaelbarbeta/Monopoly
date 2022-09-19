@@ -99,12 +99,11 @@ public class Tabuleiro {
     }
     
     /**
-     * Obtém uma referência ao GrupoDoLote da cor desejada
-     * @param cor uma enum EnumCorDoLote representando a cor desejada para obter o GrupoDoLote correspondente
-     * @return GrupoDoLote selecionado através da cor
+     * Obtém o conjunto dos grupos de lote de cada cor do monopoly
+     * @return Array com todos os grupos do lote
      */
-    public GrupoDoLote getGrupo(EnumCorDoLote cor) {
-        return grupos[cor.numCor()];
+    public GrupoDoLote[] getGrupos() {
+        return grupos;
     }
 
     /**
