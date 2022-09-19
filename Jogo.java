@@ -96,13 +96,14 @@ public class Jogo {
      * @return
      */
     private boolean ultimoJogador() {
-        if (jogadores.size() == 1) {
+        /*if (jogadores.size() == 1) {
             System.out.println(jogadores.get(0).getNome() + " venceu o jogo! (último jogador restante)");
             return true;
         }
         else {
             return false;
-        }
+        }*/
+        return false;
     }
 
     /**
