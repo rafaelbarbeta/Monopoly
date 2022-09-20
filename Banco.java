@@ -25,8 +25,8 @@ public class Banco {
     /**
      * 
      * @param pagador O jogador que irá realizar o pagamento ao Banco.
-     * @param valor O valor a ser recebido pelo banco e descontado do saldo do Jogador.
-     * @return true quando o pagamento foi realizado, se não, o jogador pagador entrou em falência para o Banco.
+     * @param valor O valor a ser recebido pelo banco é descontado do saldo do Jogador.
+     * @return true quando o pagamento foi realizado, a falat do pagamento pode indicar falência se foi chamado para uma operação obrigatória
      */
     public boolean pagarBanco(Jogador pagador, int valor) { //comprou propriedade, casa, pagou taxa, imposto
         int valorAtualPagador = pagador.getSaldo();

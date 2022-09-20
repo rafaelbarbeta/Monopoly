@@ -105,22 +105,24 @@ public class Tabuleiro {
     public GrupoDoLote[] getGrupos() {
         return grupos;
     }
-
-    /**
+    
+        /**
      * Movimenta o jogador pelo tabuleiro de acordo com a Carta de Movimento retirada.
-     * @return true se o jogador passou pelo Ponto de Partida.
      * @param jogador O jogador que será movimentado.
      * @param carta A Carta de Movimento retirada pelo jogador.
+     * @return true se o jogador passou pelo Ponto de Partida.
      */
     public boolean movimentarJogador(Jogador jogador, CartaDeMovimento carta) {
         int posicaoAtual = jogador.getLocalizacao().getPosicao();
-        int novaPosicao, valorMovimento = carta.getValorMovimento();
+        int novaPosicao;
+        int valorMovimento = carta.getValorMovimento();
 
         switch(carta.getTipoMovimento()) {
             case CartaDeMovimento.PARAFRENTE: 
                 return movimentarJogador(jogador, valorMovimento); 
 
             case CartaDeMovimento.PARATRAS:
+                System.out.println(jogador.getNome() + " foi movimentado " + valorMovimento + " casas para trás");
                 if(posicaoAtual - valorMovimento < 1) {
                     novaPosicao = 40 + (posicaoAtual - valorMovimento);
                     jogador.setLocalizacao(tabuleiro[novaPosicao]);
@@ -134,6 +136,7 @@ public class Tabuleiro {
             case CartaDeMovimento.ESPECIFICO:
                 novaPosicao = valorMovimento;
                 jogador.setLocalizacao(tabuleiro[valorMovimento]);
+                System.out.println(jogador.getNome() + " foi levado para o espaço" + jogador.getLocalizacao().getNome());
                 return false;
 
             case CartaDeMovimento.MAISPROXIMO:
@@ -145,7 +148,9 @@ public class Tabuleiro {
                         }
                         else {
                             jogador.setLocalizacao(tabuleiro[29]);
+
                         }
+                        System.out.println(jogador.getNome() + " foi levado para o espaço" + jogador.getLocalizacao().getNome());
                     break;
                     
                     case CartaDeMovimento.METRO:
@@ -160,13 +165,14 @@ public class Tabuleiro {
                                 jogador.setLocalizacao(tabuleiro[36]);
                             break;
                         }
+                        System.out.println(jogador.getNome() + " foi levado para o espaço" + jogador.getLocalizacao().getNome());
                     break;
                 }
             break;
         }
         return false;
     }
-    
+
     /**
      * Movimenta o jogador pelo tabuleiro de acordo com a quantidade retirada nos Dados.
      * @return True se o jogador passou pelo Ponto de Partida.
