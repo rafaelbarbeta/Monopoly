@@ -18,7 +18,7 @@ public class Tabuleiro {
         tabuleiro[4] = new Lote(NomeDoEspaco.PRACA_SE, 4, 60, EnumCorDoLote.MARROM, 4, 50, 20);
         tabuleiro[5] = new ImpostoDeRenda(NomeDoEspaco.IMPOSTO, 5, 200);
         tabuleiro[6] = new EstacaoDeMetro(NomeDoEspaco.METRO_MARACANA,6,200);
-        tabuleiro[7] = new Lote(NomeDoEspaco.RUA_25_MARCO, 7, 100, EnumCorDoLote.AZUL_CLARO, 50, 6, 30);
+        tabuleiro[7] = new Lote(NomeDoEspaco.RUA_25_MARCO, 7, 100, EnumCorDoLote.AZUL_CLARO, 6, 50, 30);
         tabuleiro[8] = new EspacoDeCarta(NomeDoEspaco.SORTE, 8, EspacoDeCarta.SORTE);
         tabuleiro[9] = new Lote(NomeDoEspaco.AV_SAO_JOAO, 9, 100, EnumCorDoLote.AZUL_CLARO, 50, 6, 30);
         tabuleiro[10] = new Lote(NomeDoEspaco.AV_PAULISTA, 10, 120, EnumCorDoLote.AZUL_CLARO, 50, 8, 40);

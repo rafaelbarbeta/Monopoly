@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.util.Scanner;
 
 public class DeckDeCartas {
     /**
@@ -60,14 +61,17 @@ public class DeckDeCartas {
         else {
             //
         }
-        embaralhar();
+        //embaralhar();
     }
     /**
      * @return A carta retirada do início do Deck
      */
     public Carta pegarCarta() {
-        Carta cartaRetirada = deck.get(0);
-        deck.remove(0);
+        System.out.println("Escolha a carta que quer tirar: ");
+        Scanner entrada = new Scanner(System.in);
+        int indice = entrada.nextInt();
+        Carta cartaRetirada = deck.get(indice);
+        deck.remove(indice);
         deck.add(cartaRetirada); 
         return cartaRetirada;
     }

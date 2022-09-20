@@ -58,7 +58,7 @@ public class Lote extends Propriedade {
     }
 
     public void setMonopolizado(boolean monopolizado) {
-        monopolizado = this.monopolizado;
+        this.monopolizado = monopolizado;
     }
 
     /**
