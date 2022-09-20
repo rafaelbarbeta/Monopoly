@@ -455,8 +455,8 @@ public class Jogo {
     private void executarImpostoDeRenda(Jogador jogador) {
         int impostoFixo = ((ImpostoDeRenda)jogador.getLocalizacao()).getImposto();
         int impostoVariavel = ((ImpostoDeRenda)jogador.getLocalizacao()).getImposto(jogador);
-        System.out.println(jogador.getNome() + " terá que pagar $" + impostoFixo + " de imposto fixo ou" 
-                            + impostoVariavel + " sobre 10% da sua fortuna");
+        System.out.println(jogador.getNome() + " terá que pagar $" + impostoFixo + " de imposto fixo ou " +
+                            "10% da sua fortuna");
         int impostoMinimo;
         if (impostoFixo <= impostoVariavel) {
             impostoMinimo = impostoFixo;
