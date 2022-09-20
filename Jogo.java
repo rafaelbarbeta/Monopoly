@@ -226,7 +226,7 @@ public class Jogo {
         }
 
         if (jogadorSemSaldo && jogadorNaoEscapou3Vezes) {
-            executarRemoverJogador(jogador);
+            removerJogador(jogador);
             // jogar denovo para avançar para o próximo jogador
             return true;
         }
@@ -387,19 +387,115 @@ public class Jogo {
         jogador.setLocalizacao(tabuleiro.getEspaco(11));
     }
 
+    /**
+     * Executa as ações de quando um jogador "cai" em um EspacoDeCarta.
+     * Isso engloba o processo de retirar a carta pelo jogador do deck correto e
+     * aplicar os efeitos da mesma, seja ela uma CartaDeDinheiro, de movimento ou uma VaParaCadeia
+     * Detecta caso alguma condição leve o jogador a falência (CartaDeDinheiro)
+     * @param jogador o jogador atual o qual será aplicado os efeitos da carta
+     */
     private void executarEspacoDeCarta(Jogador jogador) {
-        // IMPLEMENTAR
-        System.out.println("Função não implementada!!!");
+        DeckDeCartas deckDoEspaco;
+        if (((EspacoDeCarta)jogador.getLocalizacao()).getTipoEspacoCarta() == EspacoDeCarta.COFRE) {
+            deckDoEspaco = deckCofre;
+        }
+        else {
+            deckDoEspaco = deckSorte;
+        }
+
+        Carta cartaRetirada = jogador.retiraCarta(deckDoEspaco);
+        System.out.println(jogador.getNome() + " retirou a carta: " + cartaRetirada.getDescricao());
+
+        if (cartaRetirada instanceof CartaDeMovimento) {
+            boolean passouInicio = tabuleiro.movimentarJogador(jogador, (CartaDeMovimento)cartaRetirada);
+            System.out.println(jogador.getNome() + " está no espaço " + jogador.getLocalizacao().getNome() +
+            " na posição [" + jogador.getLocalizacao().getPosicao() + "] do tabuleiro");
+            if (passouInicio) {
+                System.out.println(jogador.getNome() + " passou pelo início (ganhou 200R$)");
+                banco.bonusJogador(jogador, ((PontoDePartida)tabuleiro.getEspaco(1)).getBonus());
+            }
+        }
+        else if (cartaRetirada instanceof CartaDeDinheiro) {
+            int valor = ((CartaDeDinheiro)cartaRetirada).getValor();
+            if (valor < 0) {
+                if (banco.bonusJogador(jogador, valor)) {
+                    System.out.println(jogador.getNome() + " pagou $" + valor);
+                }
+                else {
+                    System.out.println(jogador.getNome() + " não pode pagar!");
+                    System.out.println(jogador.getNome() + " entrou em falência!");
+                    removerJogador(jogador);
+                }
+            }
+            else {
+                banco.bonusJogador(jogador, valor);
+                System.out.println(jogador.getNome() + " recebeu $" + valor);
+            }
+        }
+        else if (cartaRetirada instanceof CartaVaParaCadeia) {
+            jogador.setNaCadeia(true);
+            jogador.setLocalizacao(tabuleiro.getEspaco(11));
+            System.out.println(jogador.getNome() + " foi mandado para a cadeia!");
+        }
     }
 
     private void executarTaxadeRiqueza(Jogador jogador) {
-        // IMPLEMENTAR
-        System.out.println("Função não implementada!!!");
+        int taxa = ((TaxadeRiqueza)jogador.getLocalizacao()).getTaxa();
+        System.out.println(jogador.getNome() + " terá que pagar $" + taxa);
+        if (banco.pagarBanco(jogador, taxa)) {
+            System.out.println(jogador.getNome() + " pagou $" + taxa);
+        }
+        else {
+            System.out.println(jogador.getNome() + " não pode pagar a taxa!");
+            System.out.println(jogador.getNome() + " entrou em falência");
+            removerJogador(jogador);
+        }
     }
 
     private void executarImpostoDeRenda(Jogador jogador) {
-        // IMPLEMENTAR
-        System.out.println("Função não implementada!!!");
+        int impostoFixo = ((ImpostoDeRenda)jogador.getLocalizacao()).getImposto();
+        int impostoVariavel = ((ImpostoDeRenda)jogador.getLocalizacao()).getImposto(jogador);
+        System.out.println(jogador.getNome() + " terá que pagar $" + impostoFixo + " de imposto fixo ou" 
+                            + impostoVariavel + " sobre 10% da sua fortuna");
+        int impostoMinimo;
+        if (impostoFixo <= impostoVariavel) {
+            impostoMinimo = impostoFixo;
+        }
+        else {
+            impostoMinimo = impostoVariavel;
+        }
+
+        if (impostoMinimo >= jogador.getSaldo()) {
+            System.out.println("Nada a se fazer! Jogador não tem saldo suficiente para pagar imposto");
+            System.out.println(jogador.getNome() + " entrou em falência!");
+            removerJogador(jogador);
+        }
+        else {
+            System.out.println("Digite uma opção: ");
+            System.out.println("1) Pagar imposto fixo de $" + impostoFixo);
+            System.out.println("2) Pagar imposto sob fortuna total $" + impostoVariavel);
+            boolean possivel = false;
+            while (!possivel) {
+                switch (obterOpcaoSeguro(2)) {
+                    case 1:
+                        possivel = banco.pagarBanco(jogador, impostoFixo);
+                        if (!possivel) {
+                            System.out.println("Sem saldo para essa operação! Tenta a outra...");
+                            break;
+                        }
+                        System.out.println(jogador.getNome() + " pagou $" + impostoFixo + " de imposto");
+                        break;
+                    case 2:
+                        possivel = banco.pagarBanco(jogador, impostoVariavel);
+                        if (!possivel) {
+                            System.out.println("Sem saldo para essa operação! Tenta a outra...");
+                            break;
+                        }
+                        System.out.println(jogador.getNome() + " pagou $" + impostoVariavel + " de imposto");
+                        break;
+                }
+            }
+        }
     }
 
     /**
@@ -458,7 +554,7 @@ public class Jogo {
             else {
                 System.out.println(jogador.getNome() + " não pode pagar o aluguel de " + custoAluguel);
                 System.out.println(jogador.getNome() + " entrou em falência com " + nomeDono + "!");
-                executarRemoverJogador(jogador, propriedadeAtual.getDono());
+                removerJogador(jogador, propriedadeAtual.getDono());
             }
         }
     }
@@ -492,7 +588,7 @@ public class Jogo {
      * Além disso, trata da transferência das propriedades.
      * @param jogador o jogador que será removido
      */
-    private void executarRemoverJogador(Jogador jogador) {
+    private void removerJogador(Jogador jogador) {
         for(Jogador j: jogadores) {
             if(j.getNome() == jogador.getNome()) {
                 for(Propriedade p: j.getConjuntoPropriedades()) { 
@@ -514,7 +610,7 @@ public class Jogo {
      * @param endividado o jogador que será removido
      * @param recebedor o jogador que receberá as propriedades
      */
-    private void executarRemoverJogador(Jogador endividado,Jogador recebedor) {
+    private void removerJogador(Jogador endividado,Jogador recebedor) {
         for(Jogador j: jogadores) {
             if(j.getNome() == endividado.getNome()) {
                 for(Propriedade p: j.getConjuntoPropriedades()) { 
