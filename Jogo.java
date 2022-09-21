@@ -613,10 +613,12 @@ public class Jogo {
     private void removerJogador(Jogador endividado,Jogador recebedor) {
         for(Jogador j: jogadores) {
             if(j.getNome() == endividado.getNome()) {
+                ArrayList<Propriedade> conjunto = recebedor.getConjuntoPropriedades(); //pega o array de propriedades
                 for(Propriedade p: j.getConjuntoPropriedades()) { 
                     p.setDono(recebedor); //propriedades agr são do recebedor
-                    recebedor.getConjuntoPropriedades().add(p); //adiciona propriedades para recebedor
+                    conjunto.add(p); //adiciona propriedades para recebedor
                 }
+                recebedor.setConjuntoPropriedades(conjunto); //set conjunto
                 jogadores.remove(j);
                 break;
             }
