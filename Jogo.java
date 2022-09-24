@@ -397,9 +397,15 @@ public class Jogo {
                 if (((Lote)it).getMonopolizado() && !((Lote)it).getTemCasa()) {
                     System.out.println(numOpcao +") "+ it.getNome() + " (" + ((Lote)it).getPrecoConstrucaoCasaHotel() + "$)");
                     propriedadesMonopolizadas.add((Lote)it);
+                    numOpcao++;
                 } 
             }
         }
+
+        if (propriedadesMonopolizadas.size() == 0) {
+            System.out.println("Erro: Todas as propriedades monopolizadas já tem uma casa!");
+            return;
+        } 
         int numEspacoConstruirCasa = obterOpcaoSeguro(propriedadesMonopolizadas.size()) - 1;
         Lote loteParaConstruirCasa = propriedadesMonopolizadas.get(numEspacoConstruirCasa);
         if (banco.pagarBanco(jogador, loteParaConstruirCasa.getPrecoConstrucaoCasaHotel())) {
