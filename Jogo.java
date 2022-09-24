@@ -692,8 +692,8 @@ public class Jogo {
             try {
                 String opraw = scan.nextLine();
                 String[] oprawparsed = opraw.split(" ");
-                if (oprawparsed.length > 1) {
-                    System.out.println("Digite apenas um único número");
+                if (oprawparsed.length > 1 || oprawparsed.length == 0) {
+                    System.out.println("Digite um, e apenas um número inteiro");
                     continue;
                 }
                 int op = Integer.parseInt(oprawparsed[0]);
