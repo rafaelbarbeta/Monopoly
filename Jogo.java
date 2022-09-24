@@ -15,14 +15,16 @@ public class Jogo {
     private int jogadorAtual;
     private Scanner scan;
 
+    private boolean jaConstruiu;
+    
     /**
      * Inicializa todos os objetos necessários para o funcionamento do Jogo.
      * @param qtdJogadores A quantidade total de jogadores que o Jogo terá.
      * @param nomes Uma array de nomes dos jogadores
-     * @throws IllegalArgumentException se quantidade de jogadores maior que 4 ou menor que 1
+     * @throws IllegalArgumentException se quantidade de jogadores for maior que 4 ou menor que 2
      */
     public Jogo(int qtdJogadores, String[] nomes, Scanner scan) throws IllegalArgumentException {
-        if (qtdJogadores > 4 || qtdJogadores < 1) {
+        if (qtdJogadores > 4 || qtdJogadores < 2) {
             throw new IllegalArgumentException("Jogo não pode ter menos que 1 ou mais que 4 jogadores");
         }
         tabuleiro = new Tabuleiro();
@@ -194,7 +196,7 @@ public class Jogo {
                 jogaNovamente = true;
                 break;
             
-            // opção de
+            // opção de checar as informações atuais do jogador
             case 3:
                 executarChecarDados(jogador);
                 jogaNovamente = true;
@@ -208,6 +210,7 @@ public class Jogo {
                 jogaNovamente = true;
                 break;
         }
+        jaConstruiu = false;
         return jogaNovamente;
     }
 
@@ -221,7 +224,7 @@ public class Jogo {
         if (jogador.getSaldo() < ((Cadeia)jogador.getLocalizacao()).getFianca()) {
             jogadorSemSaldo = true;
         }
-        if (false) {
+        if (jogador.getRodadasPreso() == 3) {
             jogadorNaoEscapou3Vezes = true;
         }
 
@@ -265,12 +268,14 @@ public class Jogo {
                     if (!jogadorRecemLiberto) {
                         System.out.println("Conseguiu uma dupla! Saiu da Cadeia!");
                         jogador.setNaCadeia(false);
+                        jogador.setRodadasPreso(0);
                     }
                     jogaNovamente = true;
                 }
                 else {
                     if (!jogadorRecemLiberto) {
                         System.out.println("Que pena! não resultou em dupla...");
+                        jogador.setRodadasPreso(jogador.getRodadasPreso() + 1);
                         //termina o turno, já que ele não conseguiu tirar uma dupla
                         return false;
                     }
@@ -304,7 +309,7 @@ public class Jogo {
                 jogaNovamente = true;
                 break;
         }
-
+        jaConstruiu = false;
         return jogaNovamente; 
     }
     
@@ -369,15 +374,64 @@ public class Jogo {
         return;
     }
 
+    /**
+     * Método responsável por fornecer a interface de compra de casas para as propriedades no monopólio
+     * de um jogador. Checa se já foram construidas propriedades anteriormente ou não e se o jogador
+     * tem monopólio para a construção das mesmas.
+     * @param jogador o jogador atual jogando
+     */
     private void executarConstruirCasa(Jogador jogador) {
-        // IMPLEMENTAR
-        System.out.println("Função não implementada!!!");
+        if (jaConstruiu == true) {
+            System.out.println("Máximo de melhorias já atingido! Não pode construir casa");
+            return;
+        }
+        else if (jogador.getQuantidadeMonopolios() == 0) {
+            System.out.println("Jogador não tem nenhum monopólio para construir casa!");
+            return;
+        }
+
+        System.out.println("Escolha em que propriedade quer construir uma casa: ");
+        int numOpcao = 1;
+        ArrayList<Lote> propriedadesMonopolizadas = new ArrayList<>();
+        for (Propriedade it : jogador.getConjuntoPropriedades()) {
+            if (it instanceof Lote) {
+                if (((Lote)it).getMonopolizado() && !((Lote)it).getTemCasa()) {
+                    System.out.println(numOpcao +") "+ it.getNome() + " (" + ((Lote)it).getPrecoConstrucaoCasaHotel() + "$)");
+                    propriedadesMonopolizadas.add((Lote)it);
+                } 
+            }
+        }
+        int numEspacoConstruirCasa = obterOpcaoSeguro(propriedadesMonopolizadas.size()) - 1;
+        Lote loteParaConstruirCasa = propriedadesMonopolizadas.get(numEspacoConstruirCasa);
+        if (banco.pagarBanco(jogador, loteParaConstruirCasa.getPrecoConstrucaoCasaHotel())) {
+            loteParaConstruirCasa.setTemCasa(true);
+            System.out.println("Casa construida com sucesso!");
+            System.out.println(loteParaConstruirCasa.getNome() + " agora tem uma casa");
+            jaConstruiu = true;
+        }
+        else {
+            System.out.println("Sem saldo suficiente para construir casa nessa propriedade!");
+        }
         return;
     }
 
+    /**
+     * Método responsável por fornecer a interface de compra de hoteis para as propriedades no monopólio
+     * de um jogador. Checa se todas as prorpriedades do monopólio já tem casa ou não e se o jogador
+     * tem monopólio para a construção de hoteis.
+     * @param jogador o jogador atual jogando
+     */
     private void executarConstruirHotel(Jogador jogador) {
-        // IMPLEMENTAR
-        System.out.println("Função não implmentada");
+        if (jaConstruiu == true) {
+            System.out.println("Máximo de melhorias já atingido! Não pode construir hotel");
+            return;
+        }
+        else if (jogador.getQuantidadeMonopolios() == 0) {
+            System.out.println("Jogador não tem nenhum monopólio para construir casa!");
+            return;
+        }
+
+
         return;
     }
 

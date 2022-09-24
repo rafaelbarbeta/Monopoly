@@ -5,6 +5,7 @@ public class Jogador {
     private int saldo;
     private ArrayList<Propriedade> conjuntoPropriedades;
     private int[][] jogadasAnteriores;
+    private int rodadasPreso;
     private Espaco localizacao;
     private boolean naCadeia;
     private int quantidadeMonopolios;
@@ -25,6 +26,7 @@ public class Jogador {
         this.localizacao = localizacao;
         this.naCadeia = false;
         this.quantidadeMonopolios = 0;
+        this.rodadasPreso = 0;
     }
     
     public String getNome() {
@@ -100,6 +102,14 @@ public class Jogador {
 
     public void setQuantidadeMonopolios(int quantidadeMonopolios) {
         this.quantidadeMonopolios = quantidadeMonopolios;
+    }
+
+    public int getRodadasPreso() {
+        return rodadasPreso;
+    }
+
+    public void setRodadasPreso(int rodadasPreso) {
+        this.rodadasPreso = rodadasPreso;
     }
 
     public int quantidadeEstacoesMetro() {
