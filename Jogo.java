@@ -24,7 +24,7 @@ public class Jogo {
      * @throws IllegalArgumentException se quantidade de jogadores for maior que 4 ou menor que 2
      */
     public Jogo(int qtdJogadores, String[] nomes, Scanner scan) throws IllegalArgumentException {
-        if (qtdJogadores > 4 || qtdJogadores < 2) {
+        if (qtdJogadores > 4 || qtdJogadores < 1) {
             throw new IllegalArgumentException("Jogo não pode ter menos que 1 ou mais que 4 jogadores");
         }
         tabuleiro = new Tabuleiro();
