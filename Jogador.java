@@ -15,7 +15,7 @@ public class Jogador {
         this.nome = nome;
         // MODIFICADO!!!!!!!!
         // VALOR ERA 1500
-        this.saldo = 201;
+        this.saldo = 1500;
         conjuntoPropriedades = new ArrayList<Propriedade>();
         this.jogadasAnteriores = new int[3][2];
 
