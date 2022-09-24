@@ -187,7 +187,7 @@ public class Jogo {
                 }
 
                 executarCasa(jogador);
-                
+                jaConstruiu = false;
                 break;
 
             // opção de negociação de propriedades entre jogadores
@@ -210,7 +210,6 @@ public class Jogo {
                 jogaNovamente = true;
                 break;
         }
-        jaConstruiu = false;
         return jogaNovamente;
     }
 
@@ -290,6 +289,7 @@ public class Jogo {
                 }
 
                 executarCasa(jogador);
+                jaConstruiu = false;
                 break;
 
             case 3:
@@ -309,7 +309,6 @@ public class Jogo {
                 jogaNovamente = true;
                 break;
         }
-        jaConstruiu = false;
         return jogaNovamente; 
     }
     
