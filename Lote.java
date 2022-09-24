@@ -66,21 +66,16 @@ public class Lote extends Propriedade {
      * @param valorDados parâmetro não utilizado para uso do valor que "caiu" nos dados.
      */
     public int calcularAluguel(int valorDados) {
-        if (temCasa || temHotel) {
-            if (monopolizado) {
+        if (monopolizado) {
+            if (temCasa || temHotel) {
                 return 2*precoAluguelComCasa;
             }
             else {
-                return precoAluguelComCasa;
+                return 2*precoAluguel;
             }
         }
         else {
-            if (monopolizado) {
-                return 2*precoAluguel;
-            }
-            else {
-                return precoAluguel;
-            }
+            return precoAluguel;
         }
     }
 }

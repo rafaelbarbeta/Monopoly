@@ -23,15 +23,14 @@ public class Banco {
     }
     
     /**
-     * 
+     * @return true quando o pagamento foi realizado, a falta do pagamento pode indicar falência se foi chamado para uma operação obrigatória
      * @param pagador O jogador que irá realizar o pagamento ao Banco.
      * @param valor O valor a ser recebido pelo banco é descontado do saldo do Jogador.
-     * @return true quando o pagamento foi realizado, a falat do pagamento pode indicar falência se foi chamado para uma operação obrigatória
      */
     public boolean pagarBanco(Jogador pagador, int valor) { //comprou propriedade, casa, pagou taxa, imposto
         int valorAtualPagador = pagador.getSaldo();
         if(valorAtualPagador < valor) {
-            falenciaComOBanco(pagador); //troca propriedades
+            //falência pro banco, todas as propriedades do pagador ficam disponíveis pra compra
             return false;
         } else {
             pagador.setSaldo(valorAtualPagador - valor);
@@ -48,7 +47,7 @@ public class Banco {
     public boolean pagamentoEntreJogadores(Jogador pagador, Jogador recebedor, int valor) {
         int valorAtualPagador = pagador.getSaldo();
         if(valorAtualPagador < valor) {
-            falenciaComJogador(pagador, recebedor); //troca propriedades
+            //falência, no jogo o recebedor recebe as propriedades do pagador
             return false;
         } else {
             pagador.setSaldo(valorAtualPagador - valor);
@@ -56,33 +55,4 @@ public class Banco {
             return true;
         }
     }
-
-    /**
-     * Método que realiza o processo de falência de um jogador com o Banco
-     * @param pagador O jogador que entrou em falência devendo para o Banco.
-     */
-    public void falenciaComOBanco(Jogador pagador) {
-        for(Propriedade p: pagador.getConjuntoPropriedades()) { //teria que ser do tipo Propriedade??
-            p.setDono(null); //propriedades disponiveis pra compra
-            if (p instanceof Lote) {
-                ((Lote)p).setTemCasa(false);
-                ((Lote)p).setTemHotel(false);
-            }
-        }
-    }
-    /**
-     * Método que realiza o processo de falência de um jogador com outro
-     * @param pagador O jogador que entrou em falência e irá perder as propriedades.
-     * @param recebedor O jogador que receberá as propriedades do jogador em falência.
-     */
-    public void falenciaComJogador(Jogador pagador, Jogador recebedor) {
-        for(Propriedade p: pagador.getConjuntoPropriedades()) {
-            p.setDono(recebedor);
-            if (p instanceof Lote) {
-                ((Lote)p).setTemCasa(false);
-                ((Lote)p).setTemHotel(false);
-            }
-        }
-    }
-
 }
