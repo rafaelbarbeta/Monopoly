@@ -33,7 +33,7 @@ public class Gerenciador {
             nome = scan.nextLine();
             for(int y = 0; y < numJogadores; y++) {
                 if(nome.equals(nomes[y])) {
-                    System.out.println("O nome "+ nome + " já foi adicionado, digite um nome diferente");
+                    System.out.println("O nome "+ nome + " já foi adicionado, digite um nome diferente:");
                     nome = scan.nextLine();
                     y = -1; //volta o for do inicio
                 }
