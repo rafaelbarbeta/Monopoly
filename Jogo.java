@@ -342,9 +342,12 @@ public class Jogo {
             System.out.println(indice +" - "+ j.getNome());
             indice++;
         }
-        Scanner entrada = new Scanner(System.in);
-        Integer x = entrada.nextInt();
+        Integer x = obterOpcaoSeguro(indice-1);
         Jogador jogEscolhido = jogadores.get(x-1);
+        if(jogador.equals(jogEscolhido)) {
+            System.out.println("Você não pode negociar com você mesmo!");
+            return;
+        }
         if(jogEscolhido.getConjuntoPropriedades().isEmpty()) {
             System.out.println(jogEscolhido.getNome()+ " não possui propriedades!");
             return;
@@ -355,34 +358,45 @@ public class Jogo {
             System.out.println(indice +" - "+ p.getNome());
             indice++;
         }
-        x = entrada.nextInt();
+        x = obterOpcaoSeguro(indice-1);
         Propriedade propEscolhida = jogEscolhido.getConjuntoPropriedades().get(x-1);
         System.out.println("Qual a sua proposta de valor para a propriedade "+ propEscolhida.getNome() +"?");
-        Integer valorProposta = entrada.nextInt();
+        
+        Integer valorProposta = obterOpcaoSeguro(jogador.getSaldo());
+        
         while (valorProposta > jogador.getSaldo()) {
             System.out.println("Seu saldo é insuficiente para essa proposta, digite outro valor:");
-            valorProposta = entrada.nextInt();
+            valorProposta = obterOpcaoSeguro(jogador.getSaldo());
         }
         System.out.println(jogEscolhido.getNome()+ " aceita a proposta? Y/N");
-            char resposta = entrada.next().charAt(0);
-            if(resposta == 'Y' || resposta == 'y') {
-                System.out.println("Négócio fechado entre "+jogador.getNome()+" e "+jogEscolhido.getNome());
-                propEscolhida.setDono(jogador);
-                ArrayList<Propriedade> novoConjuntoAdd = jogador.getConjuntoPropriedades();
-                ArrayList<Propriedade> novoConjuntoRemove = jogEscolhido.getConjuntoPropriedades();
-                novoConjuntoAdd.add(propEscolhida);
-                novoConjuntoRemove.remove(propEscolhida);
-                jogador.setConjuntoPropriedades(novoConjuntoAdd);
-                jogEscolhido.setConjuntoPropriedades(novoConjuntoRemove);
-                System.out.println("Propriedade transferida");
-                int qtdMonopoliosAnterior = jogador.getQuantidadeMonopolios();
-                atualizarMonopolio(jogador);
-                atualizarMonopolio(jogEscolhido);
-                if (qtdMonopoliosAnterior != jogador.getQuantidadeMonopolios() && propEscolhida instanceof Lote) {
-                    System.out.println(jogador.getNome() + " formou um monopólio! Cor: " + ((Lote)propEscolhida).getCor());
+            while(true) {
+                char resposta = scan.next().charAt(0);
+                if(resposta == 'Y' || resposta == 'y') {
+                    System.out.println("Négócio fechado entre "+jogador.getNome()+" e "+jogEscolhido.getNome());
+                    propEscolhida.setDono(jogador);
+                    ArrayList<Propriedade> novoConjuntoAdd = jogador.getConjuntoPropriedades();
+                    ArrayList<Propriedade> novoConjuntoRemove = jogEscolhido.getConjuntoPropriedades();
+                    novoConjuntoAdd.add(propEscolhida);
+                    novoConjuntoRemove.remove(propEscolhida);
+                    jogador.setConjuntoPropriedades(novoConjuntoAdd);
+                    jogEscolhido.setConjuntoPropriedades(novoConjuntoRemove);
+                    System.out.println("Propriedade transferida");
+                    int qtdMonopoliosAnterior = jogador.getQuantidadeMonopolios();
+                    atualizarMonopolio(jogador);
+                    atualizarMonopolio(jogEscolhido);
+                    if (qtdMonopoliosAnterior != jogador.getQuantidadeMonopolios() && propEscolhida instanceof Lote) {
+                        System.out.println(jogador.getNome() + " formou um monopólio! Cor: " + ((Lote)propEscolhida).getCor());
+                    }
+                    scan.nextLine();
+                    break;
+                } else if (resposta == 'N' || resposta == 'n') {
+                    System.out.println("Proposta não aceita!");
+                    scan.nextLine();
+                    break;
                 }
-            } else {
-                System.out.println("Proposta não aceita!");
+                else {
+                    System.out.println("Digite uma resposta válida: Y/N");
+                }
             }
         return;
     }
