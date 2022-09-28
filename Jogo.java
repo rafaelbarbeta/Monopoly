@@ -99,7 +99,7 @@ public class Jogo {
      */
     private boolean ultimoJogador() {
         if (jogadores.size() == 1) {
-            System.out.println(jogadores.get(0).getNome() + " venceu o jogo! (último jogador restante)");
+            System.out.println(jogadores.get(0).getNome() + " VENCEU O JOGO! (último jogador restante)");
             return true;
         }
         else {
@@ -115,7 +115,7 @@ public class Jogo {
     private boolean jogadorComDoisMonopolios() {
         for (Jogador jogador : jogadores) {
             if (jogador.getQuantidadeMonopolios() >= 2) {
-                System.out.println(jogador.getNome() + " venceu o jogo! (alcançou dois monopólios)");
+                System.out.println(jogador.getNome() + " VENCEU O JOGO! (alcançou dois monopólios)");
                 return true;
             }
         }
@@ -132,7 +132,7 @@ public class Jogo {
                 for (Propriedade propriedade : jogador.getConjuntoPropriedades()) {
                     if (propriedade instanceof Lote) {
                         if (((Lote)propriedade).getTemHotel()) {
-                            System.out.println(jogador.getNome() + " venceu o jogo! (formou monopólio com hotel)");
+                            System.out.println(jogador.getNome() + " VENCEU O JOGO! (formou monopólio com hotel)");
                             return true;
                         }
                     }
@@ -381,12 +381,7 @@ public class Jogo {
                     jogador.setConjuntoPropriedades(novoConjuntoAdd);
                     jogEscolhido.setConjuntoPropriedades(novoConjuntoRemove);
                     System.out.println("Propriedade transferida");
-                    int qtdMonopoliosAnterior = jogador.getQuantidadeMonopolios();
-                    atualizarMonopolio(jogador);
-                    atualizarMonopolio(jogEscolhido);
-                    if (qtdMonopoliosAnterior != jogador.getQuantidadeMonopolios() && propEscolhida instanceof Lote) {
-                        System.out.println(jogador.getNome() + " formou um monopólio! Cor: " + ((Lote)propEscolhida).getCor());
-                    }
+                    detectaMonopolio(jogador, propEscolhida);
                     scan.nextLine();
                     break;
                 } else if (resposta == 'N' || resposta == 'n') {
@@ -510,7 +505,7 @@ public class Jogo {
                 }
                 else {
                     System.out.println(jogador.getNome() + " não pode pagar!");
-                    System.out.println(jogador.getNome() + " entrou em falência!");
+                    System.out.println("\n*** "+jogador.getNome() + " entrou em falência! ***");
                     removerJogador(jogador);
                 }
             }
@@ -534,7 +529,7 @@ public class Jogo {
         }
         else {
             System.out.println(jogador.getNome() + " não pode pagar a taxa!");
-            System.out.println(jogador.getNome() + " entrou em falência");
+            System.out.println("\n*** "+jogador.getNome() + " entrou em falência! ***");
             removerJogador(jogador);
         }
     }
@@ -554,7 +549,7 @@ public class Jogo {
 
         if (impostoMinimo >= jogador.getSaldo()) {
             System.out.println("Nada a se fazer! Jogador não tem saldo suficiente para pagar imposto");
-            System.out.println(jogador.getNome() + " entrou em falência!");
+            System.out.println("\n*** "+jogador.getNome() + " entrou em falência! ***");
             removerJogador(jogador);
         }
         else {
@@ -607,11 +602,7 @@ public class Jogo {
                         propriedadesAtuais.add(propriedadeAtual);
                         jogador.setConjuntoPropriedades(propriedadesAtuais);
                         System.out.println("Compra realizada com sucesso!");
-                        int qtdMonopoliosAnterior = jogador.getQuantidadeMonopolios();
-                        atualizarMonopolio(jogador);
-                        if (qtdMonopoliosAnterior != jogador.getQuantidadeMonopolios() && propriedadeAtual instanceof Lote) {
-                            System.out.println(jogador.getNome() + " formou um monopólio! Cor: " + ((Lote)propriedadeAtual).getCor());
-                        }
+                        detectaMonopolio(jogador, propriedadeAtual);
                     }
                     else {
                         System.out.println("Não há saldo sulficiente para comprar a propriedade!");
@@ -640,7 +631,7 @@ public class Jogo {
             }
             else {
                 System.out.println(jogador.getNome() + " não pode pagar o aluguel de " + custoAluguel);
-                System.out.println(jogador.getNome() + " entrou em falência com " + nomeDono + "!");
+                System.out.println("\n*** " +jogador.getNome() + " entrou em falência com " + nomeDono + "! ***");
                 removerJogador(jogador, propriedadeAtual.getDono());
             }
         }
@@ -689,6 +680,7 @@ public class Jogo {
                 break;
             }
         }
+        System.out.println("Jogador "+jogador.getNome()+" foi removido!\n");
         return;
     }
     /**
@@ -707,10 +699,24 @@ public class Jogo {
                 }
                 recebedor.setConjuntoPropriedades(conjunto); //set conjunto
                 jogadores.remove(j);
+                int qtdMonopoliosAnterior = recebedor.getQuantidadeMonopolios();
+                atualizarMonopolio(recebedor);
+                if(qtdMonopoliosAnterior < recebedor.getQuantidadeMonopolios()) {
+                    System.out.println(recebedor.getNome() + " formou um ou mais monopólios após a transferência");
+                }
                 break;
             }
         }
+        System.out.println("Jogador "+endividado.getNome()+" foi removido!\n");
         return;
+    }
+
+    private void detectaMonopolio(Jogador jogador, Propriedade propriedadeAlterada) {
+        int qtdMonopoliosAnterior = jogador.getQuantidadeMonopolios();
+        atualizarMonopolio(jogador);
+        if (qtdMonopoliosAnterior != jogador.getQuantidadeMonopolios() && propriedadeAlterada instanceof Lote) {
+            System.out.println(jogador.getNome() + " formou um monopólio! Cor: " + ((Lote)propriedadeAlterada).getCor());
+        }
     }
 
     /**
