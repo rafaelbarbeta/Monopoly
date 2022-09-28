@@ -502,7 +502,7 @@ public class Jogo {
             loteParaConstruirHotel.setTemCasa(false);
             loteParaConstruirHotel.setTemHotel(true);
             System.out.println("Hotel construido com sucesso!");
-            System.out.println(loteParaConstruirHotel.getNome() + " agora tem uma hotel");
+            System.out.println(loteParaConstruirHotel.getNome() + " agora tem um hotel");
             jaConstruiu = true;
         }
         else {
