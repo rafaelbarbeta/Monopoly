@@ -48,7 +48,7 @@ public class Jogo {
      */
     public void partida() {
         // Definição inicial da ordem de jogadas  
-        System.out.println("Definindo ordem dos jogadores");
+        System.out.println("\nDefinindo ordem dos jogadores");
         Collections.shuffle(jogadores);
         System.out.println("Ordem de Jogadas:");
         for (int i = 0; i < jogadores.size(); i++) {
@@ -148,13 +148,13 @@ public class Jogo {
      */
     private boolean executarFluxoNormal(Jogador jogador) {
         boolean jogaNovamente = false;
-        System.out.println("Turno de " + jogador.getNome());
+        System.out.println("\nTurno de " + jogador.getNome());
         System.out.println("Digite uma opção:");
         System.out.println("1) Jogar dados");
         System.out.println("2) Negociar Propriedade");
         System.out.println("3) Checar Dados");
         System.out.println("4) Construir Casa");
-        System.out.println("5) Construir Hotel");
+        System.out.println("5) Construir Hotel\n");
 
         switch (obterOpcaoSeguro(5)) {
             // joga os dados, e executa a ação do espaço que o jogador cair (além de tratar quando ele passa pelo início
@@ -165,7 +165,7 @@ public class Jogo {
                 // Verifica se resultou em uma dupla. Se sim, então aplica as ações necessárias para essa situação
                 // (cadeia, se três seguidas, ou apenas o jogador joga novamente)
                 if (jogador.dadosResultaramEmDupla(1)) {
-                    System.out.println("Conseguiu uma dupla!");
+                    System.out.println("Conseguiu uma dupla! Jogue novamente");
                     if (jogador.dadosResultaramEmDupla(2) && jogador.dadosResultaramEmDupla(3)) {
                         System.out.println("Três duplas seguidas! " + jogador.getNome() + " está preso!");
                         jogador.setNaCadeia(true);
@@ -360,8 +360,8 @@ public class Jogo {
             valorProposta = entrada.nextInt();
         }
         System.out.println(jogEscolhido.getNome()+ " aceita a proposta? Y/N");
-            String resposta = entrada.nextLine();
-            if(resposta == "Y" || resposta == "y") {
+            char resposta = entrada.next().charAt(0);
+            if(resposta == 'Y' || resposta == 'y') {
                 System.out.println("Négócio fechado entre "+jogador.getNome()+" e "+jogEscolhido.getNome());
                 propEscolhida.setDono(jogador);
                 jogador.getConjuntoPropriedades().add(propEscolhida);
