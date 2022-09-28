@@ -373,6 +373,8 @@ public class Jogo {
                 char resposta = scan.next().charAt(0);
                 if(resposta == 'Y' || resposta == 'y') {
                     System.out.println("Négócio fechado entre "+jogador.getNome()+" e "+jogEscolhido.getNome());
+                    jogador.setSaldo(jogador.getSaldo() - valorProposta);
+                    jogEscolhido.setSaldo(jogEscolhido.getSaldo() + valorProposta);
                     propEscolhida.setDono(jogador);
                     ArrayList<Propriedade> novoConjuntoAdd = jogador.getConjuntoPropriedades();
                     ArrayList<Propriedade> novoConjuntoRemove = jogEscolhido.getConjuntoPropriedades();
@@ -680,7 +682,7 @@ public class Jogo {
                 break;
             }
         }
-        System.out.println("Jogador "+jogador.getNome()+" foi removido!\n");
+        System.out.println("Jogador "+jogador.getNome()+" foi removido!");
         return;
     }
     /**
@@ -707,7 +709,7 @@ public class Jogo {
                 break;
             }
         }
-        System.out.println("Jogador "+endividado.getNome()+" foi removido!\n");
+        System.out.println("Jogador "+endividado.getNome()+" foi removido!");
         return;
     }
 
