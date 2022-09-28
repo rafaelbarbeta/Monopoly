@@ -375,6 +375,12 @@ public class Jogo {
                 jogador.setConjuntoPropriedades(novoConjuntoAdd);
                 jogEscolhido.setConjuntoPropriedades(novoConjuntoRemove);
                 System.out.println("Propriedade transferida");
+                int qtdMonopoliosAnterior = jogador.getQuantidadeMonopolios();
+                atualizarMonopolio(jogador);
+                atualizarMonopolio(jogEscolhido);
+                if (qtdMonopoliosAnterior != jogador.getQuantidadeMonopolios() && propEscolhida instanceof Lote) {
+                    System.out.println(jogador.getNome() + " formou um monopólio! Cor: " + ((Lote)propEscolhida).getCor());
+                }
             } else {
                 System.out.println("Proposta não aceita!");
             }
@@ -759,6 +765,7 @@ public class Jogo {
 
             if (pertencemAoMesmoJogador) {
                 qtdMonopolios++;
+                jogador.setQuantidadeMonopolios(qtdMonopolios);
                 for (Lote lotesMonopolizados : grupo.membrosDoGrupo()) {
                     lotesMonopolizados.setMonopolizado(true);
                 }
