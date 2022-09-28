@@ -136,7 +136,7 @@ public class Tabuleiro {
             case CartaDeMovimento.ESPECIFICO:
                 novaPosicao = valorMovimento;
                 jogador.setLocalizacao(tabuleiro[valorMovimento]);
-                System.out.println(jogador.getNome() + " foi levado para o espaço" + jogador.getLocalizacao().getNome());
+                System.out.println(jogador.getNome() + " foi levado para o espaço " + jogador.getLocalizacao().getNome());
                 return false;
 
             case CartaDeMovimento.MAISPROXIMO:
@@ -165,7 +165,7 @@ public class Tabuleiro {
                                 jogador.setLocalizacao(tabuleiro[36]);
                             break;
                         }
-                        System.out.println(jogador.getNome() + " foi levado para o espaço" + jogador.getLocalizacao().getNome());
+                        System.out.println(jogador.getNome() + " foi levado para o espaço " + jogador.getLocalizacao().getNome());
                     break;
                 }
             break;

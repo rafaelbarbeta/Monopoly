@@ -233,14 +233,14 @@ public class Jogo {
             return true;
         }
 
-        System.out.println(jogador.getNome() + " está preso!");
+        System.out.println("\n"+jogador.getNome() + " está preso!");
         System.out.println("Digite uma opção:");
         System.out.println("1) Pagar fiança ($50, lança os dados)");
         System.out.println("2) Jogar dados (tire uma dupla para fugir)");
         System.out.println("3) Negociar Propriedade");
         System.out.println("4) Checar Dados");
         System.out.println("5) Construir Casa");
-        System.out.println("6) Construir Hotel");
+        System.out.println("6) Construir Hotel\n");
 
         switch (obterOpcaoSeguro(6)) {
             case 1:
@@ -345,6 +345,10 @@ public class Jogo {
         Scanner entrada = new Scanner(System.in);
         Integer x = entrada.nextInt();
         Jogador jogEscolhido = jogadores.get(x-1);
+        if(jogEscolhido.getConjuntoPropriedades().isEmpty()) {
+            System.out.println(jogEscolhido.getNome()+ " não possui propriedades!");
+            return;
+        }
         System.out.println("Qual propriedade quer negociar?");
         indice = 1;
         for(Propriedade p : jogEscolhido.getConjuntoPropriedades()) {
@@ -364,8 +368,12 @@ public class Jogo {
             if(resposta == 'Y' || resposta == 'y') {
                 System.out.println("Négócio fechado entre "+jogador.getNome()+" e "+jogEscolhido.getNome());
                 propEscolhida.setDono(jogador);
-                jogador.getConjuntoPropriedades().add(propEscolhida);
-                jogEscolhido.getConjuntoPropriedades().remove(propEscolhida);
+                ArrayList<Propriedade> novoConjuntoAdd = jogador.getConjuntoPropriedades();
+                ArrayList<Propriedade> novoConjuntoRemove = jogEscolhido.getConjuntoPropriedades();
+                novoConjuntoAdd.add(propEscolhida);
+                novoConjuntoRemove.remove(propEscolhida);
+                jogador.setConjuntoPropriedades(novoConjuntoAdd);
+                jogEscolhido.setConjuntoPropriedades(novoConjuntoRemove);
                 System.out.println("Propriedade transferida");
             } else {
                 System.out.println("Proposta não aceita!");
