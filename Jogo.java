@@ -461,7 +461,53 @@ public class Jogo {
             return;
         }
 
-
+        System.out.println("Escolha em que propriedade quer construir um hotel: ");
+        int numOpcao = 1;
+        ArrayList<GrupoDoLote> gruposMonopolizados = new ArrayList<>();
+        ArrayList<Lote> propriedadesMonopolizadas = new ArrayList<>();
+        for (GrupoDoLote grupo : tabuleiro.getGrupos()) {
+            boolean pertencemAoMesmoJogador = true;
+            for (Lote loteDoGrupo : grupo.membrosDoGrupo()) {
+                if (!jogadorContemPropriedade(loteDoGrupo, jogador)) {
+                    pertencemAoMesmoJogador = false;
+                    break;
+                }
+            }
+            if (pertencemAoMesmoJogador) {
+                gruposMonopolizados.add(grupo);
+            }
+        }
+        for(GrupoDoLote monopolizados : gruposMonopolizados) {
+            boolean podeConstruir = true;
+            for(Lote lote : monopolizados.membrosDoGrupo()) {
+                if(!lote.getTemCasa() && !lote.getTemHotel()) { //é necessário ter uma casa em cada um / hotel
+                    podeConstruir = false;
+                }
+            }
+            if(podeConstruir) {
+                for(Lote lote : monopolizados.membrosDoGrupo()) {
+                    System.out.println(numOpcao +") "+ lote.getNome() + " (" + ((Lote)lote).getPrecoConstrucaoCasaHotel() + "$)");
+                    propriedadesMonopolizadas.add((Lote)lote);
+                    numOpcao++;
+                }
+            }
+        }
+        if (propriedadesMonopolizadas.size() == 0) {
+            System.out.println("Erro: Todas as propriedades monopolizadas já possuem um hotel");
+            return;
+        } 
+        int numEspacoConstruirHotel = obterOpcaoSeguro(propriedadesMonopolizadas.size()) - 1;
+        Lote loteParaConstruirHotel = propriedadesMonopolizadas.get(numEspacoConstruirHotel);
+        if (banco.pagarBanco(jogador, loteParaConstruirHotel.getPrecoConstrucaoCasaHotel())) {
+            loteParaConstruirHotel.setTemCasa(false);
+            loteParaConstruirHotel.setTemHotel(true);
+            System.out.println("Hotel construido com sucesso!");
+            System.out.println(loteParaConstruirHotel.getNome() + " agora tem uma hotel");
+            jaConstruiu = true;
+        }
+        else {
+            System.out.println("Sem saldo suficiente para construir hotel nessa propriedade!");
+        }
         return;
     }
 
