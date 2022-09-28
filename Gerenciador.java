@@ -3,7 +3,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
- * Classe que gerencia o jogo. Pergunat quantos jogadores irão jogar e se gostaria de se reiniciar uma partida
+ * Classe que gerencia o jogo. Pergunta quantos jogadores irão jogar e se gostaria de se reiniciar uma partida
  */
 public class Gerenciador {
     public static void main(String[] args) {
