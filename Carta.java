@@ -5,16 +5,15 @@ public class Carta {
     private String descricao;
 
     /**
-     * Retorna um objeto representando uma carta genérica do jogo
-     * 
+     * Construtor de uma Carta
      * @param descricao A descrição da carta. Só pode ser um dos valores definidos em EnumCarta
-     * @return Um objeto que representa uma carta genérica
      */
     public Carta(EnumCarta descricao) {
         this.descricao = descricao.toString();
     }
 
     /**
+     * Getter da descrição da Carta
      * @return A descrição da carta
      */
     public String getDescricao() {

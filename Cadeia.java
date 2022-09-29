@@ -1,5 +1,5 @@
 /**
- * Subclasse de Espaco. Representa o espaço em que os jogadores estão presos, e onde devem pagar uma fiança
+ * Representa o espaço em que os jogadores estão presos, e onde devem pagar uma fiança
  */
 public class Cadeia extends Espaco{
     private int fianca;
@@ -15,6 +15,7 @@ public class Cadeia extends Espaco{
     }
 
     /**
+     * Getter da Fiança
      * @return O valor a ser pago como fiança pelo jogador
      */
     public int getFianca() {

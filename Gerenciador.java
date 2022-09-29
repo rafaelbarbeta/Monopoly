@@ -54,8 +54,12 @@ public class Gerenciador {
         } while (maisUmaVez == 1);
         scan.close();
     }
-
-    static String recebeNome() {
+    
+    /**
+     * Função que recebe o nome de um jogador, garantindo que não seja um espaço em branco ou tenha menos ue 3 caracteres
+     * @return Um nome válido inserido pelo jogador
+     */
+    private static String recebeNome() {
         String nome;
         while(true) {
             nome = scan.nextLine();

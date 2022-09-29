@@ -1,9 +1,10 @@
 /**
- * Subclasse de Propriedade. Representa os espaços da Companhia Elétrica e Companhia de distribuição de Água
+ * Representa os espaços da Companhia Elétrica e Companhia de distribuição de Água
  */
 public class Utilidade extends Propriedade {
 
     /**
+     * Construtor do Espaço de Utilidade
      * @param nome O nome dado ao espaço. Só pode ser um dos nomes especificados em NomeDoEspaco
      * @param posicao A posição que o espaço ocupa no tabuleiro. Todo espaço tem uma posição o qual ele ocupa.
      * @param precoCompra Um valor inteiro que é o preço de compra dessa propriedade

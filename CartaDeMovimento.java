@@ -1,5 +1,5 @@
 /**
- * Subclasse de Carta. É a classe que define a carta um movimento a ser realizado por um jogador.
+ * É a classe que define a carta um movimento a ser realizado por um jogador.
  */
 public class CartaDeMovimento extends Carta {
     /**
@@ -13,8 +13,13 @@ public class CartaDeMovimento extends Carta {
      * 1 é para Utilidade mais próxima e 2 é para Metro mais próximo.
      */
     public final static int UTILIDADE = 1, METRO = 2;
-
+    /**
+     * Variável que representa o tipo do movimento (PARAFRENTE, PARATRAS ou ESPECIFICO)
+     */
     private int tipoMovimento;
+    /**
+     * Variável que representa o valor do movimento (quantidade de movimento)
+     */
     private int valorMovimento;
 
     /**
@@ -31,6 +36,7 @@ public class CartaDeMovimento extends Carta {
     }
 
     /**
+     * Getter do Tipo de Movimento da Carta
      * @return O tipo de movimento, PARAFRENTE, PARATRAS ou ESPECIFICO
      */
     public int getTipoMovimento() {
@@ -38,6 +44,7 @@ public class CartaDeMovimento extends Carta {
     }
 
     /**
+     * Getter do Valor do Movimento da Carta
      * @return O quanto o jogador deve "andar", no caso de movimento para frente ou para trás,
      * ou "ir", no caso de movimento ser para um espaço específico ou "avançar", no caso de ser um movimento para uma espaço mais próximo
      */

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 /**
- * Classe principal, que contém todos os objetos necessários par simular um jogo de Monopoly
+ * Classe principal que contém todos os objetos necessários par simular um jogo de Monopoly
  * É a responsável pela interface com jogadores. Contém um conjunto de métodos privados para gerenciamento da Partida.
  */
 public class Jogo {
@@ -42,8 +42,6 @@ public class Jogo {
 
     /**
      * Método que executa a Partida de um jogo de Monopoly. Executa até que o Jogo acabe.
-     * @param scan um objeto scanner para fazer as leituras do jogo. O scanner deve ser fechado pelo método que o passou
-     * Responsável pela comunicação com o usuário
      */
     public void partida() {
         // Definição inicial da ordem de jogadas  
@@ -94,7 +92,7 @@ public class Jogo {
     /**
      * Função privada que checa se há apenas um jogador no jogo
      * imprime um mensagem de vitória para o jogador vencedor
-     * @return
+     * @return true se resta somente um jogador
      */
     private boolean ultimoJogador() {
         if (jogadores.size() == 1) {
@@ -140,6 +138,7 @@ public class Jogo {
         }
         return false;
     }
+
     /**
      * Fluxo normal de decisões, jogar dados, negociar propriedades, construir casa ou hotel e checar dados
      * @param jogador o jogador atual
@@ -212,6 +211,11 @@ public class Jogo {
         return jogaNovamente;
     }
 
+    /**
+     * Executa a vez do jogador que está preso, com a interface de opções específicas para quem está na Cadeia
+     * @param jogador Jogador que está preso
+     * @return true, se jogará novamente
+     */
     private boolean executarJogadorPreso(Jogador jogador) {
         boolean jogaNovamente = false;
         boolean jogadorSemSaldo = false;
@@ -236,12 +240,9 @@ public class Jogo {
         System.out.println("Digite uma opção:");
         System.out.println("1) Pagar fiança ($50, lança os dados)");
         System.out.println("2) Jogar dados (tire uma dupla para fugir)");
-        System.out.println("3) Negociar Propriedade");
-        System.out.println("4) Checar Dados");
-        System.out.println("5) Construir Casa");
-        System.out.println("6) Construir Hotel\n");
+        System.out.println("3) Checar Dados");
 
-        switch (obterOpcaoSeguro(6)) {
+        switch (obterOpcaoSeguro(3)) {
             case 1:
                 if (jogadorSemSaldo) {
                     System.out.println("Não há saldo disponível para essa opção!");
@@ -255,6 +256,7 @@ public class Jogo {
             case 2:
                 if (jogadorNaoEscapou3Vezes && !jogadorRecemLiberto) {
                     System.out.println("Não pode tentar escapar! (já tentou 3 vezes)");
+                    jogador.setRodadasPreso(0);
                     jogaNovamente = true;
                     break;
                 }
@@ -287,25 +289,12 @@ public class Jogo {
                     System.out.println(jogador.getNome() + " passou pelo início (ganhou 200R$)");
                     banco.bonusJogador(jogador, ((PontoDePartida)tabuleiro.getEspaco(1)).getBonus());
                 }
-
                 executarCasa(jogador);
                 jaConstruiu = false;
                 break;
-
+                
             case 3:
-                executarNegociarPropriedades(jogador);
-                jogaNovamente = true;
-                break;
-            case 4:
                 executarChecarDados(jogador);
-                jogaNovamente = true;
-                break;
-            case 5:
-                executarConstruirCasa(jogador);
-                jogaNovamente = true;
-                break;
-            case 6:
-                executarConstruirHotel(jogador);
                 jogaNovamente = true;
                 break;
         }
@@ -335,6 +324,10 @@ public class Jogo {
         }
     }
 
+    /**
+     * Executa a negociação de propriedades entre o Jogador e quem ele escolher
+     * @param jogador Jogador que quer negociar
+     */
     private void executarNegociarPropriedades(Jogador jogador) {
         int indice = 1;
         System.out.println("Com qual jogador quer negociar?");
@@ -515,6 +508,10 @@ public class Jogo {
         return;
     }
 
+    /**
+     * Método que coloca um Jogador na Cadeia
+     * @param jogador Jogador que irá pra Cadeia
+     */
     private void executarVaParaCadeia(Jogador jogador) {
         System.out.println(jogador.getNome() + " foi mandando para a cadeia!");
         jogador.setNaCadeia(true);
@@ -573,6 +570,10 @@ public class Jogo {
         }
     }
 
+    /**
+     * Método que executa o pagamento que jogador atual deve efetuar caso “caia” no espaço TaxadeRiqueza
+     * @param jogador Jogador que deve pagar a Taxa de Riqueza
+     */
     private void executarTaxadeRiqueza(Jogador jogador) {
         int taxa = ((TaxadeRiqueza)jogador.getLocalizacao()).getTaxa();
         System.out.println(jogador.getNome() + " terá que pagar $" + taxa);
@@ -586,6 +587,10 @@ public class Jogo {
         }
     }
 
+    /**
+     * Método responsável por estabelecer o pagamento do jogador atual de imposto fixo ou variável (10% de sua fortuna) 
+     * @param jogador Jogador que deve pagar o Imposto de Renda
+     */
     private void executarImpostoDeRenda(Jogador jogador) {
         int impostoFixo = ((ImpostoDeRenda)jogador.getLocalizacao()).getImposto();
         int impostoVariavel = ((ImpostoDeRenda)jogador.getLocalizacao()).getImposto(jogador);
@@ -667,6 +672,9 @@ public class Jogo {
         else if (propriedadeAtual.getDono().getNome() == jogador.getNome()) {
             System.out.println("Nada a se fazer! A propriedade é do próprio jogador atual");
         }
+        else if (propriedadeAtual.getDono().getNaCadeia()) {
+            System.out.println("Nada a se fazer! O dono da propriedade está na Cadeia");
+        }
         else {
             String nomeDono = propriedadeAtual.getDono().getNome();
             int custoAluguel = propriedadeAtual.calcularAluguel(jogador.getJogadaAnterior(1));
@@ -689,6 +697,10 @@ public class Jogo {
         }
     }
 
+    /**
+     * Método que checa os dados do jogador, apresentando suas informações como o nome, saldo, propriedades, localização, monopólios e se o jogador encontra-se na cadeia ou não.
+     * @param jogador Jogador que terá os dados exibidos
+     */
     private void executarChecarDados(Jogador jogador) {
         System.out.println("Jogador : " + jogador.getNome());
         System.out.println("Saldo : " + jogador.getSaldo());
@@ -735,6 +747,7 @@ public class Jogo {
         System.out.println("Jogador "+jogador.getNome()+" foi removido!");
         return;
     }
+
     /**
      * Método sobrecarregado que trata da falência de um jogador com outro e da sua remoção da partida
      * Além disso, trata da transferência das propriedades.
@@ -763,6 +776,11 @@ public class Jogo {
         return;
     }
 
+    /**
+     * Método que detecta formação de um novo monopólio
+     * @param jogador Jogador que teve uma propriedade incluida
+     * @param propriedadeAlterada A nova propriedade adquirida pelo Jogador
+     */
     private void detectaMonopolio(Jogador jogador, Propriedade propriedadeAlterada) {
         int qtdMonopoliosAnterior = jogador.getQuantidadeMonopolios();
         atualizarMonopolio(jogador);
@@ -774,9 +792,8 @@ public class Jogo {
     /**
      * Função responsável por obter uma opção do jogador. 
      * Trata possíveis excessões de leitura além de validá-la
-     * @param scan objeto para leitura dos dados
-     * @param qtdOpcoes quantas opoções serão disponibilizadas
-     * @return o número da opção obtida
+     * @param qtdOpcoes Quantas opções serão disponibilizadas
+     * @return O número da opção obtida
      */
     private int obterOpcaoSeguro(int qtdOpcoes) {
         while (true) {
@@ -856,10 +873,10 @@ public class Jogo {
     }
 
     /**
-     * método auxiliar para a função atualizarMonopolio. Identifica se uma propriedade faz parte
+     * Método auxiliar para a função atualizarMonopolio. Identifica se uma propriedade faz parte
      * de um "grupo" ou não
      * @param p A propriedade a ser verificada
-     * @param grupo O grupo no qual a propriedade é buscada
+     * @param jogador O jogador que será conferido
      * @return true, se a propriedade está no grupo, ou false, se não estiver
      */
     private boolean jogadorContemPropriedade(Propriedade p, Jogador jogador) {

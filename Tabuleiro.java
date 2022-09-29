@@ -1,4 +1,7 @@
 
+/**
+ * Classe que representa o tabuleiro utilizado nas partidas, contém 40 espaços e configura a movimentação dos jogadores pelos espaços do mesmo.
+ */
 public class Tabuleiro {
     private final Espaco[] tabuleiro;
     private final GrupoDoLote[] grupos;
@@ -106,7 +109,7 @@ public class Tabuleiro {
         return grupos;
     }
     
-        /**
+    /**
      * Movimenta o jogador pelo tabuleiro de acordo com a Carta de Movimento retirada.
      * @param jogador O jogador que será movimentado.
      * @param carta A Carta de Movimento retirada pelo jogador.

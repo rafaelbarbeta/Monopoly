@@ -10,7 +10,12 @@ public class Jogador {
     private Espaco localizacao;
     private boolean naCadeia;
     private int quantidadeMonopolios;
-    
+
+    /**
+     * Constrói um Jogador com saldo inicial de 1500 e atributos zerados.
+     * @param nome Nome do Jogador
+     * @param localizacao Localização Inicial
+     */
     public Jogador(String nome,Espaco localizacao) {
         this.nome = nome;
         // MODIFICADO!!!!!!!!
@@ -31,15 +36,26 @@ public class Jogador {
         this.quantidadeMonopolios = 0;
         this.rodadasPreso = 0;
     }
-    
+    /**
+     * Getter do nome do Jogador
+     * @return O nome do jogador
+     */
     public String getNome() {
         return nome;
     }
     
+    /**
+     * Getter do Saldo do Jogador
+     * @return O saldo atual do Jogador
+     */
     public int getSaldo() {
         return saldo;
     }
 
+    /**
+     * Atualiza o saldo do Jogador
+     * @param saldo Valor do novo saldo
+     */
     public void setSaldo(int saldo) {
         this.saldo = saldo;
     }
@@ -57,8 +73,9 @@ public class Jogador {
             return false;
         }
     }
+
     /**
-     * getter para o valor nos dados de uma jogada anterior
+     * Getter para o valor nos dados de uma jogada anterior
      * @param qualJogada qual das três jogadas anteriores
      * @return A soma dos dados de uma jogada anterior
      */
@@ -67,7 +84,8 @@ public class Jogador {
     }
 
     /**
-     * @return uma cópia do conjunto de propriedades do jogador
+     * Getter do Conjunto de Propriedades do Jogador
+     * @return uma cópia do conjunto de Propriedades do Jogador
      */
     public ArrayList<Propriedade> getConjuntoPropriedades() {
         ArrayList<Propriedade> copiaConjuntoPropriedades = new ArrayList<Propriedade>(conjuntoPropriedades);
@@ -75,6 +93,7 @@ public class Jogador {
     }
 
     /**
+     * Setter do novo Conjunto de Propriedade do Jogador
      * @param conjuntoPropriedades uma ArrayList contendo um conjunto de propriedades.
      */
     public void setConjuntoPropriedades(ArrayList<Propriedade> conjuntoPropriedades) {
@@ -82,39 +101,74 @@ public class Jogador {
         return;
     }
 
-
+    /**
+     * Getter da localização atual do Jogador
+     * @return Localização atual do Jogador (Espaço)
+     */
     public Espaco getLocalizacao() {
         return localizacao;
     }
 
+    /**
+     * Setter da localização atual do Jogador
+     * @param novaLocalizacao A nova localização do Jogador
+     */
     public void setLocalizacao(Espaco novaLocalizacao) {
         this.localizacao = novaLocalizacao;
     }
 
+    /**
+     * Getter da situação do Jogador (Se está na cadeia ou não)
+     * @return Se o jogador está na Cadeia "true" ou não "false".
+     */
     public boolean getNaCadeia() {
         return naCadeia;
     }
 
+    /**
+     * Setter da situação do JOgador (Se vai para a Cadeia ou não)
+     * @param naCadeia Se o Jogador vai para a Cadeia "true" ou sai "false"
+     */
     public void setNaCadeia(boolean naCadeia) {
         this.naCadeia = naCadeia;
     }
 
+    /**
+     * Getter da quantidade de Monopólios atual do Jogador
+     * @return Quantidade atual de monopólios do Jogador
+     */
     public int getQuantidadeMonopolios() {
         return quantidadeMonopolios;
     }
 
+    /**
+     * Setter da quantidade nova de monopólios do Jogador
+     * @param quantidadeMonopolios Nova quantidade de monopólios do Jogador
+     */
     public void setQuantidadeMonopolios(int quantidadeMonopolios) {
         this.quantidadeMonopolios = quantidadeMonopolios;
     }
 
+    /**
+     * Getter do número de rodadas que o jogador passou preso
+     * @return Valor inteiro que indica quantas rodadas o jogador passou preso
+     */
     public int getRodadasPreso() {
         return rodadasPreso;
     }
 
+    /**
+     * Setter do número atualizado de rodadas que o JOgador passou preso
+     * @param rodadasPreso valor inteiro que indica quantas rodadas o jogador passou preso
+     */
     public void setRodadasPreso(int rodadasPreso) {
         this.rodadasPreso = rodadasPreso;
     }
 
+    /**
+     * Calcula quantas Estações de Metrô o Jogador possui dentre suas Propriedades
+     * @return Quantidade de Estações de Metrô que o Jogador possui
+     */
     public int quantidadeEstacoesMetro() {
         int totalEstacoesMetro = 0;
         for (Propriedade propriedadeAtual : conjuntoPropriedades) {
@@ -124,6 +178,10 @@ public class Jogador {
         return totalEstacoesMetro;
     }
 
+    /**
+     * Calcula quantas Utilidades o Jogador possui dentre suas Propriedades
+     * @return Quantidade de Utilidades que o Jogador possui
+     */
     public int quantidadeUtilidade() {
         int totalEstacoesMetro = 0;
         for (Propriedade propriedadeAtual : conjuntoPropriedades) {

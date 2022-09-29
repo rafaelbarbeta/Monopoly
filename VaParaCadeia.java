@@ -1,8 +1,9 @@
 /**
- * Subclasse de Espaço, representa o espaço que manda os jogadores diretamente para o espaço Cadeia
+ * Representa o espaço que manda os jogadores diretamente para o espaço Cadeia
  */
 public class VaParaCadeia extends Espaco{
     /**
+     * Construtor do Espaço Vá para Cadeira
      * @param nome O nome dado ao espaço. Só pode ser um dos nomes especificados em NomeDoEspaco
      * @param posicao A posição que o espaço ocupa no tabuleiro. Todo espaço tem uma posição o qual ele ocupa.
      */

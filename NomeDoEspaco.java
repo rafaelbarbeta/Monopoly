@@ -1,5 +1,5 @@
 /* Utilize a função toString() desse enum como nome para seus espaços  */
-
+/** Enum que indica o nome dos Espaços do Tabuleiro */
 public enum NomeDoEspaco {
     
     /* LOTES */

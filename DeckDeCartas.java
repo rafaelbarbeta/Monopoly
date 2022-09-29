@@ -8,11 +8,13 @@ public class DeckDeCartas {
      * Constantes estáticas que definem o tipo de deck a ser criado
      */
     public final static int DECKCOFRE = 1,DECKSORTE = 2;
-
+    /**
+     * Deck de Cartas (Cofre ou Sorte)
+     */
     private ArrayList<Carta> deck;
 
     /**
-     * 
+     * Construtor de um Deck de Cartas (Cofre ou Sorte)
      * @param tipoDeck Qual deque será criado, um deque de Cofre ou de Sorte. Deve ser passada uma das constantes públicas da classe para isso (DECKCOFRE) ou (DECKSORTE)
      */
     public DeckDeCartas(int tipoDeck) {
@@ -64,6 +66,7 @@ public class DeckDeCartas {
         //embaralhar();
     }
     /**
+     * Método de pegar uma carta do topo do Deck
      * @return A carta retirada do início do Deck
      */
     public Carta pegarCarta() {
@@ -75,8 +78,9 @@ public class DeckDeCartas {
         deck.add(cartaRetirada); 
         return cartaRetirada;
     }
-
-
+    /**
+     * Embaralha randomicamente o Deck
+     */
     public void embaralhar() {
         Random fonteAleatoridade = new Random();
         Collections.shuffle(this.deck,fonteAleatoridade);

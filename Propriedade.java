@@ -1,5 +1,5 @@
 /**
- * Subclasse de Espaco. Define um espaco que pode ser comprado por jogadores
+ * Define um espaco que pode ser comprado por jogadores
  */
 public abstract class Propriedade extends Espaco {
     private int precoCompra; 
@@ -19,6 +19,7 @@ public abstract class Propriedade extends Espaco {
     }
 
     /**
+     * Getter do preço de compra do Espaço
      * @return o valor do preco de compra do espaco
      */
     public int getPrecoCompra() {

@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 /**
- * Subclasse de Espaco. Representa o espaço que obrigada o jogador pagar um imposto sobre sua fortuna ou um valor fixo
+ * Representa o espaço que obrigada o jogador pagar um imposto sobre sua fortuna ou um valor fixo
  */
 public class ImpostoDeRenda extends Espaco{
     private int imposto;
     
     /**
+     * Construtor do espaço Imposto de Renda
      * @param nome O nome dado ao espaço. Só pode ser um dos nomes especificados em NomeDoEspaco
      * @param posicao A posição que o espaço ocupa no tabuleiro. Todo espaço tem uma posição o qual ele ocupa.
      * @param imposto O valor do imposto fixo quando um jogador estiver nesse espaço
@@ -16,6 +17,7 @@ public class ImpostoDeRenda extends Espaco{
     }
 
     /**
+     * Getter do valor do Imposto
      * @return o valor do imposto fixo devido
      */
     public int getImposto() {
@@ -25,7 +27,7 @@ public class ImpostoDeRenda extends Espaco{
     /**
      * Método sobrecarregado que retorna o imposto variável, dependendo da fortuna do jogador
      * @param jogador o jogador que será utilizado como base para cálculo do imposto
-     * @return o valor do imposto
+     * @return O valor do imposto a ser pago
      */
     public int getImposto(Jogador jogador) {
         ArrayList<Propriedade> propriedadesDoJogador = jogador.getConjuntoPropriedades();
