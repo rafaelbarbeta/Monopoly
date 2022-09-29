@@ -240,10 +240,7 @@ public class Jogo {
         System.out.println("Digite uma opção:");
         System.out.println("1) Pagar fiança ($50, lança os dados)");
         System.out.println("2) Jogar dados (tire uma dupla para fugir)");
-        //System.out.println("3) Negociar Propriedade");
         System.out.println("3) Checar Dados");
-        //System.out.println("5) Construir Casa");
-        //System.out.println("6) Construir Hotel\n");
 
         switch (obterOpcaoSeguro(3)) {
             case 1:
@@ -259,6 +256,7 @@ public class Jogo {
             case 2:
                 if (jogadorNaoEscapou3Vezes && !jogadorRecemLiberto) {
                     System.out.println("Não pode tentar escapar! (já tentou 3 vezes)");
+                    jogador.setRodadasPreso(0);
                     jogaNovamente = true;
                     break;
                 }
@@ -290,28 +288,14 @@ public class Jogo {
                     System.out.println(jogador.getNome() + " passou pelo início (ganhou 200R$)");
                     banco.bonusJogador(jogador, ((PontoDePartida)tabuleiro.getEspaco(1)).getBonus());
                 }
-
                 executarCasa(jogador);
                 jaConstruiu = false;
                 break;
-/* 
-            case 3:
-                executarNegociarPropriedades(jogador);
-                jogaNovamente = true;
-                break;*/
+                
             case 3:
                 executarChecarDados(jogador);
                 jogaNovamente = true;
                 break;
-            /* 
-            case 5:
-                executarConstruirCasa(jogador);
-                jogaNovamente = true;
-                break;
-            case 6:
-                executarConstruirHotel(jogador);
-                jogaNovamente = true;
-                break;*/
         }
         return jogaNovamente; 
     }
@@ -683,6 +667,9 @@ public class Jogo {
         }
         else if (propriedadeAtual.getDono().getNome() == jogador.getNome()) {
             System.out.println("Nada a se fazer! A propriedade é do próprio jogador atual");
+        }
+        else if (propriedadeAtual.getDono().getNaCadeia()) {
+            System.out.println("Nada a se fazer! O dono da propriedade está na Cadeia");
         }
         else {
             String nomeDono = propriedadeAtual.getDono().getNome();
