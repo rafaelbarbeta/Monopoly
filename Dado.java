@@ -5,7 +5,6 @@ import java.util.Random;
  * ultimoValor guarda o valor do último "rolamento" do dado
  * LADOS é um vetor constante que simula os lados do dado
  */
-
 public class Dado {
     private final static int MAXLADO = 6;
     private final int[] LADOS;

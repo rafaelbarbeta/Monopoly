@@ -1,5 +1,7 @@
 import java.util.ArrayList;
-
+/**
+ * Classe correspondente a um jogador de uma partida
+ */
 public class Jogador {
     private String nome;
     private int saldo;
@@ -9,7 +11,12 @@ public class Jogador {
     private Espaco localizacao;
     private boolean naCadeia;
     private int quantidadeMonopolios;
-    
+
+    /**
+     * Constrói um Jogador com saldo inicial de 1500 e atributos zerados.
+     * @param nome Nome do Jogador
+     * @param localizacao Localização Inicial
+     */
     public Jogador(String nome,Espaco localizacao) {
         this.nome = nome;
         this.saldo = 1500;
@@ -28,15 +35,24 @@ public class Jogador {
         this.quantidadeMonopolios = 0;
         this.rodadasPreso = 0;
     }
-    
+    /**
+     * @return O nome do jogador
+     */
     public String getNome() {
         return nome;
     }
     
+    /**
+     * @return O saldo atual do Jogador
+     */
     public int getSaldo() {
         return saldo;
     }
 
+    /**
+     * Atualiza o saldo do Jogador
+     * @param saldo Valor do novo saldo
+     */
     public void setSaldo(int saldo) {
         this.saldo = saldo;
     }
@@ -54,6 +70,7 @@ public class Jogador {
             return false;
         }
     }
+
     /**
      * getter para o valor nos dados de uma jogada anterior
      * @param qualJogada qual das três jogadas anteriores
@@ -79,39 +96,66 @@ public class Jogador {
         return;
     }
 
-
+    /**
+     * @return Localização atual do Jogador (Espaço)
+     */
     public Espaco getLocalizacao() {
         return localizacao;
     }
 
+    /**
+     * @param novaLocalizacao A nova localização do Jogador
+     */
     public void setLocalizacao(Espaco novaLocalizacao) {
         this.localizacao = novaLocalizacao;
     }
 
+    /**
+     * @return Se o jogador está na Cadeia "true" ou não "false".
+     */
     public boolean getNaCadeia() {
         return naCadeia;
     }
 
+    /**
+     * @param naCadeia Se o Jogador vai para a Cadeia "true" ou sai "false"
+     */
     public void setNaCadeia(boolean naCadeia) {
         this.naCadeia = naCadeia;
     }
 
+    /**
+     * @return Quantidade atual de monopólios do Jogador
+     */
     public int getQuantidadeMonopolios() {
         return quantidadeMonopolios;
     }
 
+    /**
+     * @param quantidadeMonopolios Nova quantidade de monopólios do Jogador
+     */
     public void setQuantidadeMonopolios(int quantidadeMonopolios) {
         this.quantidadeMonopolios = quantidadeMonopolios;
     }
 
+    /**
+     * @return Valor inteiro que indica quantas rodadas o jogador passou preso
+     */
     public int getRodadasPreso() {
         return rodadasPreso;
     }
 
+    /**
+     * @param rodadasPreso valor inteiro que indica quantas rodadas o jogador passou preso
+     */
     public void setRodadasPreso(int rodadasPreso) {
         this.rodadasPreso = rodadasPreso;
     }
 
+    /**
+     * Calcula quantas Estações de Metrô o Jogador possui dentre suas Propriedades
+     * @return Quantidade de Estações de Metrô que o Jogador possui
+     */
     public int quantidadeEstacoesMetro() {
         int totalEstacoesMetro = 0;
         for (Propriedade propriedadeAtual : conjuntoPropriedades) {
@@ -121,6 +165,10 @@ public class Jogador {
         return totalEstacoesMetro;
     }
 
+    /**
+     * Calcula quantas Utilidades o Jogador possui dentre suas Propriedades
+     * @return Quantidade de Utilidades que o Jogador possui
+     */
     public int quantidadeUtilidade() {
         int totalEstacoesMetro = 0;
         for (Propriedade propriedadeAtual : conjuntoPropriedades) {

@@ -140,6 +140,7 @@ public class Jogo {
         }
         return false;
     }
+
     /**
      * Fluxo normal de decisões, jogar dados, negociar propriedades, construir casa ou hotel e checar dados
      * @param jogador o jogador atual
@@ -212,6 +213,11 @@ public class Jogo {
         return jogaNovamente;
     }
 
+    /**
+     * Executa a vez do jogador que está preso, com a interface de opções específicas para quem está na Cadeia
+     * @param jogador Jogador que está preso
+     * @return true, se jogará novamente
+     */
     private boolean executarJogadorPreso(Jogador jogador) {
         boolean jogaNovamente = false;
         boolean jogadorSemSaldo = false;
@@ -334,6 +340,10 @@ public class Jogo {
         }
     }
 
+    /**
+     * Executa a negociação de propriedades entre o Jogador e quem ele escolher
+     * @param jogador Jogador que quer negociar
+     */
     private void executarNegociarPropriedades(Jogador jogador) {
         int indice = 1;
         System.out.println("Com qual jogador quer negociar?");
@@ -511,6 +521,10 @@ public class Jogo {
         return;
     }
 
+    /**
+     * Método que coloca um Jogador na Cadeia
+     * @param jogador Jogador que irá pra Cadeia
+     */
     private void executarVaParaCadeia(Jogador jogador) {
         System.out.println(jogador.getNome() + " foi mandando para a cadeia!");
         jogador.setNaCadeia(true);
@@ -569,6 +583,10 @@ public class Jogo {
         }
     }
 
+    /**
+     * Método que executa o pagamento que jogador atual deve efetuar caso “caia” no espaço TaxadeRiqueza
+     * @param jogador Jogador que deve pagar a Taxa de Riqueza
+     */
     private void executarTaxadeRiqueza(Jogador jogador) {
         int taxa = ((TaxadeRiqueza)jogador.getLocalizacao()).getTaxa();
         System.out.println(jogador.getNome() + " terá que pagar $" + taxa);
@@ -582,6 +600,10 @@ public class Jogo {
         }
     }
 
+    /**
+     * Método responsável por estabelecer o pagamento do jogador atual de imposto fixo ou variável (10% de sua fortuna) 
+     * @param jogador Jogador que deve pagar o Imposto de Renda
+     */
     private void executarImpostoDeRenda(Jogador jogador) {
         int impostoFixo = ((ImpostoDeRenda)jogador.getLocalizacao()).getImposto();
         int impostoVariavel = ((ImpostoDeRenda)jogador.getLocalizacao()).getImposto(jogador);
@@ -685,6 +707,10 @@ public class Jogo {
         }
     }
 
+    /**
+     * Método que checa os dados do jogador, apresentando suas informações como o nome, saldo, propriedades, localização, monopólios e se o jogador encontra-se na cadeia ou não.
+     * @param jogador Jogador que terá os dados exibidos
+     */
     private void executarChecarDados(Jogador jogador) {
         System.out.println("Jogador : " + jogador.getNome());
         System.out.println("Saldo : " + jogador.getSaldo());
@@ -731,6 +757,7 @@ public class Jogo {
         System.out.println("Jogador "+jogador.getNome()+" foi removido!");
         return;
     }
+
     /**
      * Método sobrecarregado que trata da falência de um jogador com outro e da sua remoção da partida
      * Além disso, trata da transferência das propriedades.
@@ -759,6 +786,11 @@ public class Jogo {
         return;
     }
 
+    /**
+     * Método que detecta formação de um novo monopólio
+     * @param jogador Jogador que teve uma propriedade incluida
+     * @param propriedadeAlterada A nova propriedade adquirida pelo Jogador
+     */
     private void detectaMonopolio(Jogador jogador, Propriedade propriedadeAlterada) {
         int qtdMonopoliosAnterior = jogador.getQuantidadeMonopolios();
         atualizarMonopolio(jogador);

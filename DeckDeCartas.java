@@ -7,7 +7,9 @@ public class DeckDeCartas {
      * Constantes estáticas que definem o tipo de deck a ser criado
      */
     public final static int DECKCOFRE = 1,DECKSORTE = 2;
-
+    /**
+     * Deck de Cartas (Cofre ou Sorte)
+     */
     private ArrayList<Carta> deck;
 
     /**
@@ -71,8 +73,9 @@ public class DeckDeCartas {
         deck.add(cartaRetirada); 
         return cartaRetirada;
     }
-
-
+    /**
+     * Embaralha randomicamente o Deck
+     */
     public void embaralhar() {
         Random fonteAleatoridade = new Random();
         Collections.shuffle(this.deck,fonteAleatoridade);

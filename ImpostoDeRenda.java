@@ -25,7 +25,7 @@ public class ImpostoDeRenda extends Espaco{
     /**
      * Método sobrecarregado que retorna o imposto variável, dependendo da fortuna do jogador
      * @param jogador o jogador que será utilizado como base para cálculo do imposto
-     * @return o valor do imposto
+     * @return O valor do imposto a ser pago
      */
     public int getImposto(Jogador jogador) {
         ArrayList<Propriedade> propriedadesDoJogador = jogador.getConjuntoPropriedades();

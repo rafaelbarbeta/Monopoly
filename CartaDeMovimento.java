@@ -13,8 +13,13 @@ public class CartaDeMovimento extends Carta {
      * 1 é para Utilidade mais próxima e 2 é para Metro mais próximo.
      */
     public final static int UTILIDADE = 1, METRO = 2;
-
+    /**
+     * Variável que representa o tipo do movimento (PARAFRENTE, PARATRAS ou ESPECIFICO)
+     */
     private int tipoMovimento;
+    /**
+     * Variável que representa o valor do movimento (quantidade de movimento)
+     */
     private int valorMovimento;
 
     /**

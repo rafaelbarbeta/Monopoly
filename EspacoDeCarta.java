@@ -20,6 +20,9 @@ public class EspacoDeCarta extends Espaco{
         this.tipoEspacoCarta = tipoEspacoCarta;
     }
 
+    /**
+     * @return Tipo do Espaço de Carta (Cofre ou Sorte)
+     */
     public int getTipoEspacoCarta() {
         return tipoEspacoCarta;
     }
