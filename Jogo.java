@@ -383,6 +383,7 @@ public class Jogo {
                     jogador.setConjuntoPropriedades(novoConjuntoAdd);
                     jogEscolhido.setConjuntoPropriedades(novoConjuntoRemove);
                     System.out.println("Propriedade transferida");
+                    atualizarMonopolio(jogEscolhido);
                     detectaMonopolio(jogador, propEscolhida);
                     atualizarMonopolio(jogEscolhido);
                     scan.nextLine();
