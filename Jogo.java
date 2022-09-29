@@ -457,7 +457,7 @@ public class Jogo {
             return;
         }
         else if (jogador.getQuantidadeMonopolios() == 0) {
-            System.out.println("Jogador não tem nenhum monopólio para construir casa!");
+            System.out.println("Jogador não tem nenhum monopólio para construir hotel!");
             return;
         }
 
