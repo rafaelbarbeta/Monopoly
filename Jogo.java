@@ -240,12 +240,12 @@ public class Jogo {
         System.out.println("Digite uma opção:");
         System.out.println("1) Pagar fiança ($50, lança os dados)");
         System.out.println("2) Jogar dados (tire uma dupla para fugir)");
-        System.out.println("3) Negociar Propriedade");
-        System.out.println("4) Checar Dados");
-        System.out.println("5) Construir Casa");
-        System.out.println("6) Construir Hotel\n");
+        //System.out.println("3) Negociar Propriedade");
+        System.out.println("3) Checar Dados");
+        //System.out.println("5) Construir Casa");
+        //System.out.println("6) Construir Hotel\n");
 
-        switch (obterOpcaoSeguro(6)) {
+        switch (obterOpcaoSeguro(3)) {
             case 1:
                 if (jogadorSemSaldo) {
                     System.out.println("Não há saldo disponível para essa opção!");
@@ -294,15 +294,16 @@ public class Jogo {
                 executarCasa(jogador);
                 jaConstruiu = false;
                 break;
-
+/* 
             case 3:
                 executarNegociarPropriedades(jogador);
                 jogaNovamente = true;
-                break;
-            case 4:
+                break;*/
+            case 3:
                 executarChecarDados(jogador);
                 jogaNovamente = true;
                 break;
+            /* 
             case 5:
                 executarConstruirCasa(jogador);
                 jogaNovamente = true;
@@ -310,7 +311,7 @@ public class Jogo {
             case 6:
                 executarConstruirHotel(jogador);
                 jogaNovamente = true;
-                break;
+                break;*/
         }
         return jogaNovamente; 
     }

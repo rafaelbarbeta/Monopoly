@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-/* Classe responsável pela organização dos lotes em diferentes cores */
+/** Classe responsável pela organização dos lotes em diferentes cores */
 
 public class GrupoDoLote {
     /**
