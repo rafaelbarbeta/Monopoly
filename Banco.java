@@ -1,4 +1,4 @@
-/* 
+/** 
  * Classe responsável por controlar todas as operações monetárias do jogo.
  */
 public class Banco {

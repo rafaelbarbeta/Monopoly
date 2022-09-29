@@ -1,5 +1,5 @@
 /**
- * Subclasse de Carta. É a classe que define a carta de acrésimo ou decrésimo de saldo de um jogador
+ * É a classe que define a carta de acrésimo ou decrésimo de saldo de um jogador
  */
 public class CartaDeDinheiro extends Carta{
     private int valor;

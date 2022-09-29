@@ -2,7 +2,13 @@
  * Representa um espaço nomeado qualquer do tabuleiro.
  */
 public class Espaco {
+    /**
+     * Nome do Espaço
+     */
     private String nome;
+    /**
+     * Posição do espaço no Tabuleiro
+     */
     private int posicao;
 
     /**

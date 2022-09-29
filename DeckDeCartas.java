@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-
+/**
+ * Classe que representa um deck de cartas
+ */
 public class DeckDeCartas {
     /**
      * Constantes estáticas que definem o tipo de deck a ser criado

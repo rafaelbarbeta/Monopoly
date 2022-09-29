@@ -1,5 +1,5 @@
 /**
- * Subclasse de Espaço. Representa o espaço que permite que um jogador retire uma carta de um dos deques
+ * Representa o espaço que permite que um jogador retire uma carta de um dos deques
  */
 public class EspacoDeCarta extends Espaco{
     /**

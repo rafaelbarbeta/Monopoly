@@ -1,5 +1,7 @@
+/**
+ * Enum que determina as cores dos Lotes
+ */
 public enum EnumCorDoLote {
-    
     /**
      * Define as constantes da cor do lote. também contém um número de ordem dos lotes
      * A ordem é marrom, azul claro, rosa, laranja, vermelho, amarelo, verde, azul

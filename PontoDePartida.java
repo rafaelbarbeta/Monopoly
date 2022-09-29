@@ -1,5 +1,5 @@
 /**
- * Subclasse de Espaço que representa o espaço inicial do jogo para os jogadores.
+ * Representa o espaço inicial do jogo para os jogadores.
  */
 public class PontoDePartida extends Espaco{
     private int bonus;

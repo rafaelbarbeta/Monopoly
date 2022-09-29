@@ -1,5 +1,5 @@
 /**
- * Subclasse de Carta. É a classe que define a carta um movimento a ser realizado por um jogador.
+ * É a classe que define a carta um movimento a ser realizado por um jogador.
  */
 public class CartaDeMovimento extends Carta {
     /**

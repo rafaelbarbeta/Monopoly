@@ -1,5 +1,5 @@
 /**
- * Subclasse de Propriedade. Representa os espaços da Companhia Elétrica e Companhia de distribuição de Água
+ * Representa os espaços da Companhia Elétrica e Companhia de distribuição de Água
  */
 public class Utilidade extends Propriedade {
 

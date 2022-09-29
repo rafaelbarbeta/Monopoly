@@ -1,5 +1,5 @@
 /**
- * Subclasse de Espaco. É o espaço que não gera nenhum evento quando os jogadores "caem" nele
+ * É o espaço que não gera nenhum evento quando os jogadores "caem" nele
  */
 public class EstacionamentoGratis extends Espaco{
 

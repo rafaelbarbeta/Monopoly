@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 /**
- * Subclasse de Espaco. Representa o espaço que obrigada o jogador pagar um imposto sobre sua fortuna ou um valor fixo
+ * Representa o espaço que obrigada o jogador pagar um imposto sobre sua fortuna ou um valor fixo
  */
 public class ImpostoDeRenda extends Espaco{
     private int imposto;

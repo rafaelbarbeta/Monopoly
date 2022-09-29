@@ -1,5 +1,5 @@
 /**
- * Subclasse de Espaço. Representa o espaço onde o jogador deve pagar uma taxa ao banco de acordo com as regras do Jogo
+ * Representa o espaço onde o jogador deve pagar uma taxa ao banco de acordo com as regras do Jogo
  */
 public class TaxadeRiqueza extends Espaco{
     private final int TAXA;

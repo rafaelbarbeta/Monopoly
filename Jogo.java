@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 /**
- * Classe principal, que contém todos os objetos necessários par simular um jogo de Monopoly
+ * Classe principal que contém todos os objetos necessários par simular um jogo de Monopoly
  * É a responsável pela interface com jogadores. Contém um conjunto de métodos privados para gerenciamento da Partida.
  */
 public class Jogo {
@@ -94,7 +94,7 @@ public class Jogo {
     /**
      * Função privada que checa se há apenas um jogador no jogo
      * imprime um mensagem de vitória para o jogador vencedor
-     * @return
+     * @return true se resta somente um jogador
      */
     private boolean ultimoJogador() {
         if (jogadores.size() == 1) {

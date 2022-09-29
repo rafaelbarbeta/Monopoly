@@ -1,5 +1,5 @@
 /**
- * Subclasse de Propriedade. Corresponde as 4 Estações de Metrô do jogo.
+ * Corresponde as 4 Estações de Metrô do jogo.
  */
 public class EstacaoDeMetro extends Propriedade {
     

@@ -1,5 +1,5 @@
 /**
- * Subclasse de Propriedade. Corresponde aos 22 lotes adquiríveis pelos jogadores.
+ * Corresponde aos 22 lotes adquiríveis pelos jogadores.
  */
 public class Lote extends Propriedade {
     private String cor;

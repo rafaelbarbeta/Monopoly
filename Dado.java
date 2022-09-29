@@ -1,13 +1,19 @@
 import java.util.Random;
 /**
  * Representa um dado de 6 lados
- * MAXLADO é uma constante estática que representa o maior número presente no dado, contando a partir de 1
- * ultimoValor guarda o valor do último "rolamento" do dado
- * LADOS é um vetor constante que simula os lados do dado
  */
 public class Dado {
+    /**
+     * Constante estática que define a quantidade de lados do dado
+     */
     private final static int MAXLADO = 6;
+    /**
+     * Vetor que representa os lados do dado
+     */
     private final int[] LADOS;
+    /**
+     * Variável que armazena o último valor retirado no dado
+     *  */
     private int ultimoValor;
 
     /**
@@ -21,7 +27,7 @@ public class Dado {
     }
     /**
      * Simula o rolamento do dado. Guarda o resultado em ultimoValor para posterior utilização
-     * @return valor aleatório do resulado do rolamento do dado
+     * @return valor aleatório do resultado do rolamento do dado
      */
     public int rolar() {
         Random lancamento = new Random();

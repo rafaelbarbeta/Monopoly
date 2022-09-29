@@ -1,5 +1,5 @@
 /**
- * Subclasse de Espaço, representa o espaço que manda os jogadores diretamente para o espaço Cadeia
+ * Representa o espaço que manda os jogadores diretamente para o espaço Cadeia
  */
 public class VaParaCadeia extends Espaco{
     /**

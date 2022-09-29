@@ -1,5 +1,5 @@
 /**
- * Subclasse de Carta. Classe sem métodos ou atributos próprios, apenas para identificar uma instância específica
+ * Classe sem métodos ou atributos próprios, apenas para identificar uma instância específica
  */
 public class CartaVaParaCadeia extends Carta{
 
