@@ -2,7 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Classe que gerencia o jogo. Pergunat quantos jogadores irão jogar e se gostaria de se reiniciar uma partida
+ * Classe que gerencia o jogo. Pergunta quantos jogadores irão jogar e se gostaria de se reiniciar uma partida
  */
 public class Gerenciador {
     public static void main(String[] args) {
@@ -26,9 +26,18 @@ public class Gerenciador {
         }
         scan.nextLine();
         String[] nomes = new String[numJogadores];
+        String nome;
         System.out.println("Digite os nomes dos " + numJogadores + " jogadores");
         for (int i = 0; i < numJogadores; i++) {
-            nomes[i] = scan.nextLine();
+            nome = scan.nextLine();
+            for(int y = 0; y < numJogadores; y++) {
+                if(nome.equals(nomes[y])) {
+                    System.out.println("O nome "+ nome + " já foi adicionado, digite um nome diferente:");
+                    nome = scan.nextLine();
+                    y = -1; //volta o for do inicio
+                }
+            }
+            nomes[i] = nome;
         }
         int maisUmaVez = 0;
         do {

@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 /**
  * Classe principal, que contém todos os objetos necessários par simular um jogo de Monopoly
@@ -48,7 +47,7 @@ public class Jogo {
      */
     public void partida() {
         // Definição inicial da ordem de jogadas  
-        System.out.println("Definindo ordem dos jogadores");
+        System.out.println("\nDefinindo ordem dos jogadores");
         Collections.shuffle(jogadores);
         System.out.println("Ordem de Jogadas:");
         for (int i = 0; i < jogadores.size(); i++) {
@@ -98,14 +97,13 @@ public class Jogo {
      * @return
      */
     private boolean ultimoJogador() {
-        /*if (jogadores.size() == 1) {
-            System.out.println(jogadores.get(0).getNome() + " venceu o jogo! (último jogador restante)");
+        if (jogadores.size() == 1) {
+            System.out.println(jogadores.get(0).getNome() + " VENCEU O JOGO! (último jogador restante)");
             return true;
         }
         else {
             return false;
-        }*/
-        return false;
+        }
     }
 
     /**
@@ -116,7 +114,7 @@ public class Jogo {
     private boolean jogadorComDoisMonopolios() {
         for (Jogador jogador : jogadores) {
             if (jogador.getQuantidadeMonopolios() >= 2) {
-                System.out.println(jogador.getNome() + " venceu o jogo! (alcançou dois monopólios)");
+                System.out.println(jogador.getNome() + " VENCEU O JOGO! (alcançou dois monopólios)");
                 return true;
             }
         }
@@ -133,7 +131,7 @@ public class Jogo {
                 for (Propriedade propriedade : jogador.getConjuntoPropriedades()) {
                     if (propriedade instanceof Lote) {
                         if (((Lote)propriedade).getTemHotel()) {
-                            System.out.println(jogador.getNome() + " venceu o jogo! (formou monopólio com hotel)");
+                            System.out.println(jogador.getNome() + " VENCEU O JOGO! (formou monopólio com hotel)");
                             return true;
                         }
                     }
@@ -149,13 +147,13 @@ public class Jogo {
      */
     private boolean executarFluxoNormal(Jogador jogador) {
         boolean jogaNovamente = false;
-        System.out.println("Turno de " + jogador.getNome());
+        System.out.println("\nTurno de " + jogador.getNome());
         System.out.println("Digite uma opção:");
         System.out.println("1) Jogar dados");
         System.out.println("2) Negociar Propriedade");
         System.out.println("3) Checar Dados");
         System.out.println("4) Construir Casa");
-        System.out.println("5) Construir Hotel");
+        System.out.println("5) Construir Hotel\n");
 
         switch (obterOpcaoSeguro(5)) {
             // joga os dados, e executa a ação do espaço que o jogador cair (além de tratar quando ele passa pelo início
@@ -166,7 +164,7 @@ public class Jogo {
                 // Verifica se resultou em uma dupla. Se sim, então aplica as ações necessárias para essa situação
                 // (cadeia, se três seguidas, ou apenas o jogador joga novamente)
                 if (jogador.dadosResultaramEmDupla(1)) {
-                    System.out.println("Conseguiu uma dupla!");
+                    System.out.println("Conseguiu uma dupla! Jogue novamente");
                     if (jogador.dadosResultaramEmDupla(2) && jogador.dadosResultaramEmDupla(3)) {
                         System.out.println("Três duplas seguidas! " + jogador.getNome() + " está preso!");
                         jogador.setNaCadeia(true);
@@ -234,14 +232,14 @@ public class Jogo {
             return true;
         }
 
-        System.out.println(jogador.getNome() + " está preso!");
+        System.out.println("\n"+jogador.getNome() + " está preso!");
         System.out.println("Digite uma opção:");
         System.out.println("1) Pagar fiança ($50, lança os dados)");
         System.out.println("2) Jogar dados (tire uma dupla para fugir)");
         System.out.println("3) Negociar Propriedade");
         System.out.println("4) Checar Dados");
         System.out.println("5) Construir Casa");
-        System.out.println("6) Construir Hotel");
+        System.out.println("6) Construir Hotel\n");
 
         switch (obterOpcaoSeguro(6)) {
             case 1:
@@ -344,33 +342,58 @@ public class Jogo {
             System.out.println(indice +" - "+ j.getNome());
             indice++;
         }
-        Scanner entrada = new Scanner(System.in);
-        Integer x = entrada.nextInt();
+        Integer x = obterOpcaoSeguro(indice-1);
         Jogador jogEscolhido = jogadores.get(x-1);
+        if(jogador.equals(jogEscolhido)) {
+            System.out.println("Você não pode negociar com você mesmo!");
+            return;
+        }
+        if(jogEscolhido.getConjuntoPropriedades().isEmpty()) {
+            System.out.println(jogEscolhido.getNome()+ " não possui propriedades!");
+            return;
+        }
         System.out.println("Qual propriedade quer negociar?");
         indice = 1;
         for(Propriedade p : jogEscolhido.getConjuntoPropriedades()) {
             System.out.println(indice +" - "+ p.getNome());
             indice++;
         }
-        x = entrada.nextInt();
+        x = obterOpcaoSeguro(indice-1);
         Propriedade propEscolhida = jogEscolhido.getConjuntoPropriedades().get(x-1);
         System.out.println("Qual a sua proposta de valor para a propriedade "+ propEscolhida.getNome() +"?");
-        Integer valorProposta = entrada.nextInt();
+        
+        Integer valorProposta = obterOpcaoSeguro(jogador.getSaldo());
+        
         while (valorProposta > jogador.getSaldo()) {
             System.out.println("Seu saldo é insuficiente para essa proposta, digite outro valor:");
-            valorProposta = entrada.nextInt();
+            valorProposta = obterOpcaoSeguro(jogador.getSaldo());
         }
         System.out.println(jogEscolhido.getNome()+ " aceita a proposta? Y/N");
-            String resposta = entrada.nextLine();
-            if(resposta == "Y" || resposta == "y") {
-                System.out.println("Négócio fechado entre "+jogador.getNome()+" e "+jogEscolhido.getNome());
-                propEscolhida.setDono(jogador);
-                jogador.getConjuntoPropriedades().add(propEscolhida);
-                jogEscolhido.getConjuntoPropriedades().remove(propEscolhida);
-                System.out.println("Propriedade transferida");
-            } else {
-                System.out.println("Proposta não aceita!");
+            while(true) {
+                char resposta = scan.next().charAt(0);
+                if(resposta == 'Y' || resposta == 'y') {
+                    System.out.println("Négócio fechado entre "+jogador.getNome()+" e "+jogEscolhido.getNome());
+                    jogador.setSaldo(jogador.getSaldo() - valorProposta);
+                    jogEscolhido.setSaldo(jogEscolhido.getSaldo() + valorProposta);
+                    propEscolhida.setDono(jogador);
+                    ArrayList<Propriedade> novoConjuntoAdd = jogador.getConjuntoPropriedades();
+                    ArrayList<Propriedade> novoConjuntoRemove = jogEscolhido.getConjuntoPropriedades();
+                    novoConjuntoAdd.add(propEscolhida);
+                    novoConjuntoRemove.remove(propEscolhida);
+                    jogador.setConjuntoPropriedades(novoConjuntoAdd);
+                    jogEscolhido.setConjuntoPropriedades(novoConjuntoRemove);
+                    System.out.println("Propriedade transferida");
+                    detectaMonopolio(jogador, propEscolhida);
+                    scan.nextLine();
+                    break;
+                } else if (resposta == 'N' || resposta == 'n') {
+                    System.out.println("Proposta não aceita!");
+                    scan.nextLine();
+                    break;
+                }
+                else {
+                    System.out.println("Digite uma resposta válida: Y/N");
+                }
             }
         return;
     }
@@ -400,9 +423,15 @@ public class Jogo {
                 if (((Lote)it).getMonopolizado() && !((Lote)it).getTemCasa()) {
                     System.out.println(numOpcao +") "+ it.getNome() + " (" + ((Lote)it).getPrecoConstrucaoCasaHotel() + "$)");
                     propriedadesMonopolizadas.add((Lote)it);
+                    numOpcao++;
                 } 
             }
         }
+
+        if (propriedadesMonopolizadas.size() == 0) {
+            System.out.println("Erro: Todas as propriedades monopolizadas já tem uma casa!");
+            return;
+        } 
         int numEspacoConstruirCasa = obterOpcaoSeguro(propriedadesMonopolizadas.size()) - 1;
         Lote loteParaConstruirCasa = propriedadesMonopolizadas.get(numEspacoConstruirCasa);
         if (banco.pagarBanco(jogador, loteParaConstruirCasa.getPrecoConstrucaoCasaHotel())) {
@@ -430,7 +459,7 @@ public class Jogo {
             return;
         }
         else if (jogador.getQuantidadeMonopolios() == 0) {
-            System.out.println("Jogador não tem nenhum monopólio para construir casa!");
+            System.out.println("Jogador não tem nenhum monopólio para construir hotel!");
             return;
         }
 
@@ -475,7 +504,7 @@ public class Jogo {
             loteParaConstruirHotel.setTemCasa(false);
             loteParaConstruirHotel.setTemHotel(true);
             System.out.println("Hotel construido com sucesso!");
-            System.out.println(loteParaConstruirHotel.getNome() + " agora tem uma hotel");
+            System.out.println(loteParaConstruirHotel.getNome() + " agora tem um hotel");
             jaConstruiu = true;
         }
         else {
@@ -526,7 +555,7 @@ public class Jogo {
                 }
                 else {
                     System.out.println(jogador.getNome() + " não pode pagar!");
-                    System.out.println(jogador.getNome() + " entrou em falência!");
+                    System.out.println("\n*** "+jogador.getNome() + " entrou em falência! ***");
                     removerJogador(jogador);
                 }
             }
@@ -550,7 +579,7 @@ public class Jogo {
         }
         else {
             System.out.println(jogador.getNome() + " não pode pagar a taxa!");
-            System.out.println(jogador.getNome() + " entrou em falência");
+            System.out.println("\n*** "+jogador.getNome() + " entrou em falência! ***");
             removerJogador(jogador);
         }
     }
@@ -570,7 +599,7 @@ public class Jogo {
 
         if (impostoMinimo >= jogador.getSaldo()) {
             System.out.println("Nada a se fazer! Jogador não tem saldo suficiente para pagar imposto");
-            System.out.println(jogador.getNome() + " entrou em falência!");
+            System.out.println("\n*** "+jogador.getNome() + " entrou em falência! ***");
             removerJogador(jogador);
         }
         else {
@@ -623,11 +652,7 @@ public class Jogo {
                         propriedadesAtuais.add(propriedadeAtual);
                         jogador.setConjuntoPropriedades(propriedadesAtuais);
                         System.out.println("Compra realizada com sucesso!");
-                        int qtdMonopoliosAnterior = jogador.getQuantidadeMonopolios();
-                        atualizarMonopolio(jogador);
-                        if (qtdMonopoliosAnterior != jogador.getQuantidadeMonopolios() && propriedadeAtual instanceof Lote) {
-                            System.out.println(jogador.getNome() + " formou um monopólio! Cor: " + ((Lote)propriedadeAtual).getCor());
-                        }
+                        detectaMonopolio(jogador, propriedadeAtual);
                     }
                     else {
                         System.out.println("Não há saldo sulficiente para comprar a propriedade!");
@@ -656,7 +681,7 @@ public class Jogo {
             }
             else {
                 System.out.println(jogador.getNome() + " não pode pagar o aluguel de " + custoAluguel);
-                System.out.println(jogador.getNome() + " entrou em falência com " + nomeDono + "!");
+                System.out.println("\n*** " +jogador.getNome() + " entrou em falência com " + nomeDono + "! ***");
                 removerJogador(jogador, propriedadeAtual.getDono());
             }
         }
@@ -705,6 +730,7 @@ public class Jogo {
                 break;
             }
         }
+        System.out.println("Jogador "+jogador.getNome()+" foi removido!");
         return;
     }
     /**
@@ -723,10 +749,24 @@ public class Jogo {
                 }
                 recebedor.setConjuntoPropriedades(conjunto); //set conjunto
                 jogadores.remove(j);
+                int qtdMonopoliosAnterior = recebedor.getQuantidadeMonopolios();
+                atualizarMonopolio(recebedor);
+                if(qtdMonopoliosAnterior < recebedor.getQuantidadeMonopolios()) {
+                    System.out.println(recebedor.getNome() + " formou um ou mais monopólios após a transferência");
+                }
                 break;
             }
         }
+        System.out.println("Jogador "+endividado.getNome()+" foi removido!");
         return;
+    }
+
+    private void detectaMonopolio(Jogador jogador, Propriedade propriedadeAlterada) {
+        int qtdMonopoliosAnterior = jogador.getQuantidadeMonopolios();
+        atualizarMonopolio(jogador);
+        if (qtdMonopoliosAnterior != jogador.getQuantidadeMonopolios() && propriedadeAlterada instanceof Lote) {
+            System.out.println(jogador.getNome() + " formou um monopólio! Cor: " + ((Lote)propriedadeAlterada).getCor());
+        }
     }
 
     /**
@@ -795,6 +835,7 @@ public class Jogo {
 
             if (pertencemAoMesmoJogador) {
                 qtdMonopolios++;
+                jogador.setQuantidadeMonopolios(qtdMonopolios);
                 for (Lote lotesMonopolizados : grupo.membrosDoGrupo()) {
                     lotesMonopolizados.setMonopolizado(true);
                 }
