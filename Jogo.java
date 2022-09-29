@@ -378,7 +378,8 @@ public class Jogo {
     /**
      * Método responsável por fornecer a interface de compra de casas para as propriedades no monopólio
      * de um jogador. Checa se já foram construidas propriedades anteriormente ou não e se o jogador
-     * tem monopólio para a construção das mesmas.
+     * tem monopólio para a construção das mesmas. Assume que só é possível ter zero ou 1 monopólio
+     * (mais do que dois geraria uma condição de vitória para o jogador)
      * @param jogador o jogador atual jogando
      */
     private void executarConstruirCasa(Jogador jogador) {
@@ -419,7 +420,8 @@ public class Jogo {
     /**
      * Método responsável por fornecer a interface de compra de hoteis para as propriedades no monopólio
      * de um jogador. Checa se todas as prorpriedades do monopólio já tem casa ou não e se o jogador
-     * tem monopólio para a construção de hoteis.
+     * tem monopólio para a construção de hoteis. Assume que só é possível ter zero ou 1 monopólio
+     * (mais do que um geraria uma condição de vitória para o jogador)
      * @param jogador o jogador atual jogando
      */
     private void executarConstruirHotel(Jogador jogador) {
@@ -432,7 +434,16 @@ public class Jogo {
             return;
         }
 
-
+        ArrayList<Lote> lotesMonopolizados = new ArrayList<>();
+        for (Propriedade it : jogador.getConjuntoPropriedades()) {
+            if (it instanceof Lote) {
+                if (((Lote)it).getMonopolizado()) {
+                    lotesMonopolizados.add((Lote)it);
+                } 
+            }
+        }
+        
+        
         return;
     }
 
