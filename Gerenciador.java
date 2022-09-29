@@ -55,7 +55,7 @@ public class Gerenciador {
         scan.close();
     }
 
-    static String recebeNome() {
+    private static String recebeNome() {
         String nome;
         while(true) {
             nome = scan.nextLine();
