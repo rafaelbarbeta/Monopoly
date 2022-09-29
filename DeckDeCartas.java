@@ -15,7 +15,7 @@ public class DeckDeCartas {
     private ArrayList<Carta> deck;
 
     /**
-     * 
+     * Construtor de um Deck de Cartas (Cofre ou Sorte)
      * @param tipoDeck Qual deque será criado, um deque de Cofre ou de Sorte. Deve ser passada uma das constantes públicas da classe para isso (DECKCOFRE) ou (DECKSORTE)
      */
     public DeckDeCartas(int tipoDeck) {
@@ -67,6 +67,7 @@ public class DeckDeCartas {
         embaralhar();
     }
     /**
+     * Método de pegar uma carta do topo do Deck
      * @return A carta retirada do início do Deck
      */
     public Carta pegarCarta() {

@@ -19,6 +19,7 @@ public abstract class Propriedade extends Espaco {
     }
 
     /**
+     * Getter do preço de compra do Espaço
      * @return o valor do preco de compra do espaco
      */
     public int getPrecoCompra() {

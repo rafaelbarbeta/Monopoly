@@ -24,6 +24,7 @@ public class Espaco {
     }
 
     /**
+     * Getter do Nome do Espaço
      * @return O nome do Espaço
      */
     public String getNome() {
@@ -31,6 +32,7 @@ public class Espaco {
     }
 
     /**
+     * Getter da Posição do espaço no Tabuleiro
      * @return A posição do espaço genérico no tabuleiro.
      */
     public int getPosicao() {

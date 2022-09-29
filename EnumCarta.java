@@ -1,5 +1,7 @@
+/**
+ * Enum das descrições das Cartas Cofre e Sorte
+ */
 public enum EnumCarta {
-    
     
     /* CARTAS COFRE */
     

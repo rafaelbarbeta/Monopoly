@@ -109,7 +109,7 @@ public class Tabuleiro {
         return grupos;
     }
     
-        /**
+    /**
      * Movimenta o jogador pelo tabuleiro de acordo com a Carta de Movimento retirada.
      * @param jogador O jogador que será movimentado.
      * @param carta A Carta de Movimento retirada pelo jogador.

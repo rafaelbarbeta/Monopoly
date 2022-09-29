@@ -35,6 +35,7 @@ public class Dado {
         return ultimoValor;
     }
     /**
+     * Getter do último valor do lançamento do Dado
      * @return ultimo valor do lançamento do dado
      */
     public int getUltimoValor() {

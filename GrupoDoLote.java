@@ -3,7 +3,9 @@ import java.util.ArrayList;
 /* Classe responsável pela organização dos lotes em diferentes cores */
 
 public class GrupoDoLote {
-    
+    /**
+	 * ArrayList de Lotes pertencentes ao Grupo
+	 */
     private ArrayList<Lote> lotes = new ArrayList<Lote>();
     
 	/**
@@ -14,6 +16,7 @@ public class GrupoDoLote {
 		lotes.add(lote);
 	}
 	/**
+	 * Método que retorna os membros do Grupo
 	 * @return ArrayList de Lotes pertencentes ao Grupo
 	 */
 	public ArrayList<Lote> membrosDoGrupo() {
@@ -21,6 +24,7 @@ public class GrupoDoLote {
 	}
         
 	/**
+	 * Método que retorna a quantidade de lotes no Grupo
 	 * @return Quantidade de lotes no Grupo
 	 */
 	public int tamanho() {

@@ -29,6 +29,7 @@ public enum EnumCorDoLote {
     }
 
     /**
+     * Método que indica a cor do Lote
      * @return a representacao em string da cor do lote
      */
     @Override
@@ -37,6 +38,7 @@ public enum EnumCorDoLote {
     }
 
     /**
+     * Método que indica o número do Grupo
      * @return o numero relativo a ordem dos grupos do lote
      */
     public int numCor() {

@@ -36,6 +36,7 @@ public class CartaDeMovimento extends Carta {
     }
 
     /**
+     * Getter do Tipo de Movimento da Carta
      * @return O tipo de movimento, PARAFRENTE, PARATRAS ou ESPECIFICO
      */
     public int getTipoMovimento() {
@@ -43,6 +44,7 @@ public class CartaDeMovimento extends Carta {
     }
 
     /**
+     * Getter do Valor do Movimento da Carta
      * @return O quanto o jogador deve "andar", no caso de movimento para frente ou para trás,
      * ou "ir", no caso de movimento ser para um espaço específico ou "avançar", no caso de ser um movimento para uma espaço mais próximo
      */

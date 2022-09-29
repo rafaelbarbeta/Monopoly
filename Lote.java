@@ -34,6 +34,7 @@ public class Lote extends Propriedade {
     }
 
     /**
+     * Getter da cor correspondente ao Grupo
      * @return Cor correspondente ao Grupo que o Lote pertence
      */
     public String getCor() {
@@ -41,6 +42,7 @@ public class Lote extends Propriedade {
     }
 
     /**
+     * Getter do preço de construção
      * @return O preço de construção da casa ou do hotel
      */
     public int getPrecoConstrucaoCasaHotel() {
@@ -48,6 +50,7 @@ public class Lote extends Propriedade {
     }
 
     /**
+     * Getter do preço do aluguel com Casa
      * @return O preço do aluguel com casa construída
      */
     public int getPrecoAluguelComCasa() {
@@ -55,6 +58,7 @@ public class Lote extends Propriedade {
     }
 
     /**
+     * Getter de construções no Lote (Casa)
      * @return Se o Lote tem uma casa "true"  ou não "false"
      */
     public boolean getTemCasa() {
@@ -62,6 +66,7 @@ public class Lote extends Propriedade {
     }
 
     /**
+     * Setter de uma nova construção no Lote (Casa)
      * @param temCasa Se o Lote tem uma casa "true"  ou não "false"
      */
     public void setTemCasa(boolean temCasa) {
@@ -69,6 +74,7 @@ public class Lote extends Propriedade {
     }
 
     /**
+     * Getter de uma nova construção no Lote (Hotel)
      * @return Se o Lote tem Hotel "true" ou não "false"
      */
     public boolean getTemHotel() {
@@ -76,6 +82,7 @@ public class Lote extends Propriedade {
     }
 
     /**
+     * Setter de uma nova construção no Lote (Hotel)
      * @param temHotel Se o Lote tem Hotel "true"  ou não "false"
      */
     public void setTemHotel(boolean temHotel) {
@@ -85,6 +92,7 @@ public class Lote extends Propriedade {
     }
 
     /**
+     * Getter de monopolização do Lote
      * @return Se o Lote está monopolizado por algum Jogador "true" ou não "false"
      */
     public boolean getMonopolizado() {
@@ -92,6 +100,7 @@ public class Lote extends Propriedade {
     }
 
     /**
+     * Setter de monopolização do Lote
      * @param monopolizado Se o Lote está monopolizado por algum Jogador "1" ou não "0"
      */
     public void setMonopolizado(boolean monopolizado) {

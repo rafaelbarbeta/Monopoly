@@ -42,8 +42,6 @@ public class Jogo {
 
     /**
      * Método que executa a Partida de um jogo de Monopoly. Executa até que o Jogo acabe.
-     * @param scan um objeto scanner para fazer as leituras do jogo. O scanner deve ser fechado pelo método que o passou
-     * Responsável pela comunicação com o usuário
      */
     public void partida() {
         // Definição inicial da ordem de jogadas  
@@ -802,9 +800,8 @@ public class Jogo {
     /**
      * Função responsável por obter uma opção do jogador. 
      * Trata possíveis excessões de leitura além de validá-la
-     * @param scan objeto para leitura dos dados
-     * @param qtdOpcoes quantas opoções serão disponibilizadas
-     * @return o número da opção obtida
+     * @param qtdOpcoes Quantas opções serão disponibilizadas
+     * @return O número da opção obtida
      */
     private int obterOpcaoSeguro(int qtdOpcoes) {
         while (true) {
@@ -884,10 +881,10 @@ public class Jogo {
     }
 
     /**
-     * método auxiliar para a função atualizarMonopolio. Identifica se uma propriedade faz parte
+     * Método auxiliar para a função atualizarMonopolio. Identifica se uma propriedade faz parte
      * de um "grupo" ou não
      * @param p A propriedade a ser verificada
-     * @param grupo O grupo no qual a propriedade é buscada
+     * @param jogador O jogador que será conferido
      * @return true, se a propriedade está no grupo, ou false, se não estiver
      */
     private boolean jogadorContemPropriedade(Propriedade p, Jogador jogador) {

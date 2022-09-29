@@ -4,6 +4,7 @@
 public class CartaVaParaCadeia extends Carta{
 
     /**
+     * Construtor da Carta Vai para a Cadeia
      * @param descricao A descrição da carta. Deve ser uma das constantes definidas em EnumCarta
      */
     public CartaVaParaCadeia(EnumCarta descricao) {

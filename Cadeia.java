@@ -15,6 +15,7 @@ public class Cadeia extends Espaco{
     }
 
     /**
+     * Getter da Fiança
      * @return O valor a ser pago como fiança pelo jogador
      */
     public int getFianca() {

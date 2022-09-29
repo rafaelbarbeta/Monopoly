@@ -36,6 +36,7 @@ public class Jogador {
         this.rodadasPreso = 0;
     }
     /**
+     * Getter do nome do Jogador
      * @return O nome do jogador
      */
     public String getNome() {
@@ -43,6 +44,7 @@ public class Jogador {
     }
     
     /**
+     * Getter do Saldo do Jogador
      * @return O saldo atual do Jogador
      */
     public int getSaldo() {
@@ -72,7 +74,7 @@ public class Jogador {
     }
 
     /**
-     * getter para o valor nos dados de uma jogada anterior
+     * Getter para o valor nos dados de uma jogada anterior
      * @param qualJogada qual das três jogadas anteriores
      * @return A soma dos dados de uma jogada anterior
      */
@@ -81,7 +83,8 @@ public class Jogador {
     }
 
     /**
-     * @return uma cópia do conjunto de propriedades do jogador
+     * Getter do Conjunto de Propriedades do Jogador
+     * @return uma cópia do conjunto de Propriedades do Jogador
      */
     public ArrayList<Propriedade> getConjuntoPropriedades() {
         ArrayList<Propriedade> copiaConjuntoPropriedades = new ArrayList<Propriedade>(conjuntoPropriedades);
@@ -89,6 +92,7 @@ public class Jogador {
     }
 
     /**
+     * Setter do novo Conjunto de Propriedade do Jogador
      * @param conjuntoPropriedades uma ArrayList contendo um conjunto de propriedades.
      */
     public void setConjuntoPropriedades(ArrayList<Propriedade> conjuntoPropriedades) {
@@ -97,6 +101,7 @@ public class Jogador {
     }
 
     /**
+     * Getter da localização atual do Jogador
      * @return Localização atual do Jogador (Espaço)
      */
     public Espaco getLocalizacao() {
@@ -104,6 +109,7 @@ public class Jogador {
     }
 
     /**
+     * Setter da localização atual do Jogador
      * @param novaLocalizacao A nova localização do Jogador
      */
     public void setLocalizacao(Espaco novaLocalizacao) {
@@ -111,6 +117,7 @@ public class Jogador {
     }
 
     /**
+     * Getter da situação do Jogador (Se está na cadeia ou não)
      * @return Se o jogador está na Cadeia "true" ou não "false".
      */
     public boolean getNaCadeia() {
@@ -118,6 +125,7 @@ public class Jogador {
     }
 
     /**
+     * Setter da situação do JOgador (Se vai para a Cadeia ou não)
      * @param naCadeia Se o Jogador vai para a Cadeia "true" ou sai "false"
      */
     public void setNaCadeia(boolean naCadeia) {
@@ -125,6 +133,7 @@ public class Jogador {
     }
 
     /**
+     * Getter da quantidade de Monopólios atual do Jogador
      * @return Quantidade atual de monopólios do Jogador
      */
     public int getQuantidadeMonopolios() {
@@ -132,6 +141,7 @@ public class Jogador {
     }
 
     /**
+     * Setter da quantidade nova de monopólios do Jogador
      * @param quantidadeMonopolios Nova quantidade de monopólios do Jogador
      */
     public void setQuantidadeMonopolios(int quantidadeMonopolios) {
@@ -139,6 +149,7 @@ public class Jogador {
     }
 
     /**
+     * Getter do número de rodadas que o jogador passou preso
      * @return Valor inteiro que indica quantas rodadas o jogador passou preso
      */
     public int getRodadasPreso() {
@@ -146,6 +157,7 @@ public class Jogador {
     }
 
     /**
+     * Setter do número atualizado de rodadas que o JOgador passou preso
      * @param rodadasPreso valor inteiro que indica quantas rodadas o jogador passou preso
      */
     public void setRodadasPreso(int rodadasPreso) {

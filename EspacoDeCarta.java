@@ -11,6 +11,7 @@ public class EspacoDeCarta extends Espaco{
     private final int tipoEspacoCarta;
 
     /**
+     * Construtor de um Espaço de Carta
      * @param nome O nome dado ao espaço. Só pode ser um dos nomes especificados em NomeDoEspaco
      * @param posicao A posição que o espaço ocupa no tabuleiro. Todo espaço tem uma posição o qual ele ocupa.
      * @param tipoEspacoCarta O tipo do Espaço de Carta. Deve ser passada uma das constantes definidas na classe: COFRE ou SORTE
@@ -21,6 +22,7 @@ public class EspacoDeCarta extends Espaco{
     }
 
     /**
+     * Getter do Tipo do Espaço da Carta
      * @return Tipo do Espaço de Carta (Cofre ou Sorte)
      */
     public int getTipoEspacoCarta() {
