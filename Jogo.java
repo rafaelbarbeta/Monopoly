@@ -366,9 +366,11 @@ public class Jogo {
                 char resposta = scan.next().charAt(0);
                 if(resposta == 'Y' || resposta == 'y') {
                     System.out.println("Négócio fechado entre "+jogador.getNome()+" e "+jogEscolhido.getNome());
-                    jogador.setSaldo(jogador.getSaldo() - valorProposta);
-                    jogEscolhido.setSaldo(jogEscolhido.getSaldo() + valorProposta);
+                    banco.pagamentoEntreJogadores(jogador, jogEscolhido, valorProposta);
                     propEscolhida.setDono(jogador);
+                    if (propEscolhida instanceof Lote) {
+                        ((Lote)propEscolhida).setTemCasa(false);
+                    }
                     ArrayList<Propriedade> novoConjuntoAdd = jogador.getConjuntoPropriedades();
                     ArrayList<Propriedade> novoConjuntoRemove = jogEscolhido.getConjuntoPropriedades();
                     novoConjuntoAdd.add(propEscolhida);
