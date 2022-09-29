@@ -384,6 +384,7 @@ public class Jogo {
                     jogEscolhido.setConjuntoPropriedades(novoConjuntoRemove);
                     System.out.println("Propriedade transferida");
                     detectaMonopolio(jogador, propEscolhida);
+                    atualizarMonopolio(jogEscolhido);
                     scan.nextLine();
                     break;
                 } else if (resposta == 'N' || resposta == 'n') {
