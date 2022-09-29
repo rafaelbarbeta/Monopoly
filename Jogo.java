@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 /**
  * Classe principal, que contém todos os objetos necessários par simular um jogo de Monopoly
